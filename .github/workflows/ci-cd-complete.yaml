@@ -1,0 +1,175 @@
+name: CI/CD Complete
+
+on:
+  push:
+    branches:
+      - develop
+      - test
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  detect-changes:
+    name: Detect Changes
+    uses: ./.github/workflows/detect-changes.yaml
+    with:
+      push-sha: ${{ github.event_name == 'push' && github.sha || '' }}
+      push-ref: ${{ github.event_name == 'push' && github.ref || '' }}
+      pull-request-ref: ${{ github.event_name == 'pull_request' && github.ref || '' }}
+      backend-filters: |
+        advertiser-service:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-backend.yaml'
+          - '.github/workflows/deploy-backend.yaml'
+          - 'backend/apps/advertiser-service/**'
+          - 'backend/*'
+        applicant-service:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-backend.yaml'
+          - '.github/workflows/deploy-backend.yaml'
+          - 'backend/apps/applicant-service/**'
+          - 'backend/*'
+        authentication-service:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-backend.yaml'
+          - '.github/workflows/deploy-backend.yaml'
+          - 'backend/apps/authentication-service/**'
+          - 'backend/*'
+        common-service:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-backend.yaml'
+          - '.github/workflows/deploy-backend.yaml'
+          - 'backend/apps/common-service/**'
+          - 'backend/*'
+        company-service:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-backend.yaml'
+          - '.github/workflows/deploy-backend.yaml'
+          - 'backend/apps/company-service/**'
+          - 'backend/*'
+      frontend-filters: |
+        applicant-interface:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-frontend.yaml'
+          - '.github/workflows/deploy-frontend.yaml'
+          - 'frontend/applicant-interface/**'
+          - 'frontend/*'
+        manager-interface:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-frontend.yaml'
+          - '.github/workflows/deploy-frontend.yaml'
+          - 'frontend/manager-interface/**'
+          - 'frontend/*'
+        personnel-interface:
+          - '.github/workflows/ci-cd-complete.yaml'
+          - '.github/workflows/integrate-frontend.yaml'
+          - '.github/workflows/deploy-frontend.yaml'
+          - 'frontend/personnel-interface/**'
+          - 'frontend/*'
+
+  integrate-backend:
+    name: Integrate Backend
+    needs: detect-changes
+    permissions:
+      contents: write
+      packages: write
+      deployments: write
+    if: ${{ needs.detect-changes.outputs.backend-changed != '[]' }}
+    uses: ./.github/workflows/integrate-backend.yaml
+    with:
+      working-directory: backend
+      product-prefix: dongjiang-backend
+      package-list: ${{ needs.detect-changes.outputs.backend-changed }}
+      environment: ${{ needs.detect-changes.outputs.environment }}
+      previous-ref: ${{ needs.detect-changes.outputs.previous-ref }}
+      current-ref: ${{ needs.detect-changes.outputs.current-ref }}
+      temp-tag: ${{ github.sha }}
+    secrets: inherit
+
+  integrate-frontend:
+    name: Integrate Frontend
+    needs: detect-changes
+    permissions:
+      contents: write
+      packages: write
+      deployments: write
+    if: ${{ needs.detect-changes.outputs.frontend-changed != '[]' }}
+    uses: ./.github/workflows/integrate-frontend.yaml
+    with:
+      working-directory: frontend
+      product-prefix: dongjiang-frontend
+      package-list: ${{ needs.detect-changes.outputs.frontend-changed }}
+      environment: ${{ needs.detect-changes.outputs.environment }}
+      previous-ref: ${{ needs.detect-changes.outputs.previous-ref }}
+      current-ref: ${{ needs.detect-changes.outputs.current-ref }}
+      temp-tag: ${{ github.sha }}
+    secrets: inherit
+
+  publish-artifacts:
+    name: Publish Artifacts
+    needs:
+      - integrate-backend
+      - integrate-frontend
+    if: ${{ always() && needs.integrate-backend.result != 'failure' && needs.integrate-frontend.result != 'failure' }}
+    permissions:
+      contents: write
+      packages: write
+    uses: ./.github/workflows/publish-artifacts.yaml
+    with:
+      packages-pattern: ^dongjiang-backend-docker.*$
+      packages-prefix: dongjiang-backend
+      environment: ${{ needs.integrate-backend.outputs.environment == '' && needs.integrate-frontend.outputs.environment || needs.integrate-backend.outputs.environment }}
+      previous-ref: ${{ needs.integrate-backend.outputs.previous-ref == '' && needs.integrate-frontend.outputs.previous-ref || needs.integrate-backend.outputs.previous-ref }}
+      current-ref: ${{ needs.integrate-backend.outputs.current-ref == '' && needs.integrate-frontend.outputs.current-ref || needs.integrate-backend.outputs.current-ref }}
+      temp-tag: ${{ github.sha }}
+    secrets: inherit
+
+  deploy-backend:
+    name: Deploy Backend
+    needs:
+      - integrate-backend
+      - publish-artifacts
+    if: ${{ always() && needs.integrate-backend.result == 'success' && needs.publish-artifacts.result == 'success' }}
+    permissions:
+      contents: write
+      packages: write
+      deployments: write
+    uses: ./.github/workflows/deploy-backend.yaml
+    with:
+      working-directory: backend
+      product-prefix: dongjiang-backend
+      package-list: ${{ needs.integrate-backend.outputs.package-list }}
+      environment: ${{ needs.integrate-backend.outputs.environment }}
+      previous-ref: ${{ needs.integrate-backend.outputs.previous-ref }}
+      current-ref: ${{ needs.integrate-backend.outputs.current-ref }}
+      temp-tag: ${{ github.sha }}
+    secrets: inherit
+
+  deploy-frontend:
+    name: Deploy Frontend
+    needs:
+      - integrate-frontend
+      - publish-artifacts
+      - deploy-backend
+    if: ${{ always() && needs.integrate-frontend.result == 'success' && needs.publish-artifacts.result == 'success' && needs.deploy-backend.result != 'failure' }}
+    permissions:
+      contents: write
+      packages: write
+      deployments: write
+    uses: ./.github/workflows/deploy-frontend.yaml
+    with:
+      working-directory: frontend
+      product-prefix: dongjiang-frontend
+      package-list: ${{ needs.integrate-frontend.outputs.package-list }}
+      environment: ${{ needs.integrate-frontend.outputs.environment }}
+      previous-ref: ${{ needs.integrate-frontend.outputs.previous-ref }}
+      current-ref: ${{ needs.integrate-frontend.outputs.current-ref }}
+      temp-tag: ${{ github.sha }}
+    secrets: inherit

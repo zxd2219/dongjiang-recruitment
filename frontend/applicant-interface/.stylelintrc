@@ -1,0 +1,11 @@
+{
+  "extends": "@dongjiang-recruitment/stylelint-config/vue",
+  "rules": {
+    "unit-no-unknown": [
+      true,
+      {
+        "ignoreUnits": ["rpx"]
+      }
+    ]
+  }
+}

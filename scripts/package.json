@@ -1,0 +1,16 @@
+{
+  "name": "@dongjiang-recruitment/scripts",
+  "version": "1.0.0",
+  "description": "scripts",
+  "private": true,
+  "keywords": [
+    "vite"
+  ],
+  "devDependencies": {
+    "@dongjiang-recruitment/eslint-config": "workspace:^1.0.0",
+    "@dongjiang-recruitment/typescript-config": "workspace:^1.0.0",
+    "@types/node": "^18.13.0"
+  },
+  "author": "ucstu",
+  "license": "MIT"
+}

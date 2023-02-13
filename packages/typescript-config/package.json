@@ -1,0 +1,11 @@
+{
+  "name": "@dongjiang-recruitment/typescript-config",
+  "version": "1.0.0",
+  "description": "typescript config",
+  "keywords": [
+    "typescript",
+    "vue"
+  ],
+  "author": "ucstu",
+  "license": "MIT"
+}
