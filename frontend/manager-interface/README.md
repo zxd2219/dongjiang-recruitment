@@ -1,40 +1,30 @@
-# hr-end
+# 东江人才招聘-管理端
 
-This template should help get you started developing with Vue 3 in Vite.
+## 📃 相关地址
 
-## Recommended IDE Setup
+东江人才招聘-用户端：[演示地址](https://djyh.ucstu.com) [项目目录](../../tree/master/frontend/applicant-interface)\
+东江人才招聘-HR 端：[演示地址](https://djhr.ucstu.com) [项目目录](../../tree/master/frontend/personnel-interface)\
+东江人才招聘-管理端：[演示地址](https://djadmin.ucstu.com) [项目目录](../../tree/master/frontend/manager-interface)\
+东江人才招聘-后端：[项目目录](../../tree/master/backend)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Ⓜ️ 主要功能
 
-## Type Support for `.vue` Imports in TS
+### 1、登陆页面
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+![image.png](https://s2.loli.net/2022/11/01/x1CKuBvLYESejWi.png)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### 2、企业管理
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+![image.png](https://s2.loli.net/2022/11/01/FuOf58YVKHRjmrG.png)
 
-## Customize configuration
+### 3、职位管理
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+![image.png](https://s2.loli.net/2022/11/01/k8xZwRVLGhq45Mt.png)
 
-## Project Setup
+### 4、用户管理
 
-```sh
-yarn
-```
+![image.png](https://s2.loli.net/2022/11/01/NT6hzAWiLcjv4ou.png)
 
-### Compile and Hot-Reload for Development
+## 📦 运行方式
 
-```sh
-yarn dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-yarn build
-```
+详见 package.json

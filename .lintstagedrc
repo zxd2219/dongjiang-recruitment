@@ -1,12 +1,12 @@
 {
-  "*.{js,jsx}": ["eslint --fix", "prettier --write"],
-  "*.{ts,tsx}": ["eslint --fix", "vue-tsc-files --noEmit", "prettier --write"],
-  "*.{css,scss,sass,less,styl}": ["stylelint --fix", "prettier --write"],
-  "*.{json,yaml,yml,md}": ["prettier --write"],
+  "*.{js,jsx}": ["eslint --fix", "s-prettier"],
+  "*.{ts,tsx}": ["eslint --fix", "s-vue-tsc-files --noEmit", "s-prettier"],
+  "*.{css,scss,sass,less,styl}": ["stylelint --fix", "s-prettier"],
+  "*.{json,yaml,yml,md}": ["s-prettier"],
   "*.{vue}": [
     "eslint --fix",
     "stylelint --fix",
-    "vue-tsc-files --noEmit",
-    "prettier --write"
+    "s-vue-tsc-files --noEmit",
+    "s-prettier"
   ]
 }

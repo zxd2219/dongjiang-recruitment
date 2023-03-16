@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "vite config",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "files": [
     "dist"
@@ -16,10 +16,10 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@dcloudio/uni-automator": "3.0.0-alpha-3070020230117001",
-    "@dcloudio/uni-cli-shared": "3.0.0-alpha-3070020230117001",
-    "@dcloudio/uni-stacktracey": "3.0.0-alpha-3070020230117001",
-    "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3070020230117001",
+    "@dcloudio/uni-automator": "3.0.0-alpha-3070120230210001",
+    "@dcloudio/uni-cli-shared": "3.0.0-alpha-3070120230210001",
+    "@dcloudio/uni-stacktracey": "3.0.0-alpha-3070120230210001",
+    "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3070120230210001",
     "@minko-fe/postcss-pxtorem": "^1.1.1",
     "@vitejs/plugin-legacy": "^4.0.1",
     "@vitejs/plugin-vue": "^4.0.0",

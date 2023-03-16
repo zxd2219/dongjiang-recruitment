@@ -3,173 +3,286 @@ name: CI/CD Complete
 on:
   push:
     branches:
+      - master
       - develop
-      - test
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
   pull_request:
     branches:
       - master
+      - develop
     types:
       - opened
       - synchronize
       - reopened
 
+env:
+  NODE_VERSION: 18.14.0
+  PNPM_VERSION: 7.27.0
+
 jobs:
   detect-changes:
     name: Detect Changes
-    uses: ./.github/workflows/detect-changes.yaml
-    with:
-      push-sha: ${{ github.event_name == 'push' && github.sha || '' }}
-      push-ref: ${{ github.event_name == 'push' && github.ref || '' }}
-      pull-request-ref: ${{ github.event_name == 'pull_request' && github.ref || '' }}
-      backend-filters: |
-        advertiser-service:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-backend.yaml'
-          - '.github/workflows/deploy-backend.yaml'
-          - 'backend/apps/advertiser-service/**'
-          - 'backend/*'
-        applicant-service:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-backend.yaml'
-          - '.github/workflows/deploy-backend.yaml'
-          - 'backend/apps/applicant-service/**'
-          - 'backend/*'
-        authentication-service:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-backend.yaml'
-          - '.github/workflows/deploy-backend.yaml'
-          - 'backend/apps/authentication-service/**'
-          - 'backend/*'
-        common-service:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-backend.yaml'
-          - '.github/workflows/deploy-backend.yaml'
-          - 'backend/apps/common-service/**'
-          - 'backend/*'
-        company-service:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-backend.yaml'
-          - '.github/workflows/deploy-backend.yaml'
-          - 'backend/apps/company-service/**'
-          - 'backend/*'
-      frontend-filters: |
-        applicant-interface:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-frontend.yaml'
-          - '.github/workflows/deploy-frontend.yaml'
-          - 'frontend/applicant-interface/**'
-          - 'frontend/*'
-        manager-interface:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-frontend.yaml'
-          - '.github/workflows/deploy-frontend.yaml'
-          - 'frontend/manager-interface/**'
-          - 'frontend/*'
-        personnel-interface:
-          - '.github/workflows/ci-cd-complete.yaml'
-          - '.github/workflows/integrate-frontend.yaml'
-          - '.github/workflows/deploy-frontend.yaml'
-          - 'frontend/personnel-interface/**'
-          - 'frontend/*'
+    runs-on: ubuntu-latest
+    outputs:
+      detect-results: ${{ steps.github-script.outputs.detect-results }}
+      changed-packages: ${{ steps.github-script.outputs.changed-packages }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+        working-directory: .github/workflows/monorepo-scripts
+      - uses: actions/github-script@v6
+        id: github-script
+        with:
+          script: await require(".github/workflows/monorepo-scripts/detect-changes.js")({ github, context, core, fetch })
 
-  integrate-backend:
-    name: Integrate Backend
+  lint-packages:
+    name: Lint Packages
+    runs-on: ubuntu-latest
     needs: detect-changes
-    permissions:
-      contents: write
-      packages: write
-      deployments: write
-    if: ${{ needs.detect-changes.outputs.backend-changed != '[]' }}
-    uses: ./.github/workflows/integrate-backend.yaml
-    with:
-      working-directory: backend
-      product-prefix: dongjiang-backend
-      package-list: ${{ needs.detect-changes.outputs.backend-changed }}
-      environment: ${{ needs.detect-changes.outputs.environment }}
-      previous-ref: ${{ needs.detect-changes.outputs.previous-ref }}
-      current-ref: ${{ needs.detect-changes.outputs.current-ref }}
-      temp-tag: ${{ github.sha }}
-    secrets: inherit
+    strategy:
+      fail-fast: false
+      matrix:
+        package-name: ${{ fromJson(needs.detect-changes.outputs.changed-packages).*.name }}
+    outputs:
+      detect-results: ${{ needs.detect-changes.outputs.detect-results }}
+      changed-packages: ${{ needs.detect-changes.outputs.changed-packages }}
+    if: ${{ fromJson(needs.detect-changes.outputs.detect-results).has-changed-packages }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        id: github-script
+        env:
+          CURRENT_SCRIPT: lint
+          CURRENT_PACKAGE: ${{ matrix.package-name }}
+          DETECT_RESULTS: ${{ needs.detect-changes.outputs.detect-results }}
+        with:
+          script: await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint Package
+        working-directory: ${{ steps.github-script.outputs.workspace }}
+        run: ${{ steps.github-script.outputs.command }}
 
-  integrate-frontend:
-    name: Integrate Frontend
+  build-packages:
+    name: Build Packages
+    runs-on: ubuntu-latest
     needs: detect-changes
-    permissions:
-      contents: write
-      packages: write
-      deployments: write
-    if: ${{ needs.detect-changes.outputs.frontend-changed != '[]' }}
-    uses: ./.github/workflows/integrate-frontend.yaml
-    with:
-      working-directory: frontend
-      product-prefix: dongjiang-frontend
-      package-list: ${{ needs.detect-changes.outputs.frontend-changed }}
-      environment: ${{ needs.detect-changes.outputs.environment }}
-      previous-ref: ${{ needs.detect-changes.outputs.previous-ref }}
-      current-ref: ${{ needs.detect-changes.outputs.current-ref }}
-      temp-tag: ${{ github.sha }}
-    secrets: inherit
+    strategy:
+      fail-fast: false
+      matrix:
+        package-name: ${{ fromJson(needs.detect-changes.outputs.changed-packages).*.name }}
+    outputs:
+      detect-results: ${{ needs.detect-changes.outputs.detect-results }}
+      changed-packages: ${{ needs.detect-changes.outputs.changed-packages }}
+    if: ${{ fromJson(needs.detect-changes.outputs.detect-results).has-changed-packages }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        id: github-script
+        env:
+          CURRENT_SCRIPT: build
+          CURRENT_PACKAGE: ${{ matrix.package-name }}
+          DETECT_RESULTS: ${{ needs.detect-changes.outputs.detect-results }}
+        with:
+          script: |
+            const exportResults = await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+            const { command, type } = exportResults; const currentEnvironment = exportResults['current-environment'];
+            core.setOutput("command", type === "frontend" ? `${command} --mode ${currentEnvironment}` : command)
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build Package
+        working-directory: ${{ steps.github-script.outputs.workspace }}
+        run: ${{ steps.github-script.outputs.command }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ format('{0}-{1}', steps.github-script.outputs.type, matrix.package-name) }}
+          path: ${{ format('{0}/{1}', steps.github-script.outputs.workspace, steps.github-script.outputs.artifact) }}
 
-  publish-artifacts:
-    name: Publish Artifacts
-    needs:
-      - integrate-backend
-      - integrate-frontend
-    if: ${{ always() && needs.integrate-backend.result != 'failure' && needs.integrate-frontend.result != 'failure' }}
+  publish-packages:
+    name: Publish Packages
+    runs-on: ubuntu-latest
+    needs: [lint-packages, build-packages]
     permissions:
       contents: write
       packages: write
-    uses: ./.github/workflows/publish-artifacts.yaml
-    with:
-      packages-pattern: ^dongjiang-backend-docker.*$
-      packages-prefix: dongjiang-backend
-      environment: ${{ needs.integrate-backend.outputs.environment == '' && needs.integrate-frontend.outputs.environment || needs.integrate-backend.outputs.environment }}
-      previous-ref: ${{ needs.integrate-backend.outputs.previous-ref == '' && needs.integrate-frontend.outputs.previous-ref || needs.integrate-backend.outputs.previous-ref }}
-      current-ref: ${{ needs.integrate-backend.outputs.current-ref == '' && needs.integrate-frontend.outputs.current-ref || needs.integrate-backend.outputs.current-ref }}
-      temp-tag: ${{ github.sha }}
-    secrets: inherit
+    strategy:
+      fail-fast: false
+      matrix:
+        package-name: ${{ fromJson(needs.lint-packages.outputs.changed-packages || needs.build-packages.outputs.changed-packages).*.name }}
+    if: ${{ fromJson(needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results).need-publish }}
+    outputs:
+      detect-results: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
+      changed-packages: ${{ needs.lint-packages.outputs.changed-packages || needs.build-packages.outputs.changed-packages }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        id: github-script
+        env:
+          CURRENT_SCRIPT: publish
+          CURRENT_PACKAGE: ${{ matrix.package-name }}
+          DETECT_RESULTS: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
+        with:
+          script: await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ format('{0}-{1}', steps.github-script.outputs.type, matrix.package-name) }}
+          path: ${{ format('{0}/{1}', steps.github-script.outputs.workspace, steps.github-script.outputs.artifact) }}
+      - name: Set Up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login To GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Docker images
+        uses: docker/build-push-action@v3
+        with:
+          context: ${{ format('{0}/{1}', steps.github-script.outputs.workspace, steps.github-script.outputs.context) }}
+          file: ${{ format('{0}/{1}', steps.github-script.outputs.workspace, steps.github-script.outputs.docker-file) }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          build-args: |
+            NODE_ENV=production
+            NODE_VERSION=${{ env.NODE_VERSION }}
+          tags: |
+            ${{ format('ghcr.io/{0}/{1}-{2}:{3}', github.repository, steps.github-script.outputs.type, matrix.package-name, github.sha) }}
+            ${{ format('ghcr.io/{0}/{1}-{2}:{3}', github.repository, steps.github-script.outputs.type, matrix.package-name, steps.github-script.outputs.publish-version) }}
+            ${{ steps.github-script.outputs.need-release && format('ghcr.io/{0}/{1}-{2}:latest', github.repository, steps.github-script.outputs.type, matrix.package-name) }}
 
-  deploy-backend:
-    name: Deploy Backend
-    needs:
-      - integrate-backend
-      - publish-artifacts
-    if: ${{ always() && needs.integrate-backend.result == 'success' && needs.publish-artifacts.result == 'success' }}
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [lint-packages, build-packages]
     permissions:
       contents: write
-      packages: write
-      deployments: write
-    uses: ./.github/workflows/deploy-backend.yaml
-    with:
-      working-directory: backend
-      product-prefix: dongjiang-backend
-      package-list: ${{ needs.integrate-backend.outputs.package-list }}
-      environment: ${{ needs.integrate-backend.outputs.environment }}
-      previous-ref: ${{ needs.integrate-backend.outputs.previous-ref }}
-      current-ref: ${{ needs.integrate-backend.outputs.current-ref }}
-      temp-tag: ${{ github.sha }}
-    secrets: inherit
+    if: ${{ fromJson(needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results).need-release }}
+    outputs:
+      detect-results: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
+      changed-packages: ${{ needs.lint-packages.outputs.changed-packages || needs.build-packages.outputs.changed-packages }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ${{ format('{0}/{1}', github.workspace, 'artifacts') }}
+      - uses: actions/github-script@v6
+        id: github-script
+        env:
+          DETECT_RESULTS: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
+        with:
+          script: |
+            const { join } = require('path')
+            const { execSync } = require('child_process')
+            const { readdirSync, lstatSync } = require('fs')
+            const exportResults = await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/v${exportResults['current-version']}`,
+              sha: context.sha,
+            })
+            const artifactsPath = join(process.env.GITHUB_WORKSPACE, 'artifacts')
+            const artifacts = readdirSync(artifactsPath)
+            artifacts.forEach(artifact => {
+              const stat = lstatSync(join(artifactsPath, artifact))
+              if (stat.isDirectory()) {
+                execSync(`zip -r ${artifact}.zip . && mv ${artifact}.zip ${artifactsPath}`, {
+                  cwd: join(artifactsPath, artifact)
+                })
+              }
+            })
+      - name: Generate Release Changelog
+        uses: heinrichreimer/github-changelog-generator-action@v2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sinceTag: ${{ steps.github-script.outputs.previous-version && format('v{0}', steps.github-script.outputs.previous-version) }}
+          dueTag: v${{ steps.github-script.outputs.current-version }}
+          output: CHANGELOG.md
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.github-script.outputs.current-version }}
+          body_path: CHANGELOG.md
+          files: |
+            ${{ format('{0}/{1}', github.workspace, 'artifacts/*.zip') }}
 
-  deploy-frontend:
-    name: Deploy Frontend
-    needs:
-      - integrate-frontend
-      - publish-artifacts
-      - deploy-backend
-    if: ${{ always() && needs.integrate-frontend.result == 'success' && needs.publish-artifacts.result == 'success' && needs.deploy-backend.result != 'failure' }}
+  deploy-packages:
+    name: Deploy Packages
+    runs-on: ubuntu-latest
+    needs: publish-packages
+    environment:
+      name: ${{ fromJson(needs.publish-packages.outputs.detect-results).current-environment }}
+      url: ${{ steps.github-script.outputs.deploy-url }}
     permissions:
-      contents: write
-      packages: write
-      deployments: write
-    uses: ./.github/workflows/deploy-frontend.yaml
-    with:
-      working-directory: frontend
-      product-prefix: dongjiang-frontend
-      package-list: ${{ needs.integrate-frontend.outputs.package-list }}
-      environment: ${{ needs.integrate-frontend.outputs.environment }}
-      previous-ref: ${{ needs.integrate-frontend.outputs.previous-ref }}
-      current-ref: ${{ needs.integrate-frontend.outputs.current-ref }}
-      temp-tag: ${{ github.sha }}
-    secrets: inherit
+      id-token: write
+      contents: read
+      actions: read
+    strategy:
+      fail-fast: false
+      matrix:
+        package-name: ${{ fromJson(needs.publish-packages.outputs.changed-packages).*.name }}
+    if: ${{ fromJson(needs.publish-packages.outputs.detect-results).need-deploy }}
+    outputs:
+      detect-results: ${{ needs.publish-packages.outputs.detect-results }}
+      changed-packages: ${{ needs.publish-packages.outputs.changed-packages }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        id: github-script
+        env:
+          CURRENT_SCRIPT: deploy
+          CURRENT_PACKAGE: ${{ matrix.package-name }}
+          DETECT_RESULTS: ${{ needs.publish-packages.outputs.detect-results }}
+        with:
+          script: |
+            const exportResults = await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+            const { path, type } = exportResults; const currentEnvironment = exportResults['current-environment'];
+            const domain = currentEnvironment === 'production' ? exportResults['domain'] : `${currentEnvironment}.${exportResults['domain']}`
+            core.setOutput('secret-name', `${type}-${type === 'backend' ? 'service' : `${process.env.CURRENT_PACKAGE}`}-tls`)
+            core.setOutput('deploy-url', `https://${domain}${path}`)
+            core.setOutput('domain', domain)
+      - uses: azure/k8s-set-context@v3
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+      - name: Deploy Package
+        env:
+          APP_NAME: ${{ format('{0}-{1}', steps.github-script.outputs.type, matrix.package-name) }}
+          APP_ENV: ${{ steps.github-script.outputs.current-environment }}
+          APP_IMAGE: ${{ format('ghcr.io/{0}/{1}-{2}:{3}', github.repository, steps.github-script.outputs.type, matrix.package-name, github.sha) }}
+          APP_PORT: ${{ steps.github-script.outputs.port }}
+          APP_PATH: ${{ steps.github-script.outputs.path }}
+          APP_DOMAIN: ${{ steps.github-script.outputs.domain }}
+          SECRET_NAME: ${{ steps.github-script.outputs.secret-name }}
+        run: |
+          envsubst < deploy.yaml > ${{ format('{0}/{1}', github.workspace, format('deploy-{0}-{1}.yaml', steps.github-script.outputs.type, matrix.package-name)) }}
+          kubectl apply -f ${{ format('{0}/{1}', github.workspace, format('deploy-{0}-{1}.yaml', steps.github-script.outputs.type, matrix.package-name)) }}
+      - name: Upload Deploy File
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: kubernetes-deploy-files
+          path: ${{ format('{0}/{1}', github.workspace, format('deploy-{0}-{1}.yaml', steps.github-script.outputs.type, matrix.package-name)) }}

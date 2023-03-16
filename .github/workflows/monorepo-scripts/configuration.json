@@ -1,0 +1,288 @@
+{
+  "version": {
+    "file": "package.json",
+    "pattern": "\"version\": \"([0-9]+\\.[0-9]+\\.[0-9]+)\""
+  },
+  "global": {
+    "files": [
+      "package.json",
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml",
+      ".github/workflows/*",
+      "packages/**/*",
+      "scripts/**/*"
+    ]
+  },
+  "packages": {
+    "advertiser-service": {
+      "type": "backend",
+      "name": "advertiser-service",
+      "workspace": "backend/advertiser-service",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./backend/advertiser-service"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build && pnpx @vercel/ncc build dist/main.js -o bundle -m -s",
+          "artifact": "bundle"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "docker-file": "../Dockerfile.node"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 3000,
+          "path": "/advertisers",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "applicant-service": {
+      "type": "backend",
+      "name": "applicant-service",
+      "workspace": "backend/applicant-service",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./backend/applicant-service"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build && pnpx @vercel/ncc build dist/main.js -o bundle -m -s",
+          "artifact": "bundle"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "docker-file": "../Dockerfile.node"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 3000,
+          "path": "/applicant",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "authentication-service": {
+      "type": "backend",
+      "name": "authentication-service",
+      "workspace": "backend/authentication-service",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./backend/authentication-service"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build && pnpx @vercel/ncc build dist/main.js -o bundle -m -s",
+          "artifact": "bundle"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "docker-file": "../Dockerfile.node"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 3000,
+          "path": "/authentication",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "common-service": {
+      "type": "backend",
+      "name": "common-service",
+      "workspace": "backend/common-service",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./backend/common-service"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build && pnpx @vercel/ncc build dist/main.js -o bundle -m -s && cp -Lr node_modules/@dongjiang-recruitment/nest-common/dist/mailer/templates bundle",
+          "artifact": "bundle"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "docker-file": "../Dockerfile.node"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 3000,
+          "path": "/common",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "company-service": {
+      "type": "backend",
+      "name": "company-service",
+      "workspace": "backend/company-service",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./backend/company-service"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build && pnpx @vercel/ncc build dist/main.js -o bundle -m -s",
+          "artifact": "bundle"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "docker-file": "../Dockerfile.node"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 3000,
+          "path": "/companies",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "personnel-service": {
+      "type": "backend",
+      "name": "personnel-service",
+      "workspace": "backend/personnel-service",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./backend/personnel-service"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build && pnpx @vercel/ncc build dist/main.js -o bundle -m -s",
+          "artifact": "bundle"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "docker-file": "../Dockerfile.node"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 3000,
+          "path": "/personnel",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "applicant-interface": {
+      "type": "frontend",
+      "name": "applicant-interface",
+      "workspace": "frontend/applicant-interface",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./frontend/applicant-interface"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build:h5",
+          "artifact": "dist/build"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "dist/build",
+          "context": "dist/build/h5",
+          "docker-file": "../Dockerfile.web"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 80,
+          "path": "/",
+          "domain": "applicant.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "manager-interface": {
+      "type": "frontend",
+      "name": "manager-interface",
+      "workspace": "frontend/manager-interface",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./frontend/manager-interface"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build",
+          "artifact": "dist"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "dist",
+          "context": "dist",
+          "docker-file": "../Dockerfile.web"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 80,
+          "path": "/",
+          "domain": "manager.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "personnel-interface": {
+      "type": "frontend",
+      "name": "personnel-interface",
+      "workspace": "frontend/personnel-interface",
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./frontend/personnel-interface"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build",
+          "artifact": "dist"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "dist",
+          "context": "dist",
+          "docker-file": "../Dockerfile.web"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 80,
+          "path": "/",
+          "domain": "personnel.djzhaopin.ucstu.com"
+        }
+      }
+    }
+  }
+}

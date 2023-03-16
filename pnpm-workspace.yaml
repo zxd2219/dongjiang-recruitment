@@ -1,6 +1,6 @@
 packages:
   - "backend/*"
-  - "backend/recommend-services"
+  - "!backend/recommend-services"
   - "frontend/*"
   - "packages/*"
   - "scripts"

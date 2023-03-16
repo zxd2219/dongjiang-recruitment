@@ -4,6 +4,5 @@ module.exports = {
     require.resolve("./css"),
     require.resolve("stylelint-config-standard-scss"),
     require.resolve("stylelint-config-tailwindcss/scss"),
-    require.resolve("stylelint-config-prettier"),
   ],
 };

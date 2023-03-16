@@ -3,10 +3,8 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "preserveValueImports": false,
-    "declarationDir": "types",
     "module": "CommonJS",
-    "declaration": true,
-    "outDir": "dist",
+    "outDir": "bin",
     "rootDir": "src"
   }
 }

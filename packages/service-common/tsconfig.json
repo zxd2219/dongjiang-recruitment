@@ -1,0 +1,22 @@
+{
+  "extends": "@dongjiang-recruitment/typescript-config/web.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/client.ts",
+    "src/index.ts"
+  ],
+  "compilerOptions": {
+    "preserveValueImports": false,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ]
+}

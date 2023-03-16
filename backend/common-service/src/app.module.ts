@@ -1,10 +1,8 @@
+import { CommonModule } from "@dongjiang-recruitment/nest-common";
 import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
+import { CommonModule as _CommonModule } from "./common/common.module";
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [CommonModule, _CommonModule],
 })
 export class AppModule {}

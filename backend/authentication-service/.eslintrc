@@ -1,7 +1,6 @@
 {
   "extends": ["@dongjiang-recruitment/eslint-config/ts"],
   "parserOptions": {
-    "tsconfigRootDir": "./",
     "project": ["./tsconfig.json"]
   }
 }

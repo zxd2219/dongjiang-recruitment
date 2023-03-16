@@ -1,7 +1,6 @@
 {
   "extends": ["@dongjiang-recruitment/eslint-config/vue", ".eslintrc.auto"],
   "parserOptions": {
-    "tsconfigRootDir": "./",
     "project": ["./tsconfig.json", "./tsconfig.config.json"]
   },
   "rules": {

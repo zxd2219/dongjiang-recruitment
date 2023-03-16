@@ -21,17 +21,17 @@ try {
 
 const packages = (
   JSON.parse(
-    execSync(`pnpm m ls --json --depth=-1 --filter ${filter}`).toString() ||
+    execSync(`pnpm m ls --json --depth=-1 --filter "${filter}"`).toString() ||
       "[]"
   ) as Array<Package>
 ).map(({ path }) => relative(process.cwd(), path));
 
 const lintStagedConfigPath = `${process.cwd()}/.lintstagedrc`;
 
-try {
+packages.length &&
   concurrently(
     packages.map((path) => ({
-      command: `lint-staged --config ${lintStagedConfigPath}`,
+      command: `s-prebuild && lint-staged --config ${lintStagedConfigPath}`,
       cwd: relative(process.cwd(), path),
       name: `lint-staged ${path}`,
       prefixColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
@@ -39,9 +39,6 @@ try {
     {
       group: true,
       cwd: process.cwd(),
-      maxProcesses: 5,
+      maxProcesses: 1,
     }
-  );
-} catch (error) {
-  exit(1);
-}
+  ).result.catch(() => exit(1));

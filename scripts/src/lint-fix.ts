@@ -51,12 +51,12 @@ try {
 
 const packages = (
   JSON.parse(
-    execSync(`pnpm m ls --json --depth=-1 --filter ${filter}`).toString() ||
+    execSync(`pnpm m ls --json --depth=-1 --filter "${filter}"`).toString() ||
       "[]"
   ) as Array<Package>
 ).map(({ path }) => relative(process.cwd(), path));
 
-try {
+packages.length &&
   concurrently(
     packages.map((path) => {
       const activeLinters = linterConfigs.filter(({ configFiles }) =>
@@ -69,10 +69,12 @@ try {
 
       return {
         command: activeLinters.length
-          ? `concurrently --prefix-colors "${prefixColors.join(",")}" ` +
+          ? `s-prebuild && concurrently --prefix-colors "${prefixColors.join(
+              ","
+            )}" ` +
             `--names "${langs.map((lang) => `lint-fix ${lang}`).join(",")}" ` +
             `"${commands.join('" "')}" `
-          : `node -e "console.log('\x1b[31m%s\x1b[0m', 'Warning: No linter config found in ${path}')"`,
+          : `node -e "console.log('\x1b[33m%s\x1b[0m', 'Warning: No linter config found in ${path}')"`,
         cwd: relative(process.cwd(), path),
         name: `lint-fix ${path}`,
         prefixColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
@@ -83,7 +85,4 @@ try {
       cwd: process.cwd(),
       maxProcesses: 5,
     }
-  );
-} catch (error) {
-  exit(1);
-}
+  ).result.catch(() => exit(1));

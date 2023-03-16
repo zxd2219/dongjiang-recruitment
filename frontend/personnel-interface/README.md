@@ -1,40 +1,55 @@
-# hr-end
+# 东江人才招聘-HR 端
 
-This template should help get you started developing with Vue 3 in Vite.
+## 📃 相关地址
 
-## Recommended IDE Setup
+东江人才招聘-用户端：[演示地址](https://djyh.ucstu.com) [项目目录](../../tree/master/frontend/applicant-interface)\
+东江人才招聘-HR 端：[演示地址](https://djhr.ucstu.com) [项目目录](../../tree/master/frontend/personnel-interface)\
+东江人才招聘-管理端：[演示地址](https://djadmin.ucstu.com) [项目目录](../../tree/master/frontend/manager-interface)\
+东江人才招聘-后端：[项目目录](../../tree/master/backend)\
+演示视频：
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Ⓜ️ 主要功能
 
-## Type Support for `.vue` Imports in TS
+### 1、登陆注册
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+![image.png](https://s2.loli.net/2022/11/01/geumtz6bGjNJAIL.png)
+![image.png](https://s2.loli.net/2022/11/01/1zj2gQ9FnlS8VMh.png)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### 2、首页数据总览
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+![image.png](https://s2.loli.net/2022/11/01/luYAzIaNUh5dHLD.png)
 
-## Customize configuration
+### 3、查看简历
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+![image.png](https://s2.loli.net/2022/11/01/fjKq2CMcQBSIyX9.png)
 
-## Project Setup
+### 4、职位管理
 
-```sh
-yarn
-```
+![image.png](https://s2.loli.net/2022/11/01/sTMBm57wAJhkLn1.png)
 
-### Compile and Hot-Reload for Development
+### 5、简历管理
 
-```sh
-yarn dev
-```
+![image.png](https://s2.loli.net/2022/11/01/FR8WKnGDZMlyOqw.png)
 
-### Type-Check, Compile and Minify for Production
+### 6、数据中心
 
-```sh
-yarn build
-```
+![image.png](https://s2.loli.net/2022/11/01/dX64QIJNcPSeWMl.png)
+
+### 7、消息页面
+
+![image.png](https://s2.loli.net/2022/11/01/9mhgNnH7v2byr6J.png)
+
+### 8、发布职位
+
+![image.png](https://s2.loli.net/2022/11/01/R8mMinpylD3hLks.png)
+
+## 🎖️ 整体功能
+
+![image.png](https://s2.loli.net/2022/11/01/RrP1TY2hMBcDoup.png)
+![image.png](https://s2.loli.net/2022/11/01/d6ZkbQzJTl597Pp.png)
+![image.png](https://s2.loli.net/2022/11/01/AXbsmM4Z76SnwE9.png)
+Figma：[东江人才招聘-HR 端](https://www.figma.com/file/O7lc9NdDxOm4GLxcSMJTVb/%E4%B8%9C%E6%B1%9F%E4%BA%BA%E6%89%8D%E6%8B%9B%E8%81%98-HR%E7%AB%AF?node-id=0%3A1)
+
+## 📦 运行方式
+
+详见 package.json

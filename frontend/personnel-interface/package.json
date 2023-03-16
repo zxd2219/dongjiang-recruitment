@@ -4,19 +4,17 @@
   "description": "personnel interface",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "s-prebuild && vite",
+    "build": "s-prebuild && vite build",
+    "preview": "s-prebuild && vite preview"
   },
   "dependencies": {
     "@vueuse/core": "^9.12.0",
-    "axios": "^1.3.2",
     "naive-ui": "^2.34.3",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.30",
     "vfonts": "^0.0.3",
     "vue": "^3.2.47",
-    "vue-request": "^1.2.4",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
@@ -26,5 +24,20 @@
     "@dongjiang-recruitment/vite-config": "workspace:^1.0.0",
     "@types/node": "^18.13.0",
     "vite": "^4.1.1"
-  }
+  },
+  "browserslist": {
+    "production": [
+      "defaults",
+      "not IE 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 edge version",
+      "last 1 ie version"
+    ]
+  },
+  "author": "ucstu",
+  "license": "MIT"
 }
