@@ -23,15 +23,16 @@ export const $PersonnelInspectionRecord = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
-    personnelId: {
-      type: "string",
-      description: `人事ID`,
+    personnel: {
+      type: "Personnel",
+      description: `人事`,
       isRequired: true,
     },
-    applicantId: {
-      type: "string",
-      description: `求职者ID`,
+    applicant: {
+      type: "Applicant",
+      description: `求职者`,
       isRequired: true,
     },
   },

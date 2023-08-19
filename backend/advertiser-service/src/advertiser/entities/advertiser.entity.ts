@@ -6,7 +6,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "@dongjiang-recruitment/nest-common/dist/typeorm";
-import { IsNotEmpty } from "@dongjiang-recruitment/nest-common/dist/validation";
 
 /**
  * Advertiser
@@ -31,20 +30,23 @@ export class Advertiser {
   /**
    * Logo地址
    */
-  @Column()
-  @IsNotEmpty()
+  @Column({
+    nullable: true,
+  })
   logoUrl: string;
   /**
    * 名称
    */
-  @Column()
-  @IsNotEmpty()
+  @Column({
+    nullable: true,
+  })
   name: string;
   /**
    * 网页地址
    */
-  @Column()
-  @IsNotEmpty()
+  @Column({
+    nullable: true,
+  })
   pageUrl: string;
   /**
    * 修改时间

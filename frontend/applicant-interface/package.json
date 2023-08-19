@@ -51,8 +51,12 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3070120230210001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3070120230210001",
     "@dongjiang-recruitment/service-common": "workspace:^1.0.0",
-    "normalize.css": "^8.0.1",
+    "@hyoga/uni-socket.io": "^3.0.4",
+    "dayjs": "^1.11.7",
+    "jwt-decode": "^3.1.2",
+    "nanoid": "^4.0.2",
     "pinia": "^2.0.30",
+    "pinia-plugin-persist-uni": "^1.2.0",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2"
   },
@@ -63,6 +67,7 @@
     "@dongjiang-recruitment/typescript-config": "workspace:^1.0.0",
     "@dongjiang-recruitment/vite-config": "workspace:^1.0.0",
     "@types/node": "^18.13.0",
+    "@uni-helper/uni-app-types": "^0.5.1",
     "vite": "^4.0.3"
   },
   "author": "ucstu",

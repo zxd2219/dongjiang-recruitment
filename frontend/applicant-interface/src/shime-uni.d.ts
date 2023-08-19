@@ -1,3 +1,5 @@
+/// <reference types="@uni-helper/uni-app-types" />
+
 export {};
 
 declare module "vue" {

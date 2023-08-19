@@ -1,47 +1,26 @@
-from __future__ import annotations
-from kernel.basic import UserSimilarityScore
-from models.job import Job
-
-
 class User:
-    def __init__(self, id):
-        self.id = id
-        self.embedding = None
-        self.job_like_scores = set()
-        self.user_similar_scores = set()
-        self.viewed_jobs = set()
-        self.applied_jobs = set()
-        self.collect_jobs = set()
-        self.shared_jobs = set()
+    def __init__(self, id: str | None = None, dict: dict | None = None):
+        self.id: str = id if dict is None else dict["id"]  # NOQA
+        self.embedding: list[float] = [] if dict is None else dict["embedding"]  # NOQA
+        self.job_like_scores: list[tuple[str, int]] = [] if dict is None else list(map(lambda x: (x[0], x[1]), dict["job_like_scores"]))  # NOQA
+        self.job_like_scores_dict: dict[str, int] | None = None
+        self.user_similar_scores: list[tuple[str, int]] = [] if dict is None else list(map(lambda x: (x[0], x[1]), dict["user_similar_scores"]))  # NOQA
+        self.user_similar_scores_dict: dict[str, int] | None = None
 
-    def apply_job_action(self, job_id: int, action: "view" | "apply" | "collect" | "share"):
-        match action:
-            case "view":
-                self.viewed_jobs.add(job_id)
-            case "apply":
-                self.applied_jobs.add(job_id)
-            case "collect":
-                self.collect_jobs.add(job_id)
-            case "share":
-                self.shared_jobs.add(job_id)
-            case _:
-                return {"message": "bad request"}
-        db.set_user_job_like_score(
-            self.id, job_id, self.get_job_like_score(job_id)
-        )
-        return {"message": "success"}
+    def get_job_like_score(self, job_id: str, default: int | None = None) -> int | None:
+        if self.job_like_scores_dict is None:
+            self.job_like_scores_dict = dict(self.job_like_scores)
+        return self.job_like_scores_dict.get(job_id, default)
 
-    def get_job_like_score(self, job: Job) -> int:
-        return sum([self.viewed_jobs.get(job.id, 0), self.applied_jobs.get(job.id, 0), self.collect_jobs.get(job.id, 0), self.shared_jobs.get(job.id, 0)])
+    def get_user_similar_score(self, user_id: str, default: int | None = None) -> int | None:
+        if self.user_similar_scores_dict is None:
+            self.user_similar_scores_dict = dict(self.user_similar_scores)
+        return self.user_similar_scores_dict.get(user_id, default)
 
-    def get_user_similar_score(self, user: User) -> int:
-        return UserSimilarityScore(self, user, 10)
-
-    def get_top_like_jobs(self, n: int) -> list[tuple[int, int]]:
-        return sorted(self.job_like_scores, key=lambda j: j.score, reverse=True)[:n]
-
-    def get_top_similar_users(self, n: int) -> list[tuple[int, int]]:
-        return sorted(self.user_similar_scores, key=lambda u: u.score, reverse=True)[:n]
-
-    def save(self):
-        db.set_user(self.id, self)
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "embedding": self.embedding,
+            "job_like_scores": self.job_like_scores,
+            "user_similar_scores": self.user_similar_scores,
+        }

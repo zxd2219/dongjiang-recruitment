@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { Authority } from "../models/Authority";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -15,25 +15,16 @@ export class AuthenticationAuthorityService {
    * @returns any 成功
    * @throws ApiError
    */
-  public addAuthoritiy({
+  public addAuthority({
     requestBody,
   }: {
-    requestBody?: Authority;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Authority;
-  }> {
+    requestBody?: {
+      /**
+       * 名称
+       */
+      name: string;
+    };
+  }): CancelablePromise<Authority> {
     return this.httpRequest.request({
       method: "POST",
       url: "/authentication/authorities",
@@ -68,33 +59,16 @@ export class AuthenticationAuthorityService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof Authority},${"asc" | "desc"}`>;
+    sort?: Sort<Authority>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 权限总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页权限
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 权限总数
-       */
-      total: number;
-      /**
-       * 当页权限
-       */
-      items: Array<Authority>;
-    };
+    items: Array<Authority>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -120,24 +94,7 @@ export class AuthenticationAuthorityService {
      * 权限ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 权限ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/authentication/authorities/{id}",
@@ -162,34 +119,11 @@ export class AuthenticationAuthorityService {
     id: string;
     requestBody?: {
       /**
-       * 响应时间
+       * 名称
        */
-      timestamp: string;
-      /**
-       * 响应
-       */
-      message: string;
-      /**
-       * 响应编码
-       */
-      status: number;
-      body: Authority;
+      name: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Authority;
-  }> {
+  }): CancelablePromise<Authority> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/authentication/authorities/{id}",
@@ -213,21 +147,7 @@ export class AuthenticationAuthorityService {
      * 权限ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Authority;
-  }> {
+  }): CancelablePromise<Authority> {
     return this.httpRequest.request({
       method: "GET",
       url: "/authentication/authorities/{id}",

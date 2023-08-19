@@ -3,7 +3,7 @@ import {
   TypeOrmModule as _TypeOrmModule,
   TypeOrmModuleOptions,
 } from "@nestjs/typeorm";
-import { ConfigType, databaseConfig as _databaseConfig } from "../config";
+import { databaseConfig as _databaseConfig, ConfigType } from "../config";
 
 @Module({
   imports: [
@@ -19,6 +19,7 @@ import { ConfigType, databaseConfig as _databaseConfig } from "../config";
           username: databaseConfig.username,
           password: databaseConfig.password,
           database: databaseConfig.database,
+          logging: true,
         } as TypeOrmModuleOptions;
       },
     }),

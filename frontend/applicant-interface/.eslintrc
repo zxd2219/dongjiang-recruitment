@@ -5,5 +5,9 @@
   },
   "rules": {
     "vue/multi-word-component-names": "off"
+  },
+  "globals": {
+    "uni": "readonly",
+    "InstanceType": "readonly"
   }
 }

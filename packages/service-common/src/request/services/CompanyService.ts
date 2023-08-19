@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { Company } from "../models/Company";
 import type { Position } from "../models/Position";
 
@@ -37,11 +37,11 @@ export class CompanyService {
        */
       cityName: string;
       /**
-       * {1:未融资,2:天使轮,3:A轮,4:B轮,5:C轮,6:D轮及以上,7:上市公司,8:不需要融资}
+       * 融资阶段，eg；{1:NoFinanced,2:AngelWheel,3:ARound,4:BRound,5:CRound,6:DAndMoreRound,7:ListedCompany,8:NoRequired}
        */
       financingStage: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
       /**
-       * {1:少于15人,2:15-50人,3:50-150人,4:150-500人,5:500-2000人,6:2000以上}
+       * 公司规模，eg；{1:LessThan15People,2:With15To50People,3:With50To150People,4:With150To500People,5:With500To2000People,6:MoreThen2000People}
        */
       scale: 1 | 2 | 3 | 4 | 5 | 6;
       /**
@@ -94,21 +94,7 @@ export class CompanyService {
         latitude: number;
       };
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Company;
-  }> {
+  }): CancelablePromise<Company> {
     return this.httpRequest.request({
       method: "POST",
       url: "/companies",
@@ -143,33 +129,16 @@ export class CompanyService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof Company},${"asc" | "desc"}`>;
+    sort?: Sort<Company>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 公司总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页公司
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 公司总数
-       */
-      total: number;
-      /**
-       * 当页公司
-       */
-      items: Array<Company>;
-    };
+    items: Array<Company>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -197,21 +166,7 @@ export class CompanyService {
      */
     id: string;
     requestBody?: Company;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Company;
-  }> {
+  }): CancelablePromise<Company> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/companies/{id}",
@@ -235,23 +190,31 @@ export class CompanyService {
      * 公司ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Company;
-  }> {
+  }): CancelablePromise<Company> {
     return this.httpRequest.request({
       method: "GET",
+      url: "/companies/{id}",
+      path: {
+        id: id,
+      },
+    });
+  }
+
+  /**
+   * 删除公司
+   * @returns any 成功
+   * @throws ApiError
+   */
+  public removeCompany({
+    id,
+  }: {
+    /**
+     * 公司ID
+     */
+    id: string;
+  }): CancelablePromise<string> {
+    return this.httpRequest.request({
+      method: "DELETE",
       url: "/companies/{id}",
       path: {
         id: id,
@@ -285,33 +248,16 @@ export class CompanyService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof Position},${"asc" | "desc"}`>;
+    sort?: Sort<Position>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 职位总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页职位
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 职位总数
-       */
-      total: number;
-      /**
-       * 当页职位
-       */
-      items: Array<Position>;
-    };
+    items: Array<Position>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -357,23 +303,8 @@ export class CompanyService {
      * 排序方式
      */
     sort?: Array<string>;
-  }): CancelablePromise<{
-    /**
-     * 处理时间
-     */
-    timestamp: string;
-    /**
-     * 响应状态
-     */
-    status: number;
-    /**
-     * 状态描述
-     */
-    message: string;
-    /**
-     * 历史大数据列表
-     */
-    body: Array<{
+  }): CancelablePromise<
+    Array<{
       /**
        * 记录日期
        */
@@ -390,8 +321,8 @@ export class CompanyService {
        * 在线沟通数量
        */
       onlineCommunicateCount: number;
-    }>;
-  }> {
+    }>
+  > {
     return this.httpRequest.request({
       method: "GET",
       url: "/companies/{companyId}/bigData",

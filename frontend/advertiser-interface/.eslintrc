@@ -1,0 +1,6 @@
+{
+  "extends": ["@dongjiang-recruitment/eslint-config/vue", ".eslintrc.auto"],
+  "parserOptions": {
+    "project": ["./tsconfig.json", "./tsconfig.config.json"]
+  }
+}

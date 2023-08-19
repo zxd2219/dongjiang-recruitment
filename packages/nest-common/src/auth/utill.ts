@@ -8,10 +8,10 @@ export function getNeedPermissions(
   reflector: Reflector,
   context: ExecutionContext,
   authGuardConf: boolean
-): User["permissions"] {
+): User["authorities"] {
   const target = [context.getHandler(), context.getClass()];
   const needSelfPermission =
-    reflector.getAllAndOverride<User["permissions"]>(PERMISSIONS_KEY, [
+    reflector.getAllAndOverride<User["authorities"]>(PERMISSIONS_KEY, [
       context.getHandler(),
       context.getClass(),
     ]) || [];

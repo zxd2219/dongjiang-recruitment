@@ -1,7 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
+import type { Company } from "../models/Company";
+import type { Personnel } from "../models/Personnel";
 import type { Position } from "../models/Position";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -33,11 +35,11 @@ export class CompanyPositionService {
        */
       positionType: string;
       /**
-       * {1:经验不限,2:在校/应届,3:3年及以下,4:3-5年,5:5-10年,6:10年以上}
+       * 工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}
        */
       workingYears: 1 | 2 | 3 | 4 | 5 | 6;
       /**
-       * {1:不要求,2:大专,3:本科,4:硕士,5:博士}
+       * 学历要求，eg；{0:Unlimited,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
        */
       education: 0 | 1 | 2 | 3 | 4;
       /**
@@ -65,15 +67,15 @@ export class CompanyPositionService {
        */
       workAreaName: string;
       /**
-       * 公司ID
+       * 公司
        */
-      companyId: string;
+      company: Company;
       /**
-       * 人事ID
+       * 人事
        */
-      personnelId: string;
+      personnel: Personnel;
       /**
-       * {1:全职,2:兼职,3:实习}
+       * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
        */
       workType: 1 | 2 | 3;
       /**
@@ -89,7 +91,7 @@ export class CompanyPositionService {
        */
       description: string;
       /**
-       * {1:周末双休:,2:周末单休,3:大小周}
+       * 周末休息时间，eg；{1:Weekends,2:SingleOff,3:SizeWeek}
        */
       weekendReleaseTime: 1 | 2 | 3;
       /**
@@ -105,19 +107,19 @@ export class CompanyPositionService {
        */
       interviewInfo: {
         /**
-         * {1:现场面试,2:视频面试,3:电话面试}
+         * 面试形式，eg；{1:OffLine,2:OnLine,3:OnCall}
          */
         situation: 1 | 2 | 3;
         /**
-         * {1:1-2轮次,2:3-4轮次,3:5-6轮次,4:暂不确定}
+         * 面试轮数，eg；{1:With1To2Round,2:With3To4Round,3:With5To6Round,4:Uncertain}
          */
         wheel: 1 | 2 | 3 | 4;
         /**
-         * {1:一天内完成,2:分多次完成}
+         * 面试时长，eg；{1:OneTime,2:ManyTime}
          */
         time: 1 | 2;
         /**
-         * {1:可周末面试,2:包含笔试,3:可下班面试,4:包含面试作业}
+         * 面试说明，eg；{1:Weekend,2:Examination,3:GetOffWork,4:Assignment}
          */
         illustrate: 1 | 2 | 3 | 4;
       };
@@ -135,21 +137,7 @@ export class CompanyPositionService {
         latitude: number;
       };
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Position;
-  }> {
+  }): CancelablePromise<Position> {
     return this.httpRequest.request({
       method: "POST",
       url: "/companies/{companyId}/positions",
@@ -192,33 +180,16 @@ export class CompanyPositionService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof Position},${"asc" | "desc"}`>;
+    sort?: Sort<Position>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 职位总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页职位
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 职位总数
-       */
-      total: number;
-      /**
-       * 当页职位
-       */
-      items: Array<Position>;
-    };
+    items: Array<Position>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -252,24 +223,7 @@ export class CompanyPositionService {
      * 职位ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 职位ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/companies/{companyId}/positions/{id}",
@@ -299,21 +253,7 @@ export class CompanyPositionService {
      */
     id: string;
     requestBody?: Position;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Position;
-  }> {
+  }): CancelablePromise<Position> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/companies/{companyId}/positions/{id}",
@@ -343,21 +283,7 @@ export class CompanyPositionService {
      * 职位ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Position;
-  }> {
+  }): CancelablePromise<Position> {
     return this.httpRequest.request({
       method: "GET",
       url: "/companies/{companyId}/positions/{id}",

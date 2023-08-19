@@ -1,15 +1,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import axios from "axios";
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import FormData from "form-data";
 
 import { ApiError } from "./ApiError";
 import type { ApiRequestOptions } from "./ApiRequestOptions";
 import type { ApiResult } from "./ApiResult";
-import type { OnCancel } from "./CancelablePromise";
 import { CancelablePromise } from "./CancelablePromise";
+import type { OnCancel } from "./CancelablePromise";
 import type { OpenAPIConfig } from "./OpenAPI";
 
 const isDefined = <T>(
@@ -333,7 +333,7 @@ export const request = <T>(
 
         catchErrorCodes(options, result);
 
-        resolve(result.body);
+        resolve(result.body.body ?? result.body);
       }
     } catch (error) {
       reject(error);

@@ -65,12 +65,13 @@ module.exports = async ({ github, context, core, fetch }) => {
   changedPackages =
     Object.fromEntries(
       Object.entries(changedPackages).filter(
-        ([key, { workspace }]) =>
-          // 检测文件是否在工作区内或者匹配glob pattern
+        ([key, { workspace, files }]) =>
+          // 检测文件是否在工作区内或者匹配glob pattern或者extend pattern
           !hasSuccessRun ||
           changedFiles.some(
             ({ filename }) =>
               globalFiles.some((pattern) => minimatch(filename, pattern)) ||
+              files.some((pattern) => minimatch(filename, pattern)) ||
               filename.startsWith(workspace)
           )
       )

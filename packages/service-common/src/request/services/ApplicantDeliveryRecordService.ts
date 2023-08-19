@@ -1,8 +1,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
+import type { Applicant } from "../models/Applicant";
+import type { Company } from "../models/Company";
 import type { DeliveryRecord } from "../models/DeliveryRecord";
+import type { Position } from "../models/Position";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
 import type { BaseHttpRequest } from "../core/BaseHttpRequest";
@@ -25,11 +28,11 @@ export class ApplicantDeliveryRecordService {
     applicantId: string;
     requestBody?: {
       /**
-       * 求职者ID
+       * 求职者
        */
-      applicantId: string;
+      applicant: Applicant;
       /**
-       * {1:待查看,2:已查看,3:通过筛选,4:约面试,5:不合适}
+       * 投递状态，eg；{1:UnViewed,2:Viewed,3:PassFilter,4:Interview,5:Inappropriate}
        */
       status: 1 | 2 | 3 | 4 | 5;
       /**
@@ -37,29 +40,15 @@ export class ApplicantDeliveryRecordService {
        */
       interviewTime: string;
       /**
-       * 公司ID
+       * 公司
        */
-      companyId: string;
+      company: Company;
       /**
-       * 职位ID
+       * 职位
        */
-      positionId: string;
+      position: Position;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: DeliveryRecord;
-  }> {
+  }): CancelablePromise<DeliveryRecord> {
     return this.httpRequest.request({
       method: "POST",
       url: "/applicant/{applicantId}/deliveryRecords",
@@ -102,33 +91,16 @@ export class ApplicantDeliveryRecordService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof DeliveryRecord},${"asc" | "desc"}`>;
+    sort?: Sort<DeliveryRecord>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 投递记录总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页投递记录
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 投递记录总数
-       */
-      total: number;
-      /**
-       * 当页投递记录
-       */
-      items: Array<DeliveryRecord>;
-    };
+    items: Array<DeliveryRecord>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -162,24 +134,7 @@ export class ApplicantDeliveryRecordService {
      * 投递记录ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 投递记录ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/applicant/{applicantId}/deliveryRecords/{id}",
@@ -207,21 +162,7 @@ export class ApplicantDeliveryRecordService {
      * 投递记录ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: DeliveryRecord;
-  }> {
+  }): CancelablePromise<DeliveryRecord> {
     return this.httpRequest.request({
       method: "GET",
       url: "/applicant/{applicantId}/deliveryRecords/{id}",
@@ -229,6 +170,38 @@ export class ApplicantDeliveryRecordService {
         applicantId: applicantId,
         id: id,
       },
+    });
+  }
+
+  /**
+   * 修改投递记录
+   * @returns any 成功
+   * @throws ApiError
+   */
+  public updateDeliveryRecord({
+    applicantId,
+    id,
+    requestBody,
+  }: {
+    /**
+     * 求职者ID
+     */
+    applicantId: string;
+    /**
+     * 投递记录ID
+     */
+    id: string;
+    requestBody?: DeliveryRecord;
+  }): CancelablePromise<DeliveryRecord> {
+    return this.httpRequest.request({
+      method: "PUT",
+      url: "/applicant/{applicantId}/deliveryRecords/{id}",
+      path: {
+        applicantId: applicantId,
+        id: id,
+      },
+      body: requestBody,
+      mediaType: "application/json",
     });
   }
 }

@@ -21,7 +21,7 @@ export type ProjectExperience = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 项目名称
    */

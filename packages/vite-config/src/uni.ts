@@ -24,7 +24,10 @@ export function uniConfig(options?: UniOptions): UserConfigExport {
       postcssPresetEnv: options?.postcssPresetEnv,
     }),
     {
-      plugins: [uni(options?.uni), !normal ? weappTailwindcss() : undefined],
+      plugins: [
+        uni(options?.uni),
+        !normal ? weappTailwindcss() : undefined,
+      ].filter(Boolean),
       css: {
         modules: {
           localsConvention: "camelCaseOnly",

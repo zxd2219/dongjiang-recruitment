@@ -1,0 +1,29 @@
+{
+  "name": "@dongjiang-recruitment/backend-scripts",
+  "version": "1.0.0",
+  "description": "scripts",
+  "private": true,
+  "keywords": [
+    "vite"
+  ],
+  "scripts": {
+    "proxy": "concurrently \"kubectl port-forward services/postgresql-hl 5432:5432 -n dongjiang-recruitment-develop\" \"kubectl port-forward services/redis-master 6379:6379 -n dongjiang-recruitment-develop\" \"kubectl port-forward services/minio 9000:9000 9001:9001 -n dongjiang-recruitment-develop\" \"kubectl port-forward services/mongodb 27017:27017 -n dongjiang-recruitment-develop\"",
+    "start": "ts-node src/services.ts",
+    "dev": "concurrently \"pnpm proxy\" \"pnpm start\""
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1",
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {
+    "@dongjiang-recruitment/eslint-config": "workspace:^1.0.0",
+    "@dongjiang-recruitment/typescript-config": "workspace:^1.0.0",
+    "@types/http-proxy": "^1.17.10",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.13.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "author": "ucstu",
+  "license": "MIT"
+}

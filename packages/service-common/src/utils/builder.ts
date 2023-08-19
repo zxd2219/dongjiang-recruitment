@@ -16,7 +16,10 @@ type ClientWithHooks = {
         ) => QueryResult<R, P>
       : never;
   } & {
-    httpRequest: ApiClient[SKey]["httpRequest"];
+    [FKey in Exclude<
+      keyof ApiClient[SKey],
+      "httpRequest"
+    >]: ApiClient[SKey][FKey];
   };
 } & {
   request: ApiClient["request"];
@@ -50,6 +53,7 @@ export const buildHooks = (client: ApiClient): ClientWithHooks => {
             return {
               // 保留已处理的请求方法
               ...fAcc,
+              [fKey]: request.bind(service),
               [`use${fKey.charAt(0).toUpperCase()}${fKey.slice(1)}`]: (
                 params?:
                   | Parameters<typeof request>[0]

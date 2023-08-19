@@ -1,23 +1,8 @@
 "use strict";
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_child_process_1 = require("node:child_process");
 const node_fs_1 = require("node:fs");
 const node_path_1 = require("node:path");
-const proper_lockfile_1 = __importDefault(require("proper-lockfile"));
-const lockTheFile = (path) => {
-  while (proper_lockfile_1.default.checkSync(path)) {
-    (0, node_child_process_1.execSync)("sleep 1");
-  }
-  proper_lockfile_1.default.lockSync(path);
-};
-const unlockTheFile = (path) => {
-  proper_lockfile_1.default.unlockSync(path);
-};
 // 列出 monorepo 中所有的包
 const allPackages = JSON.parse(
   (0, node_child_process_1.execSync)(
@@ -69,7 +54,6 @@ if (
     JSON.stringify({}, null, 2)
   );
 }
-lockTheFile((0, node_path_1.resolve)(gitDir, "prebuild-lock.json"));
 // 获取 prebuild-lock.json 中的内容
 const prebuildLock = JSON.parse(
   (0, node_fs_1.readFileSync)(
@@ -125,4 +109,3 @@ if (needRebuildDependencies.length) {
     "No dependencies need to be rebuild."
   );
 }
-unlockTheFile((0, node_path_1.resolve)(gitDir, "prebuild-lock.json"));

@@ -12,7 +12,8 @@
     "lint-staged": "s-lint-staged",
     "lint-fix": "s-lint-fix",
     "up-version": "s-up-version",
-    "format": "s-format"
+    "format": "s-format",
+    "dev": "pnpm run --filter \"@dongjiang-recruitment/backend-scripts\" dev"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
@@ -28,10 +29,7 @@
     "vue-tsc": "^1.1.7",
     "yorkie-pnpm": "^2.0.1"
   },
-  "gitHooks": {
-    "pre-commit": "s-lint-staged",
-    "commit-msg": "commitlint -e -V "
-  },
+  "gitHooks": {},
   "keywords": [
     "recruitment"
   ],

@@ -1,19 +1,7 @@
 import { execSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import lockfile from "proper-lockfile";
 import type { PackageJson } from "type-fest";
-
-const lockTheFile = (path: string) => {
-  while (lockfile.checkSync(path)) {
-    execSync("sleep 1");
-  }
-  lockfile.lockSync(path);
-};
-
-const unlockTheFile = (path: string) => {
-  lockfile.unlockSync(path);
-};
 
 interface Package {
   name: string;
@@ -66,8 +54,6 @@ if (!existsSync(resolve(gitDir, "prebuild-lock.json"))) {
     JSON.stringify({}, null, 2)
   );
 }
-
-lockTheFile(resolve(gitDir, "prebuild-lock.json"));
 
 // 获取 prebuild-lock.json 中的内容
 const prebuildLock = JSON.parse(
@@ -129,5 +115,3 @@ if (needRebuildDependencies.length) {
     "No dependencies need to be rebuild."
   );
 }
-
-unlockTheFile(resolve(gitDir, "prebuild-lock.json"));

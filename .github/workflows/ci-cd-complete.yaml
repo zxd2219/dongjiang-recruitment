@@ -34,43 +34,6 @@ jobs:
         with:
           script: await require(".github/workflows/monorepo-scripts/detect-changes.js")({ github, context, core, fetch })
 
-  lint-packages:
-    name: Lint Packages
-    runs-on: ubuntu-latest
-    needs: detect-changes
-    strategy:
-      fail-fast: false
-      matrix:
-        package-name: ${{ fromJson(needs.detect-changes.outputs.changed-packages).*.name }}
-    outputs:
-      detect-results: ${{ needs.detect-changes.outputs.detect-results }}
-      changed-packages: ${{ needs.detect-changes.outputs.changed-packages }}
-    if: ${{ fromJson(needs.detect-changes.outputs.detect-results).has-changed-packages }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/github-script@v6
-        id: github-script
-        env:
-          CURRENT_SCRIPT: lint
-          CURRENT_PACKAGE: ${{ matrix.package-name }}
-          DETECT_RESULTS: ${{ needs.detect-changes.outputs.detect-results }}
-        with:
-          script: await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
-      - name: Setup Pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Lint Package
-        working-directory: ${{ steps.github-script.outputs.workspace }}
-        run: ${{ steps.github-script.outputs.command }}
-
   build-packages:
     name: Build Packages
     runs-on: ubuntu-latest
@@ -119,18 +82,18 @@ jobs:
   publish-packages:
     name: Publish Packages
     runs-on: ubuntu-latest
-    needs: [lint-packages, build-packages]
+    needs: [build-packages]
     permissions:
       contents: write
       packages: write
     strategy:
       fail-fast: false
       matrix:
-        package-name: ${{ fromJson(needs.lint-packages.outputs.changed-packages || needs.build-packages.outputs.changed-packages).*.name }}
-    if: ${{ fromJson(needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results).need-publish }}
+        package-name: ${{ fromJson(needs.build-packages.outputs.changed-packages).*.name }}
+    if: ${{ fromJson(needs.build-packages.outputs.detect-results).need-publish }}
     outputs:
-      detect-results: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
-      changed-packages: ${{ needs.lint-packages.outputs.changed-packages || needs.build-packages.outputs.changed-packages }}
+      detect-results: ${{ needs.build-packages.outputs.detect-results }}
+      changed-packages: ${{ needs.build-packages.outputs.changed-packages }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/github-script@v6
@@ -138,9 +101,11 @@ jobs:
         env:
           CURRENT_SCRIPT: publish
           CURRENT_PACKAGE: ${{ matrix.package-name }}
-          DETECT_RESULTS: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
+          DETECT_RESULTS: ${{ needs.build-packages.outputs.detect-results }}
         with:
-          script: await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+          script: |
+            const exportResults = await require(".github/workflows/monorepo-scripts/export-variables.js")({ core })
+            exportResults['build-args'] && core.setOutput("build-args", exportResults['build-args'].join('\n'))
       - name: Download Build Artifacts
         uses: actions/download-artifact@v3
         with:
@@ -167,6 +132,7 @@ jobs:
           build-args: |
             NODE_ENV=production
             NODE_VERSION=${{ env.NODE_VERSION }}
+            {{ steps.github-script.outputs.build-args }
           tags: |
             ${{ format('ghcr.io/{0}/{1}-{2}:{3}', github.repository, steps.github-script.outputs.type, matrix.package-name, github.sha) }}
             ${{ format('ghcr.io/{0}/{1}-{2}:{3}', github.repository, steps.github-script.outputs.type, matrix.package-name, steps.github-script.outputs.publish-version) }}
@@ -175,13 +141,13 @@ jobs:
   create-release:
     name: Create Release
     runs-on: ubuntu-latest
-    needs: [lint-packages, build-packages]
+    needs: [build-packages]
     permissions:
       contents: write
-    if: ${{ fromJson(needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results).need-release }}
+    if: ${{ fromJson(needs.build-packages.outputs.detect-results).need-release }}
     outputs:
-      detect-results: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
-      changed-packages: ${{ needs.lint-packages.outputs.changed-packages || needs.build-packages.outputs.changed-packages }}
+      detect-results: ${{ needs.build-packages.outputs.detect-results }}
+      changed-packages: ${{ needs.build-packages.outputs.changed-packages }}
     steps:
       - uses: actions/checkout@v3
       - name: Download All Artifacts
@@ -191,7 +157,7 @@ jobs:
       - uses: actions/github-script@v6
         id: github-script
         env:
-          DETECT_RESULTS: ${{ needs.lint-packages.outputs.detect-results || needs.build-packages.outputs.detect-results }}
+          DETECT_RESULTS: ${{ needs.build-packages.outputs.detect-results }}
         with:
           script: |
             const { join } = require('path')

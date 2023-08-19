@@ -3,15 +3,22 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "@dongjiang-recruitment/nest-common/dist/typeorm";
+import { Advertiser } from "src/advertiser/entities/advertiser.entity";
 
 export enum AdvertisePosition {
   /**
    * 主页
    */
   Master = 1,
+  /**
+   * 推广页
+   */
+  Popularize = 2,
 }
 export enum AdvertiseStatus {
   /**
@@ -32,7 +39,9 @@ export class Advertise {
   /**
    * 图片地址
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   banner: string;
   /**
    * 创建时间
@@ -47,7 +56,9 @@ export class Advertise {
   /**
    * 结束时间
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   endTime: Date;
   /**
    * 广告ID
@@ -57,36 +68,46 @@ export class Advertise {
   /**
    * 名称
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   name: string;
   /**
    * 网页地址
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   pageUrl: string;
   /**
    * 已缴费用
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   payed: number;
   /**
    * 投放位置，{1:Master}
    */
   @Column({
     type: "enum",
+    nullable: true,
     enum: AdvertisePosition,
   })
   position: AdvertisePosition;
   /**
    * 开始时间
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   startTime: Date;
   /**
    * 投放状态，{1:Active,2:Expired}
    */
   @Column({
     type: "enum",
+    nullable: true,
     enum: AdvertiseStatus,
   })
   status: AdvertiseStatus;
@@ -96,8 +117,11 @@ export class Advertise {
   @UpdateDateColumn()
   updatedAt: Date;
   /**
-   * 广告商ID
+   * 广告商
    */
-  @Column()
-  advertiserId: string;
+  @ManyToOne(() => Advertiser, (advertiser) => advertiser.id, {
+    eager: true,
+  })
+  @JoinColumn()
+  advertiser: Advertiser;
 }

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { WorkExperience } from "../models/WorkExperience";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -41,7 +41,7 @@ export class ApplicantWorkExperienceService {
        */
       endTime: string;
       /**
-       * {1:全职,2:兼职,3:实习}
+       * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
        */
       positionType: 1 | 2 | 3;
       /**
@@ -57,21 +57,7 @@ export class ApplicantWorkExperienceService {
        */
       jobContent: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: WorkExperience;
-  }> {
+  }): CancelablePromise<WorkExperience> {
     return this.httpRequest.request({
       method: "POST",
       url: "/applicant/{applicantId}/workExperiences",
@@ -114,33 +100,16 @@ export class ApplicantWorkExperienceService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof WorkExperience},${"asc" | "desc"}`>;
+    sort?: Sort<WorkExperience>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 工作经历总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页工作经历
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 工作经历总数
-       */
-      total: number;
-      /**
-       * 当页工作经历
-       */
-      items: Array<WorkExperience>;
-    };
+    items: Array<WorkExperience>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -174,24 +143,7 @@ export class ApplicantWorkExperienceService {
      * 工作经历ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 工作经历ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/applicant/{applicantId}/workExperiences/{id}",
@@ -221,21 +173,7 @@ export class ApplicantWorkExperienceService {
      */
     id: string;
     requestBody?: WorkExperience;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: WorkExperience;
-  }> {
+  }): CancelablePromise<WorkExperience> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/applicant/{applicantId}/workExperiences/{id}",
@@ -265,21 +203,7 @@ export class ApplicantWorkExperienceService {
      * 工作经历ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: WorkExperience;
-  }> {
+  }): CancelablePromise<WorkExperience> {
     return this.httpRequest.request({
       method: "GET",
       url: "/applicant/{applicantId}/workExperiences/{id}",

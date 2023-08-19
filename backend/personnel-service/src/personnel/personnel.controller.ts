@@ -13,6 +13,7 @@ import {
   Post,
   Put,
 } from "@nestjs/common";
+import { InspectionRecord } from "src/inspectionRecord/entities/inspectionRecord.entity";
 import { CreatePersonnelDto } from "./dto/create-personnel.dto";
 import { UpdatePersonnelDto } from "./dto/update-personnel.dto";
 import { Personnel } from "./entities/personnel.entity";
@@ -33,6 +34,14 @@ export class PersonnelController {
     @Page() page: Pagination<Personnel>
   ) {
     return this.personnelService.findAll(query, page);
+  }
+
+  @Get("inspectionRecords")
+  findAllInspectionRecords(
+    @QueryParam() query: Array<FindOptionsWhere<InspectionRecord>>,
+    @Page() page: Pagination<InspectionRecord>
+  ) {
+    return this.personnelService.findAllInspectionRecords(query, page);
   }
 
   @Get(":id")

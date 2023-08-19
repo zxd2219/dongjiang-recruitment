@@ -1,3 +1,7 @@
 {
-  "extends": "@dongjiang-recruitment/stylelint-config/vue"
+  "extends": "@dongjiang-recruitment/stylelint-config/vue",
+  "rules": {
+    "no-descending-specificity": null,
+    "selector-class-pattern": null
+  }
 }

@@ -21,13 +21,13 @@ export type EducationExperience = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 学校名称
    */
   schoolName: string;
   /**
-   * {1:大专,2:本科,3:硕士,4:博士}
+   * 学历层次，eg；{1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
    */
   education: EducationExperience.education;
   /**
@@ -46,7 +46,7 @@ export type EducationExperience = {
 
 export namespace EducationExperience {
   /**
-   * {1:大专,2:本科,3:硕士,4:博士}
+   * 学历层次，eg；{1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
    */
   export enum education {
     JuniorCollege = 1,

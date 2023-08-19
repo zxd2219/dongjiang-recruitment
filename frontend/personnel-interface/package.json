@@ -9,12 +9,20 @@
     "preview": "s-prebuild && vite preview"
   },
   "dependencies": {
+    "@dongjiang-recruitment/service-common": "workspace:^1.0.0",
+    "@element-plus/icons-vue": "^2.1.0",
     "@vueuse/core": "^9.12.0",
-    "naive-ui": "^2.34.3",
+    "echarts": "^5.4.2",
+    "element-plus": "^2.3.1",
+    "lodash": "^4.17.21",
+    "nanoid": "^4.0.2",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.30",
-    "vfonts": "^0.0.3",
+    "pinia-plugin-persist": "^1.0.0",
+    "socket.io-client": "^4.6.1",
     "vue": "^3.2.47",
+    "vue-echarts": "^6.5.4",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
@@ -22,7 +30,11 @@
     "@dongjiang-recruitment/stylelint-config": "workspace:^1.0.0",
     "@dongjiang-recruitment/typescript-config": "workspace:^1.0.0",
     "@dongjiang-recruitment/vite-config": "workspace:^1.0.0",
+    "@types/amap-js-api": "^1.4.11",
+    "@types/amap-js-sdk": "^1.4.3",
+    "@types/lodash": "^4.14.192",
     "@types/node": "^18.13.0",
+    "@types/nprogress": "^0.2.0",
     "vite": "^4.1.1"
   },
   "browserslist": {

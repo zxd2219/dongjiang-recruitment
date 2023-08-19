@@ -1,26 +1,34 @@
-from __future__ import annotations
-from kernel.basic import JobSimilarityScore
-from models.user import User
-
-
 class Job:
-    def __init__(self, id):
-        self.id = id
-        self.embedding = None
-        self.user_like_scores = set()
-        self.job_similar_scores = set()
+    def __init__(self, id: str | None = None, dict: dict | None = None):
+        self.id: str = id if dict is None else dict["id"]  # NOQA
+        self.embedding: list[float] = [] if dict is None else dict["embedding"]  # NOQA
+        self.user_like_scores: list[tuple[str, int]] = [] if dict is None else list(map(lambda x: (x[0], x[1]), dict["user_like_scores"]))  # NOQA
+        self.user_like_scores_dict: dict[str, int] | None = None
+        self.job_similar_scores: list[tuple[str, int]] = [] if dict is None else list(map(lambda x: (x[0], x[1]), dict["job_similar_scores"]))  # NOQA
+        self.job_similar_scores_dict: dict[str, int] | None = None
+        self.content_similar_scores: list[tuple[str, int]] = [] if dict is None else list(map(lambda x: (x[0], x[1]), dict["content_similar_scores"]))  # NOQA
+        self.content_similar_scores_dict: dict[str, int] | None = None
 
-    def get_user_like_score(self, user: User) -> int:
-        return sum([user.viewed_jobs.get(self.id, 0), user.applied_jobs.get(self.id, 0), user.collect_jobs.get(self.id, 0), user.shared_jobs.get(self.id, 0)])
+    def get_user_like_score(self, user_id: str, default: int | None = None) -> int | None:
+        if self.user_like_scores_dict is None:
+            self.user_like_scores_dict = dict(self.user_like_scores)
+        return self.user_like_scores_dict.get(user_id, default)
 
-    def get_job_similar_score(self, job: Job) -> int:
-        return JobSimilarityScore(self, job, 10)
+    def get_job_similar_score(self, job_id: str, default: int | None = None) -> int | None:
+        if self.job_similar_scores_dict is None:
+            self.job_similar_scores_dict = dict(self.job_similar_scores)
+        return self.job_similar_scores_dict.get(job_id, default)
 
-    def get_top_like_users(self, n: int) -> list[tuple[int, int]]:
-        return sorted(self.user_like_scores, key=lambda u: u.score, reverse=True)[:n]
+    def get_content_similar_score(self, job_id: str, default: int | None = None) -> int | None:
+        if self.content_similar_scores_dict is None:
+            self.content_similar_scores_dict = dict(self.content_similar_scores)  # NOQA
+        return self.content_similar_scores_dict.get(job_id, default)
 
-    def get_top_similar_jobs(self, n: int) -> list[tuple[int, int]]:
-        return sorted(self.job_similar_scores, key=lambda j: j.score, reverse=True)[:n]
-
-    def save(self):
-        db.set_job(self.id, self)
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "embedding": self.embedding,
+            "user_like_scores": self.user_like_scores,
+            "job_similar_scores": self.job_similar_scores,
+            "content_similar_scores": self.content_similar_scores
+        }

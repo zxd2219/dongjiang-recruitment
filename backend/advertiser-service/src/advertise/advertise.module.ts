@@ -8,5 +8,6 @@ import { Advertise } from "./entities/advertise.entity";
   imports: [TypeOrmModule.forFeature([Advertise])],
   controllers: [AdvertiseController],
   providers: [AdvertiseService],
+  exports: [TypeOrmModule.forFeature([Advertise])],
 })
 export class AdvertiseModule {}

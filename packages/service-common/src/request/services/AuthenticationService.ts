@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
 import type { Account } from "../models/Account";
+import type { Company } from "../models/Company";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
 import type { BaseHttpRequest } from "../core/BaseHttpRequest";
@@ -27,24 +27,7 @@ export class AuthenticationService {
      * 验证码
      */
     verificationCode: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 账号ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/authentication/actions/destroy/{id}",
@@ -80,24 +63,7 @@ export class AuthenticationService {
        */
       verificationCode: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 修改状态
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/authentication/actions/changePassword/{id}",
@@ -129,30 +95,13 @@ export class AuthenticationService {
     };
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 授权令牌
      */
-    timestamp: string;
+    token: string;
     /**
-     * 响应
+     * 账号
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 响应体
-     */
-    body: {
-      /**
-       * 授权令牌
-       */
-      token: string;
-      /**
-       * 账号
-       */
-      account: Account;
-    };
+    account: Account;
   }> {
     return this.httpRequest.request({
       method: "POST",
@@ -184,24 +133,7 @@ export class AuthenticationService {
        */
       verificationCode: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 忘记状态
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/authentication/actions/forget",
@@ -287,11 +219,11 @@ export class AuthenticationService {
              */
             email: string;
             /**
-             * {1:没有工作经验,2:在校/应届,3:3年一下,4:3-5年,5:5-10年,6:10年以上}
+             * 工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}
              */
             workingYears: 1 | 2 | 3 | 4 | 5 | 6;
             /**
-             * {0:未知,1:大专,2:本科,3:硕士,4:博士}
+             * 学历状态，eg；{0:Unknown,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
              */
             education: 0 | 1 | 2 | 3 | 4;
             /**
@@ -303,7 +235,7 @@ export class AuthenticationService {
              */
             socialHomepage: string;
             /**
-             * {1:随时入职,2:2周内入职,3:1月内入职}
+             * 求职状态，eg；{0:Unknown,1:AnyTime,2:TwoWeeks,3:OneMoth}
              */
             jobStatus: 0 | 1 | 2 | 3;
             /**
@@ -311,15 +243,15 @@ export class AuthenticationService {
              */
             pictureWorks: Array<string>;
             /**
-             * {1:实名,2:匿名}
+             * 隐私设置，eg；{1:RealName,2:Anonymous}
              */
             privacySettings: 1 | 2;
           }
         | {
             /**
-             * 公司ID
+             * 公司
              */
-            companyId: string;
+            company: Company;
             /**
              * 头像地址
              */
@@ -338,24 +270,7 @@ export class AuthenticationService {
             acceptEmail: string;
           };
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 注册状态
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<Account> {
     return this.httpRequest.request({
       method: "POST",
       url: "/authentication/actions/register",

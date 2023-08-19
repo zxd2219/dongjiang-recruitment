@@ -1,10 +1,10 @@
 import { execSync } from "node:child_process";
 import {
-appendFileSync,
-existsSync,
-readFileSync,
-unlinkSync,
-writeFileSync
+  appendFileSync,
+  existsSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
 

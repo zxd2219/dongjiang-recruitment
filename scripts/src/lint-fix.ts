@@ -20,12 +20,12 @@ type LinterConfig = {
 };
 
 const linterConfigs: Array<LinterConfig> = [
-  {
-    lintName: "eslint",
-    lintCommand: "eslint **/*.{js,jsx,ts,tsx,vue} --fix",
-    configFiles: [".eslintrc"],
-    prefixColor: "bgYellow",
-  },
+  // {
+  //   lintName: "eslint",
+  //   lintCommand: "eslint **/*.{js,jsx,ts,tsx,vue} --fix",
+  //   configFiles: [".eslintrc"],
+  //   prefixColor: "bgYellow",
+  // },
   {
     lintName: "stylelint",
     lintCommand: "stylelint **/*.{css,scss,sass,less,styl,vue} --fix",

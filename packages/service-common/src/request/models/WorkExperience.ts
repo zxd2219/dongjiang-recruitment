@@ -21,7 +21,7 @@ export type WorkExperience = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 公司名称
    */
@@ -39,7 +39,7 @@ export type WorkExperience = {
    */
   endTime: string;
   /**
-   * {1:全职,2:兼职,3:实习}
+   * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
    */
   positionType: WorkExperience.positionType;
   /**
@@ -58,7 +58,7 @@ export type WorkExperience = {
 
 export namespace WorkExperience {
   /**
-   * {1:全职,2:兼职,3:实习}
+   * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
    */
   export enum positionType {
     FullTime = 1,

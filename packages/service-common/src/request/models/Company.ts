@@ -21,7 +21,7 @@ export type Company = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * LOGO地址
    */
@@ -39,11 +39,11 @@ export type Company = {
    */
   cityName: string;
   /**
-   * {1:未融资,2:天使轮,3:A轮,4:B轮,5:C轮,6:D轮及以上,7:上市公司,8:不需要融资}
+   * 融资阶段，eg；{1:NoFinanced,2:AngelWheel,3:ARound,4:BRound,5:CRound,6:DAndMoreRound,7:ListedCompany,8:NoRequired}
    */
   financingStage: Company.financingStage;
   /**
-   * {1:少于15人,2:15-50人,3:50-150人,4:150-500人,5:500-2000人,6:2000以上}
+   * 公司规模，eg；{1:LessThan15People,2:With15To50People,3:With50To150People,4:With150To500People,5:With500To2000People,6:MoreThen2000People}
    */
   scale: Company.scale;
   /**
@@ -99,7 +99,7 @@ export type Company = {
 
 export namespace Company {
   /**
-   * {1:未融资,2:天使轮,3:A轮,4:B轮,5:C轮,6:D轮及以上,7:上市公司,8:不需要融资}
+   * 融资阶段，eg；{1:NoFinanced,2:AngelWheel,3:ARound,4:BRound,5:CRound,6:DAndMoreRound,7:ListedCompany,8:NoRequired}
    */
   export enum financingStage {
     NoFinanced = 1,
@@ -113,7 +113,7 @@ export namespace Company {
   }
 
   /**
-   * {1:少于15人,2:15-50人,3:50-150人,4:150-500人,5:500-2000人,6:2000以上}
+   * 公司规模，eg；{1:LessThan15People,2:With15To50People,3:With50To150People,4:With150To500People,5:With500To2000People,6:MoreThen2000People}
    */
   export enum scale {
     LessThan15People = 1,

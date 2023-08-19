@@ -12,12 +12,12 @@ export const Page = createParamDecorator(
   (data: unknown, ctx: ExecutionContext): Pagination => {
     const request = ctx.switchToHttp().getRequest<Request>();
 
-    const page = +[request.query["page"]].filter(Boolean).flat()[0] || 0;
+    const page = +[request.query["page"]].filter(Boolean).flat()[0] || 1;
     const size = +[request.query["size"]].filter(Boolean).flat()[0] || 5;
     const sort = [request.query["sort"]].filter(Boolean).flat();
 
     return {
-      page,
+      page: page - 1,
       size,
       sort: Object.fromEntries(
         sort.map(

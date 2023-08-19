@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { EducationExperience } from "../models/EducationExperience";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -29,7 +29,7 @@ export class ApplicantEducationExperienceService {
        */
       schoolName: string;
       /**
-       * {1:大专,2:本科,3:硕士,4:博士}
+       * 学历层次，eg；{1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
        */
       education: 1 | 2 | 3 | 4;
       /**
@@ -45,21 +45,7 @@ export class ApplicantEducationExperienceService {
        */
       graduationTime: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 处理时间
-     */
-    timestamp: string;
-    /**
-     * 响应状态
-     */
-    status: number;
-    /**
-     * 状态描述
-     */
-    message: string;
-    body: EducationExperience;
-  }> {
+  }): CancelablePromise<EducationExperience> {
     return this.httpRequest.request({
       method: "POST",
       url: "/applicant/{applicantId}/eduExperiences",
@@ -102,33 +88,16 @@ export class ApplicantEducationExperienceService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof EducationExperience},${"asc" | "desc"}`>;
+    sort?: Sort<EducationExperience>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 教育经历总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页教育经历
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 教育经历总数
-       */
-      total: number;
-      /**
-       * 当页教育经历
-       */
-      items: Array<EducationExperience>;
-    };
+    items: Array<EducationExperience>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -162,24 +131,7 @@ export class ApplicantEducationExperienceService {
      * 教育经历ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 教育经历ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/applicant/{applicantId}/eduExperiences/{id}",
@@ -209,21 +161,7 @@ export class ApplicantEducationExperienceService {
      */
     id: string;
     requestBody?: EducationExperience;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: EducationExperience;
-  }> {
+  }): CancelablePromise<EducationExperience> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/applicant/{applicantId}/eduExperiences/{id}",
@@ -253,21 +191,7 @@ export class ApplicantEducationExperienceService {
      * 教育经历ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: EducationExperience;
-  }> {
+  }): CancelablePromise<EducationExperience> {
     return this.httpRequest.request({
       method: "GET",
       url: "/applicant/{applicantId}/eduExperiences/{id}",

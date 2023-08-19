@@ -18,6 +18,7 @@
       "type": "backend",
       "name": "advertiser-service",
       "workspace": "backend/advertiser-service",
+      "files": ["backend/Dockerfile.node"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -33,12 +34,13 @@
           "sub-type": "docker",
           "artifact": "bundle",
           "context": "bundle",
+          "build-args": ["SERVICE_PORT=3001"],
           "docker-file": "../Dockerfile.node"
         },
         "deploy": {
           "name": "deploy",
           "sub-type": "kubernetes",
-          "port": 3000,
+          "port": 3001,
           "path": "/advertisers",
           "domain": "api.djzhaopin.ucstu.com"
         }
@@ -48,6 +50,7 @@
       "type": "backend",
       "name": "applicant-service",
       "workspace": "backend/applicant-service",
+      "files": ["backend/Dockerfile.node"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -63,12 +66,13 @@
           "sub-type": "docker",
           "artifact": "bundle",
           "context": "bundle",
+          "build-args": ["SERVICE_PORT=3002"],
           "docker-file": "../Dockerfile.node"
         },
         "deploy": {
           "name": "deploy",
           "sub-type": "kubernetes",
-          "port": 3000,
+          "port": 3002,
           "path": "/applicant",
           "domain": "api.djzhaopin.ucstu.com"
         }
@@ -78,6 +82,7 @@
       "type": "backend",
       "name": "authentication-service",
       "workspace": "backend/authentication-service",
+      "files": ["backend/Dockerfile.node"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -93,12 +98,13 @@
           "sub-type": "docker",
           "artifact": "bundle",
           "context": "bundle",
+          "build-args": ["SERVICE_PORT=3003"],
           "docker-file": "../Dockerfile.node"
         },
         "deploy": {
           "name": "deploy",
           "sub-type": "kubernetes",
-          "port": 3000,
+          "port": 3003,
           "path": "/authentication",
           "domain": "api.djzhaopin.ucstu.com"
         }
@@ -108,6 +114,7 @@
       "type": "backend",
       "name": "common-service",
       "workspace": "backend/common-service",
+      "files": ["backend/Dockerfile.node"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -123,12 +130,13 @@
           "sub-type": "docker",
           "artifact": "bundle",
           "context": "bundle",
+          "build-args": ["SERVICE_PORT=3004"],
           "docker-file": "../Dockerfile.node"
         },
         "deploy": {
           "name": "deploy",
           "sub-type": "kubernetes",
-          "port": 3000,
+          "port": 3004,
           "path": "/common",
           "domain": "api.djzhaopin.ucstu.com"
         }
@@ -138,6 +146,7 @@
       "type": "backend",
       "name": "company-service",
       "workspace": "backend/company-service",
+      "files": ["backend/Dockerfile.node"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -153,12 +162,13 @@
           "sub-type": "docker",
           "artifact": "bundle",
           "context": "bundle",
+          "build-args": ["SERVICE_PORT=3005"],
           "docker-file": "../Dockerfile.node"
         },
         "deploy": {
           "name": "deploy",
           "sub-type": "kubernetes",
-          "port": 3000,
+          "port": 3005,
           "path": "/companies",
           "domain": "api.djzhaopin.ucstu.com"
         }
@@ -168,6 +178,7 @@
       "type": "backend",
       "name": "personnel-service",
       "workspace": "backend/personnel-service",
+      "files": ["backend/Dockerfile.node"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -183,13 +194,46 @@
           "sub-type": "docker",
           "artifact": "bundle",
           "context": "bundle",
+          "build-args": ["SERVICE_PORT=3006"],
           "docker-file": "../Dockerfile.node"
         },
         "deploy": {
           "name": "deploy",
           "sub-type": "kubernetes",
-          "port": 3000,
+          "port": 3006,
           "path": "/personnel",
+          "domain": "api.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "recommend-service": {
+      "type": "backend",
+      "name": "recommend-service",
+      "workspace": "backend/recommend-service",
+      "files": ["backend/Dockerfile.python"],
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "echo 'No lint'"
+        },
+        "build": {
+          "name": "build",
+          "command": "echo 'No build'",
+          "artifact": ""
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "bundle",
+          "context": "bundle",
+          "build-args": ["SERVICE_PORT=8000"],
+          "docker-file": "../Dockerfile.python"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 8000,
+          "path": "/recommend",
           "domain": "api.djzhaopin.ucstu.com"
         }
       }
@@ -198,6 +242,7 @@
       "type": "frontend",
       "name": "applicant-interface",
       "workspace": "frontend/applicant-interface",
+      "files": ["frontend/Dockerfile.web"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -228,6 +273,7 @@
       "type": "frontend",
       "name": "manager-interface",
       "workspace": "frontend/manager-interface",
+      "files": ["frontend/Dockerfile.web"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -258,6 +304,7 @@
       "type": "frontend",
       "name": "personnel-interface",
       "workspace": "frontend/personnel-interface",
+      "files": ["frontend/Dockerfile.web"],
       "scripts": {
         "lint": {
           "name": "lint",
@@ -281,6 +328,37 @@
           "port": 80,
           "path": "/",
           "domain": "personnel.djzhaopin.ucstu.com"
+        }
+      }
+    },
+    "advertiser-interface": {
+      "type": "frontend",
+      "name": "advertiser-interface",
+      "workspace": "frontend/advertiser-interface",
+      "files": ["frontend/Dockerfile.web"],
+      "scripts": {
+        "lint": {
+          "name": "lint",
+          "command": "pnpm -w lint-fix ./frontend/advertiser-interface"
+        },
+        "build": {
+          "name": "build",
+          "command": "pnpm run build",
+          "artifact": "dist"
+        },
+        "publish": {
+          "name": "publish",
+          "sub-type": "docker",
+          "artifact": "dist",
+          "context": "dist",
+          "docker-file": "../Dockerfile.web"
+        },
+        "deploy": {
+          "name": "deploy",
+          "sub-type": "kubernetes",
+          "port": 80,
+          "path": "/",
+          "domain": "advertiser.djzhaopin.ucstu.com"
         }
       }
     }

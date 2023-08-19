@@ -35,6 +35,14 @@ export class AdvertiserController {
     return this.advertiserService.findAll(query, page);
   }
 
+  @Get("advertise")
+  findAllAdvertise(
+    @QueryParam() query: Array<FindOptionsWhere<Advertiser>>,
+    @Page() page: Pagination<Advertiser>
+  ) {
+    return this.advertiserService.findAllAdvertise(query, page);
+  }
+
   @Get(":id")
   findOne(@Param("id") id: string) {
     return this.advertiserService.findOne(id);

@@ -23,6 +23,7 @@ export const $Advertiser = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     name: {
       type: "string",

@@ -1,12 +1,7 @@
 {
-  "*.{js,jsx}": ["eslint --fix", "s-prettier"],
-  "*.{ts,tsx}": ["eslint --fix", "s-vue-tsc-files --noEmit", "s-prettier"],
+  "*.{js,jsx}": ["s-prettier"],
+  "*.{ts,tsx}": ["s-vue-tsc-files --noEmit", "s-prettier"],
   "*.{css,scss,sass,less,styl}": ["stylelint --fix", "s-prettier"],
   "*.{json,yaml,yml,md}": ["s-prettier"],
-  "*.{vue}": [
-    "eslint --fix",
-    "stylelint --fix",
-    "s-vue-tsc-files --noEmit",
-    "s-prettier"
-  ]
+  "*.{vue}": ["stylelint --fix", "s-vue-tsc-files --noEmit", "s-prettier"]
 }

@@ -3,21 +3,14 @@ import {
   Redis,
   RedisService,
 } from "@dongjiang-recruitment/nest-common/dist/redis";
-import { instanceToPlain } from "@dongjiang-recruitment/nest-common/dist/transform";
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { AccountService } from "src/account/account.service";
 import { BcryptService } from "src/bcrypt.module";
+import * as zlib from "zlib";
 import { ChangePasswordActionDto } from "./dto/change-password-action.dto";
 import { ForgetPasswordActionDto } from "./dto/forget-password-action.dto";
 import { LoginActionDto } from "./dto/login-action.dto";
 import { RegisterActionDto } from "./dto/register-action.dto";
-
-const STATIC_FULL_ID = {
-  manager: null,
-  applicant: null,
-  personnel: null,
-  advertiser: null,
-};
 
 @Injectable()
 export class ActionsService {
@@ -81,8 +74,32 @@ export class ActionsService {
       throw new BadRequestException("密码错误");
     }
 
+    const authoritiesFilterMap = new Map();
     return {
-      token: this.jwtService.sign(instanceToPlain(accounts[0])),
+      token: this.jwtService.sign({
+        id: accounts[0].id,
+        did: accounts[0].detailId,
+        auth: zlib
+          .gzipSync(
+            JSON.stringify(
+              accounts[0].authorities
+                .concat(
+                  accounts[0].authorityGroups
+                    .map((group) => group.authorities)
+                    .flat()
+                )
+                .filter((authority) => {
+                  if (authoritiesFilterMap.has(authority.id)) {
+                    return false;
+                  } else {
+                    authoritiesFilterMap.set(authority.id, true);
+                    return true;
+                  }
+                })
+            )
+          )
+          .toString("base64"),
+      }),
       account: accounts[0],
     };
   }

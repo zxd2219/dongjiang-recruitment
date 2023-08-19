@@ -23,6 +23,7 @@ export const $Account = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     userName: {
       type: "string",
@@ -36,21 +37,25 @@ export const $Account = {
           type: "string",
           description: `管理员`,
           isRequired: true,
+          isNullable: true,
         },
         applicant: {
           type: "string",
           description: `求职者`,
           isRequired: true,
+          isNullable: true,
         },
         personnel: {
           type: "string",
           description: `人事`,
           isRequired: true,
+          isNullable: true,
         },
         advertiser: {
           type: "string",
           description: `广告商`,
           isRequired: true,
+          isNullable: true,
         },
       },
       isRequired: true,
@@ -58,14 +63,14 @@ export const $Account = {
     authorities: {
       type: "array",
       contains: {
-        type: "string",
+        type: "Authority",
       },
       isRequired: true,
     },
-    groups: {
+    authorityGroups: {
       type: "array",
       contains: {
-        type: "string",
+        type: "AuthorityGroup",
       },
       isRequired: true,
     },

@@ -23,20 +23,21 @@ export const $ApplicantInspectionRecord = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
-    applicantId: {
-      type: "string",
-      description: `求职者ID`,
+    applicant: {
+      type: "Applicant",
+      description: `求职者`,
       isRequired: true,
     },
-    companyId: {
-      type: "string",
-      description: `公司ID`,
+    company: {
+      type: "Company",
+      description: `公司`,
       isRequired: true,
     },
-    positionId: {
-      type: "string",
-      description: `职位ID`,
+    position: {
+      type: "Position",
+      description: `职位`,
       isRequired: true,
     },
   },

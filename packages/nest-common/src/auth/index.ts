@@ -44,7 +44,7 @@ const commonProviders = [
     ...commonProviders,
     {
       provide: AUTO_GUARD_KEY,
-      useValue: true,
+      useValue: false,
     },
   ],
   exports: [...commonImports],
@@ -58,7 +58,7 @@ export default class AuthModule {
         ...commonProviders,
         {
           provide: AUTO_GUARD_KEY,
-          useValue: option?.autoGuard ?? true,
+          useValue: option?.autoGuard ?? false,
         },
       ],
     };

@@ -3,9 +3,13 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "@dongjiang-recruitment/nest-common/dist/typeorm";
+import { Account } from "src/account/entities/account.entity";
+import { Authority } from "src/authority/entities/authority.entity";
 
 /**
  * AuthorityGroup
@@ -13,10 +17,21 @@ import {
 @Entity()
 export class AuthorityGroup {
   /**
+   * 用户列表
+   */
+  @ManyToMany(() => Account, (account) => account.authorityGroups)
+  accounts: Account[];
+  /**
    * 权限列表
    */
-  @Column("simple-json")
-  authorities: string[];
+  @ManyToMany(() => Authority, (authority) => authority.authorityGroups, {
+    eager: true,
+    cascade: true,
+    onUpdate: "CASCADE",
+    onDelete: "NO ACTION",
+  })
+  @JoinTable()
+  authorities: Authority[];
   /**
    * 创建时间
    */
@@ -35,7 +50,9 @@ export class AuthorityGroup {
   /**
    * 名称
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   name: string;
   /**
    * 修改时间

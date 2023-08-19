@@ -2,6 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Applicant } from "./Applicant";
+import type { Company } from "./Company";
+
 /**
  * 关注记录
  */
@@ -21,13 +24,13 @@ export type AttentionRecord = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
-   * 求职者ID
+   * 求职者
    */
-  applicantId: string;
+  applicant: Applicant;
   /**
-   * 公司ID
+   * 公司
    */
-  companyId: string;
+  company: Company;
 };

@@ -3,57 +3,72 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "@dongjiang-recruitment/nest-common/dist/typeorm";
+import { Company } from "src/external.entity";
+
 /**
  * Personnel
  */
 @Entity()
 export class Personnel {
   /**
-   * 电子邮箱
+   * ID
    */
-  @Column()
-  acceptEmail: string;
-  /**
-   * 头像地址
-   */
-  @Column()
-  avatarUrl: string;
-  /**
-   * 公司ID
-   */
-  @Column()
-  companyId: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
   /**
    * 创建时间
    */
   @CreateDateColumn()
   createdAt: Date;
   /**
+   * 修改时间
+   */
+  @UpdateDateColumn()
+  updatedAt: Date;
+  /**
    * 移除时间
    */
   @DeleteDateColumn()
   deletedAt: Date;
   /**
+   * 电子邮箱
+   */
+  @Column({
+    nullable: true,
+  })
+  acceptEmail: string;
+  /**
+   * 头像地址
+   */
+  @Column({
+    nullable: true,
+  })
+  avatarUrl: string;
+  /**
+   * 公司
+   */
+  @ManyToOne(() => Company, (company) => company.id, {
+    eager: true,
+  })
+  @JoinColumn()
+  company: Company;
+  /**
    * 人事姓名
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   hrName: string;
-  /**
-   * 人事ID
-   */
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
   /**
    * 职位名称
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   postName: string;
-  /**
-   * 更新时间
-   */
-  @UpdateDateColumn()
-  updatedAt: Date;
 }

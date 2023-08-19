@@ -23,6 +23,7 @@ export const $EducationExperience = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     schoolName: {
       type: "string",

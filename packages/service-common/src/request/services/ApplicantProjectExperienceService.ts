@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { ProjectExperience } from "../models/ProjectExperience";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -49,21 +49,7 @@ export class ApplicantProjectExperienceService {
        */
       projectLink: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: ProjectExperience;
-  }> {
+  }): CancelablePromise<ProjectExperience> {
     return this.httpRequest.request({
       method: "POST",
       url: "/applicant/{applicantId}/projectExperiences",
@@ -107,33 +93,16 @@ export class ApplicantProjectExperienceService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof ProjectExperience},${"asc" | "desc"}`>;
+    sort?: Sort<ProjectExperience>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 项目经历总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页项目经历
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 项目经历总数
-       */
-      total: number;
-      /**
-       * 当页项目经历
-       */
-      items: Array<ProjectExperience>;
-    };
+    items: Array<ProjectExperience>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -169,21 +138,7 @@ export class ApplicantProjectExperienceService {
      */
     id: string;
     requestBody?: ProjectExperience;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: ProjectExperience;
-  }> {
+  }): CancelablePromise<ProjectExperience> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/applicant/{applicantId}/projectExperiences/{id}",
@@ -213,24 +168,7 @@ export class ApplicantProjectExperienceService {
      * 项目经历ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 项目经历ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/applicant/{applicantId}/projectExperiences/{id}",

@@ -1,0 +1,7 @@
+{
+  "extends": ["@dongjiang-recruitment/eslint-config/ts"],
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "ignorePatterns": ["bin/**/*"]
+}

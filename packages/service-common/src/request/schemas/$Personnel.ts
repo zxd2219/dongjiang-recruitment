@@ -23,10 +23,11 @@ export const $Personnel = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
-    companyId: {
-      type: "string",
-      description: `公司ID`,
+    company: {
+      type: "Company",
+      description: `公司`,
       isRequired: true,
     },
     avatarUrl: {

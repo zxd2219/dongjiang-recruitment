@@ -3,6 +3,8 @@ import {
   Applicant,
   Personnel,
 } from "@dongjiang-recruitment/nest-common/dist/http";
+import { AuthorityGroup } from "src/authority-group/entities/authority-group.entity";
+import { Authority } from "src/authority/entities/authority.entity";
 
 export enum AccountType {
   /**
@@ -40,4 +42,12 @@ export class CreateAccountDto {
    * 详细信息
    */
   detail?: Applicant | Advertiser | Personnel;
+  /**
+   * 权限组列表
+   */
+  authorityGroups?: AuthorityGroup[];
+  /**
+   * 权限列表
+   */
+  authorities?: Authority[];
 }

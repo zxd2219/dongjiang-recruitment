@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { JobExpectation } from "../models/JobExpectation";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -25,7 +25,7 @@ export class ApplicantJobExpectationService {
     applicantId: string;
     requestBody?: {
       /**
-       * {1:全职,2:兼职,3:实习}
+       * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
        */
       positionType: 1 | 2 | 3;
       /**
@@ -49,21 +49,7 @@ export class ApplicantJobExpectationService {
        */
       cityName: string;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: JobExpectation;
-  }> {
+  }): CancelablePromise<JobExpectation> {
     return this.httpRequest.request({
       method: "POST",
       url: "/applicant/{applicantId}/jobExpectations",
@@ -106,33 +92,16 @@ export class ApplicantJobExpectationService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof JobExpectation},${"asc" | "desc"}`>;
+    sort?: Sort<JobExpectation>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 求职期望总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页求职期望
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 求职期望总数
-       */
-      total: number;
-      /**
-       * 当页求职期望
-       */
-      items: Array<JobExpectation>;
-    };
+    items: Array<JobExpectation>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -166,24 +135,7 @@ export class ApplicantJobExpectationService {
      * 求职期望ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 求职期望ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/applicant/{applicantId}/jobExpectations/{id}",
@@ -211,21 +163,7 @@ export class ApplicantJobExpectationService {
      * 求职期望ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: JobExpectation;
-  }> {
+  }): CancelablePromise<JobExpectation> {
     return this.httpRequest.request({
       method: "GET",
       url: "/applicant/{applicantId}/jobExpectations/{id}",
@@ -255,21 +193,7 @@ export class ApplicantJobExpectationService {
      */
     id: string;
     requestBody?: JobExpectation;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: JobExpectation;
-  }> {
+  }): CancelablePromise<JobExpectation> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/applicant/{applicantId}/jobExpectations/{id}",

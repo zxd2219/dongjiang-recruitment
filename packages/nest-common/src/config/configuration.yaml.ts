@@ -43,10 +43,30 @@ export interface ServiceConfig {
   password: string;
 }
 
+export interface MinioConfig {
+  username: string;
+  password: string;
+  endPoint: string;
+  port: number;
+  useSSL: boolean;
+  accessKey: string;
+  secretKey: string;
+  bucket: string;
+}
+
+export interface AlipayConfig {
+  appId: string;
+  gateway: string;
+  privateKey: string;
+  alipayPublicKey: string;
+}
+
 export interface YamlConfiguration {
   database: DatabaseConfig;
   authorization: AuthorizationConfig;
   mailer: MailerConfig;
   redis: RedisConfig;
   service: ServiceConfig;
+  minio: MinioConfig;
+  alipay: AlipayConfig;
 }

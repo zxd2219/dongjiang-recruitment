@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Authority } from "./Authority";
+
 /**
  * 权限组
  */
@@ -21,7 +23,7 @@ export type AuthorityGroup = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 名称
    */
@@ -29,5 +31,5 @@ export type AuthorityGroup = {
   /**
    * 权限列表
    */
-  authorities: Array<string>;
+  authorities: Array<Authority>;
 };

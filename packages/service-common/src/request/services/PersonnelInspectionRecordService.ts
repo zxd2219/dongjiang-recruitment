@@ -1,7 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
+import type { Applicant } from "../models/Applicant";
+import type { Personnel } from "../models/Personnel";
 import type { PersonnelInspectionRecord } from "../models/PersonnelInspectionRecord";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -27,24 +29,7 @@ export class PersonnelInspectionRecordService {
      * 查看记录ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 查看记录ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/personnel/{personnelId}/inspectionRecords/{id}",
@@ -72,21 +57,7 @@ export class PersonnelInspectionRecordService {
      * 查看记录ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: PersonnelInspectionRecord;
-  }> {
+  }): CancelablePromise<PersonnelInspectionRecord> {
     return this.httpRequest.request({
       method: "GET",
       url: "/personnel/{personnelId}/inspectionRecords/{id}",
@@ -128,33 +99,16 @@ export class PersonnelInspectionRecordService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof PersonnelInspectionRecord},${"asc" | "desc"}`>;
+    sort?: Sort<PersonnelInspectionRecord>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 查看记录总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页查看记录
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 查看记录总数
-       */
-      total: number;
-      /**
-       * 当页查看记录
-       */
-      items: Array<PersonnelInspectionRecord>;
-    };
+    items: Array<PersonnelInspectionRecord>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -186,29 +140,15 @@ export class PersonnelInspectionRecordService {
     personnelId: string;
     requestBody?: {
       /**
-       * 人事ID
+       * 人事
        */
-      personnelId: string;
+      personnel: Personnel;
       /**
-       * 求职者ID
+       * 求职者
        */
-      applicantId: string;
+      applicant: Applicant;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: PersonnelInspectionRecord;
-  }> {
+  }): CancelablePromise<PersonnelInspectionRecord> {
     return this.httpRequest.request({
       method: "POST",
       url: "/personnel/{personnelId}/inspectionRecords",

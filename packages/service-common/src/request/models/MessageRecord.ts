@@ -35,7 +35,7 @@ export type MessageRecord = {
    */
   serviceType: number;
   /**
-   * {1:文字,2:图片,3:语音,4:文件}
+   * 消息类型，eg；{1:Text,2:Picture,3:Voice,4:File}
    */
   messageType: MessageRecord.messageType;
   /**
@@ -46,7 +46,7 @@ export type MessageRecord = {
 
 export namespace MessageRecord {
   /**
-   * {1:文字,2:图片,3:语音,4:文件}
+   * 消息类型，eg；{1:Text,2:Picture,3:Voice,4:File}
    */
   export enum messageType {
     Text = 1,

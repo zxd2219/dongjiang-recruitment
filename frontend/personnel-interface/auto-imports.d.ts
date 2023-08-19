@@ -3,8 +3,26 @@ export {};
 declare global {
   const EffectScope: typeof import("vue")["EffectScope"];
   const acceptHMRUpdate: typeof import("pinia")["acceptHMRUpdate"];
+  const advertiserAdvertiseService: typeof import("@dongjiang-recruitment/service-common")["advertiserAdvertiseService"];
+  const advertiserService: typeof import("@dongjiang-recruitment/service-common")["advertiserService"];
+  const applicantAttentionRecordService: typeof import("@dongjiang-recruitment/service-common")["applicantAttentionRecordService"];
+  const applicantDeliveryRecordService: typeof import("@dongjiang-recruitment/service-common")["applicantDeliveryRecordService"];
+  const applicantEducationExperienceService: typeof import("@dongjiang-recruitment/service-common")["applicantEducationExperienceService"];
+  const applicantGarnerRecordService: typeof import("@dongjiang-recruitment/service-common")["applicantGarnerRecordService"];
+  const applicantInspectionRecordService: typeof import("@dongjiang-recruitment/service-common")["applicantInspectionRecordService"];
+  const applicantJobExpectationService: typeof import("@dongjiang-recruitment/service-common")["applicantJobExpectationService"];
+  const applicantProjectExperienceService: typeof import("@dongjiang-recruitment/service-common")["applicantProjectExperienceService"];
+  const applicantService: typeof import("@dongjiang-recruitment/service-common")["applicantService"];
+  const applicantWorkExperienceService: typeof import("@dongjiang-recruitment/service-common")["applicantWorkExperienceService"];
   const asyncComputed: typeof import("@vueuse/core")["asyncComputed"];
+  const authenticationAccountService: typeof import("@dongjiang-recruitment/service-common")["authenticationAccountService"];
+  const authenticationAuthorityGroupService: typeof import("@dongjiang-recruitment/service-common")["authenticationAuthorityGroupService"];
+  const authenticationAuthorityService: typeof import("@dongjiang-recruitment/service-common")["authenticationAuthorityService"];
+  const authenticationService: typeof import("@dongjiang-recruitment/service-common")["authenticationService"];
   const autoResetRef: typeof import("@vueuse/core")["autoResetRef"];
+  const commonService: typeof import("@dongjiang-recruitment/service-common")["commonService"];
+  const companyPositionService: typeof import("@dongjiang-recruitment/service-common")["companyPositionService"];
+  const companyService: typeof import("@dongjiang-recruitment/service-common")["companyService"];
   const computed: typeof import("vue")["computed"];
   const computedAsync: typeof import("@vueuse/core")["computedAsync"];
   const computedEager: typeof import("@vueuse/core")["computedEager"];
@@ -68,6 +86,8 @@ declare global {
   const onUnmounted: typeof import("vue")["onUnmounted"];
   const onUpdated: typeof import("vue")["onUpdated"];
   const pausableWatch: typeof import("@vueuse/core")["pausableWatch"];
+  const personnelInspectionRecordService: typeof import("@dongjiang-recruitment/service-common")["personnelInspectionRecordService"];
+  const personnelService: typeof import("@dongjiang-recruitment/service-common")["personnelService"];
   const provide: typeof import("vue")["provide"];
   const reactify: typeof import("@vueuse/core")["reactify"];
   const reactifyObject: typeof import("@vueuse/core")["reactifyObject"];
@@ -150,7 +170,6 @@ declare global {
   const useDeviceOrientation: typeof import("@vueuse/core")["useDeviceOrientation"];
   const useDevicePixelRatio: typeof import("@vueuse/core")["useDevicePixelRatio"];
   const useDevicesList: typeof import("@vueuse/core")["useDevicesList"];
-  const useDialog: typeof import("naive-ui")["useDialog"];
   const useDisplayMedia: typeof import("@vueuse/core")["useDisplayMedia"];
   const useDocumentVisibility: typeof import("@vueuse/core")["useDocumentVisibility"];
   const useDraggable: typeof import("@vueuse/core")["useDraggable"];
@@ -183,7 +202,6 @@ declare global {
   const useKeyModifier: typeof import("@vueuse/core")["useKeyModifier"];
   const useLastChanged: typeof import("@vueuse/core")["useLastChanged"];
   const useLink: typeof import("vue-router")["useLink"];
-  const useLoadingBar: typeof import("naive-ui")["useLoadingBar"];
   const useLocalStorage: typeof import("@vueuse/core")["useLocalStorage"];
   const useMagicKeys: typeof import("@vueuse/core")["useMagicKeys"];
   const useManualRefHistory: typeof import("@vueuse/core")["useManualRefHistory"];
@@ -191,7 +209,6 @@ declare global {
   const useMediaQuery: typeof import("@vueuse/core")["useMediaQuery"];
   const useMemoize: typeof import("@vueuse/core")["useMemoize"];
   const useMemory: typeof import("@vueuse/core")["useMemory"];
-  const useMessage: typeof import("naive-ui")["useMessage"];
   const useMounted: typeof import("@vueuse/core")["useMounted"];
   const useMouse: typeof import("@vueuse/core")["useMouse"];
   const useMouseInElement: typeof import("@vueuse/core")["useMouseInElement"];
@@ -199,7 +216,6 @@ declare global {
   const useMutationObserver: typeof import("@vueuse/core")["useMutationObserver"];
   const useNavigatorLanguage: typeof import("@vueuse/core")["useNavigatorLanguage"];
   const useNetwork: typeof import("@vueuse/core")["useNetwork"];
-  const useNotification: typeof import("naive-ui")["useNotification"];
   const useNow: typeof import("@vueuse/core")["useNow"];
   const useObjectUrl: typeof import("@vueuse/core")["useObjectUrl"];
   const useOffsetPagination: typeof import("@vueuse/core")["useOffsetPagination"];

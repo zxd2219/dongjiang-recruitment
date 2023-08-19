@@ -1,15 +1,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
 import type { Areas } from "../models/Areas";
 import type { Cities } from "../models/Cities";
 import type { DirectionTags } from "../models/DirectionTags";
 import type { FilterCriteria } from "../models/FilterCriteria";
 import type { PositionTypes } from "../models/PositionTypes";
 
-import type { CancelablePromise } from "../core/CancelablePromise";
 import type { BaseHttpRequest } from "../core/BaseHttpRequest";
+import type { CancelablePromise } from "../core/CancelablePromise";
 
 export class CommonService {
   constructor(public readonly httpRequest: BaseHttpRequest) {}
@@ -26,24 +25,7 @@ export class CommonService {
      * 城市名称
      */
     cityName: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 地区
-     */
-    body: Areas;
-  }> {
+  }): CancelablePromise<Areas> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/areas",
@@ -65,24 +47,7 @@ export class CommonService {
      * 职位名称
      */
     positionName: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 细分标签
-     */
-    body: DirectionTags;
-  }> {
+  }): CancelablePromise<DirectionTags> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/directionTags",
@@ -97,24 +62,7 @@ export class CommonService {
    * @returns any 成功
    * @throws ApiError
    */
-  public getFilterCriteria(): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 筛选条件
-     */
-    body: FilterCriteria;
-  }> {
+  public getFilterCriteria(): CancelablePromise<FilterCriteria> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/filterCriteria",
@@ -126,24 +74,7 @@ export class CommonService {
    * @returns any 成功
    * @throws ApiError
    */
-  public getPositionTypes(): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 职位类型
-     */
-    body: PositionTypes;
-  }> {
+  public getPositionTypes(): CancelablePromise<PositionTypes> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/positionTypes",
@@ -155,24 +86,7 @@ export class CommonService {
    * @returns any 成功
    * @throws ApiError
    */
-  public getCities(): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 城市
-     */
-    body: Cities;
-  }> {
+  public getCities(): CancelablePromise<Cities> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/cities",
@@ -184,24 +98,7 @@ export class CommonService {
    * @returns any 成功
    * @throws ApiError
    */
-  public getNewVersion(): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 新版本号
-     */
-    body: number;
-  }> {
+  public getNewVersion(): CancelablePromise<number> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/newVersion",
@@ -220,24 +117,7 @@ export class CommonService {
      * 电子邮箱
      */
     email: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 发送状态
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "GET",
       url: "/common/verificationCode",
@@ -252,39 +132,23 @@ export class CommonService {
    * @returns any 成功
    * @throws ApiError
    */
-  public uploadFile({
-    formData,
-  }: {
-    formData?: {
-      /**
-       * 文件
-       */
-      file: Blob;
-    };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 文件地址
-     */
-    body: string;
-  }> {
-    return this.httpRequest.request({
-      method: "POST",
-      url: "/common/files",
-      formData: formData,
-      mediaType: "multipart/form-data",
-    });
+  public uploadFile({ file }: { file: File }): CancelablePromise<string> {
+    return this.httpRequest.request(
+      "uni" in globalThis
+        ? {
+            method: "UPLOAD",
+            url: "/common/files",
+            body: file,
+          }
+        : {
+            method: "POST",
+            url: "/common/files",
+            formData: {
+              file,
+            },
+            mediaType: "multipart/form-data",
+          }
+    );
   }
 
   /**
@@ -292,38 +156,94 @@ export class CommonService {
    * @returns any 成功
    * @throws ApiError
    */
-  public uploadAvatar({
-    formData,
+  public uploadAvatar({ avatar }: { avatar: File }): CancelablePromise<string> {
+    return this.httpRequest.request(
+      "uni" in globalThis
+        ? {
+            method: "UPLOAD",
+            url: "/common/avatars",
+            body: avatar,
+          }
+        : {
+            method: "POST",
+            url: "/common/avatars",
+            formData: {
+              avatar,
+            },
+            mediaType: "multipart/form-data",
+          }
+    );
+  }
+
+  /**
+   * 查询订单状态
+   * @returns any 成功
+   * @throws ApiError
+   */
+  public getPaymentStatus({
+    outTradeNo,
   }: {
-    formData?: {
+    /**
+     * 订单账号
+     */
+    outTradeNo: string;
+  }): CancelablePromise<{
+    code: string;
+    msg: string;
+    buyerLogonId: string;
+    buyerPayAmount: string;
+    buyerUserId: string;
+    buyerUserType: string;
+    invoiceAmount: string;
+    outTradeNo: string;
+    pointAmount: string;
+    receiptAmount: string;
+    totalAmount: string;
+    tradeNo: string;
+    tradeStatus: string;
+  }> {
+    return this.httpRequest.request({
+      method: "GET",
+      url: "/common/payment",
+      query: {
+        outTradeNo: outTradeNo,
+      },
+    });
+  }
+
+  /**
+   * 创建订单
+   * @returns any 成功
+   * @throws ApiError
+   */
+  public addPayment({
+    requestBody,
+  }: {
+    requestBody?: {
       /**
-       * 头像
+       * 付款内容
        */
-      avatar: Blob;
+      name: string;
+      /**
+       * 付款金额
+       */
+      total: number;
     };
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 订单号
      */
-    timestamp: string;
+    outTradeNo: string;
     /**
-     * 响应
+     * 支付地址
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 头像地址
-     */
-    body: string;
+    payUrl: string;
   }> {
     return this.httpRequest.request({
       method: "POST",
-      url: "/common/avatars",
-      formData: formData,
-      mediaType: "multipart/form-data",
+      url: "/common/payment",
+      body: requestBody,
+      mediaType: "application/json",
     });
   }
 }

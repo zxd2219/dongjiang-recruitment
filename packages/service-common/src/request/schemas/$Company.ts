@@ -23,6 +23,7 @@ export const $Company = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     logoUrl: {
       type: "string",

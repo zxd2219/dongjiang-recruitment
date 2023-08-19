@@ -1,4 +1,7 @@
-@import "normalize.css/normalize.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+$app-color: rgb(14, 166, 47);
+$app-color-dark: #00a6ac;
+$app-color-light: #00a6ac;

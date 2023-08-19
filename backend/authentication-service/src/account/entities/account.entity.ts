@@ -4,9 +4,13 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "@dongjiang-recruitment/nest-common/dist/typeorm";
+import { AuthorityGroup } from "src/authority-group/entities/authority-group.entity";
+import { Authority } from "src/authority/entities/authority.entity";
 
 /**
  * 详情ID
@@ -38,8 +42,14 @@ export class Account {
   /**
    * 权限列表
    */
-  @Column("simple-array")
-  authorities: string[];
+  @ManyToMany(() => Authority, (authority) => authority.accounts, {
+    eager: true,
+    cascade: true,
+    onUpdate: "CASCADE",
+    onDelete: "NO ACTION",
+  })
+  @JoinTable()
+  authorities: Authority[];
   /**
    * 创建时间
    */
@@ -53,15 +63,22 @@ export class Account {
   /**
    * 详情ID
    */
-  @Column("simple-json")
+  @Column("simple-json", {
+    nullable: true,
+  })
   detailId: DetailId;
   /**
    * 权限组列表
    */
-  @Column("simple-array", {
-    default: [],
-  })
-  groups: string[];
+  @ManyToMany(
+    () => AuthorityGroup,
+    (authorityGroup) => authorityGroup.accounts,
+    {
+      eager: true,
+    }
+  )
+  @JoinTable()
+  authorityGroups: AuthorityGroup[];
   /**
    * 账号ID
    */
@@ -75,12 +92,16 @@ export class Account {
   /**
    * 用户名
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   userName: string;
   /**
    * 密码
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   @Exclude()
   password: string;
 }

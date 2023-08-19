@@ -23,6 +23,7 @@ export const $WorkExperience = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     companyName: {
       type: "string",

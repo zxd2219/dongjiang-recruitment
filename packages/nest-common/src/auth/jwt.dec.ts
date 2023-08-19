@@ -8,7 +8,7 @@ export const AUTO_GUARD_KEY = "autoGuard";
 export const AutoGuard = () => SetMetadata(AUTO_GUARD_KEY, true);
 
 export const PERMISSIONS_KEY = "permissions";
-export const Permissions = (...permissions: User["permissions"]) =>
+export const Permissions = (...permissions: User["authorities"]) =>
   SetMetadata(PERMISSIONS_KEY, permissions);
 
 export const OWNER_PERMISSION_KEY = "ownerPermission";

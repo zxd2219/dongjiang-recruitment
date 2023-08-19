@@ -21,7 +21,7 @@ export type Advertiser = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 名称
    */

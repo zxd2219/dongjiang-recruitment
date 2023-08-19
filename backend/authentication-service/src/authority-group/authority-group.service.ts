@@ -50,12 +50,11 @@ export class AuthorityGroupService {
       ...updateAuthorityGroupDto,
       id,
     };
-    const { affected } = await this.authorityGroupRepository.update(
-      id,
+    const newAuthorityGroup = await this.authorityGroupRepository.save(
       authorityGroup
     );
-    if (!affected) throw new NotFoundException();
-    return authorityGroup;
+    if (!newAuthorityGroup) throw new NotFoundException();
+    return newAuthorityGroup;
   }
 
   async remove(id: string) {

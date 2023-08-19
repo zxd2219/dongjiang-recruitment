@@ -1,17 +1,267 @@
 {
   "pages": [
-    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "uni-app"
-      }
+      "path": "pages/main/shouyeyemian/shouyeyemian",
+      "style": { "onReachBottomDistance": 100 }
+    },
+    {
+      "path": "pages/main/wodeyemian/wodeyemian"
+    },
+    {
+      "path": "pages/main/xiaoxiyemian/xiaoxiyemian"
+    },
+    {
+      "path": "pages/main/Page_24Hmianshiyemian/Page_24Hmianshiyemian"
     }
   ],
+  "subPackages": [
+    {
+      "root": "pages/init",
+      "pages": [
+        {
+          "path": "wanshangongzuojingli/wanshangongzuojingli"
+        },
+        {
+          "path": "wanshanjiaoyujingli/wanshanjiaoyujingli"
+        },
+        {
+          "path": "wanshangerenxinxi/wanshangerenxinxi"
+        },
+        {
+          "path": "wanchengjianli/wanchengjianli"
+        },
+        {
+          "path": "shuruyanzhengma/shuruyanzhengma"
+        },
+        {
+          "path": "tianjiaqiuzhiqiwang/tianjiaqiuzhiqiwang"
+        }
+      ]
+    },
+    {
+      "root": "pages/account",
+      "pages": [
+        {
+          "path": "denglu_zhuce/denglu"
+        },
+        {
+          "path": "denglu_zhuce/wangjimima"
+        },
+        {
+          "path": "denglu_zhuce/zhucezhanghao"
+        }
+      ]
+    },
+    {
+      "root": "pages/most",
+      "pages": [
+        {
+          "path": "zhiweileixing/zhiweileixing"
+        },
+        {
+          "path": "xifenshaixuan/xifenshaixuan"
+        },
+        {
+          "path": "shaixuanyemian/shaixuanyemian"
+        },
+        {
+          "path": "chengshixuanze/chengshixuanze"
+        },
+        {
+          "path": "sousuoyemian/sousuoyemian"
+        },
+        {
+          "path": "weizhixuanze/weizhixuanze"
+        },
+        {
+          "path": "webview/webview"
+        }
+      ]
+    },
+    {
+      "root": "pages/record",
+      "pages": [
+        {
+          "path": "daimianshi/daimianshi"
+        },
+        {
+          "path": "guanzhugongsi/guanzhugongsi"
+        },
+        {
+          "path": "shoucangzhiwei/shoucangzhiwei"
+        },
+        {
+          "path": "toudijilu/toudijilu"
+        },
+        {
+          "path": "wodechakan/wodechakan"
+        },
+        {
+          "path": "shuikanguowo/shuikanguowo"
+        }
+      ]
+    },
+    {
+      "root": "pages/detail",
+      "pages": [
+        {
+          "path": "gongsijieshao/gongsijieshao"
+        },
+        {
+          "path": "zhiweixiangqing/zhiweixiangqing"
+        },
+        {
+          "path": "xiangguangongsi/xiangguangongsi"
+        },
+        {
+          "path": "xiangguanzhiwei/xiangguanzhiwei"
+        }
+      ]
+    },
+    {
+      "root": "pages/mine",
+      "pages": [
+        {
+          "path": "shezhiyemian/shezhiyemian"
+        },
+        {
+          "path": "bianjijianli/bianjijianli"
+        },
+        {
+          "path": "liaotianyemian/liaotianyemian"
+        }
+      ]
+    },
+    {
+      "root": "pages/info",
+      "pages": [
+        {
+          "path": "qiuzhiqiwang/qiuzhiqiwang"
+        },
+        {
+          "path": "qiuzhiyixiang/qiuzhiyixiang"
+        },
+        {
+          "path": "shangchuanjianli/shangchuanjianli"
+        },
+        {
+          "path": "tupianzuopin/tupianzuopin"
+        },
+        {
+          "path": "shejiaozhuye/shejiaozhuye"
+        },
+        {
+          "path": "xiangmujingli/xiangmujingli"
+        },
+        {
+          "path": "jiaoyujingli/jiaoyujingli"
+        },
+        {
+          "path": "gongzuojingli/gongzuojingli"
+        },
+        {
+          "path": "gerenyoushi/gerenyoushi"
+        },
+        {
+          "path": "gerenxinxi/gerenxinxi"
+        },
+        {
+          "path": "viewresume/viewresume"
+        }
+      ]
+    },
+    {
+      "root": "pages/setting",
+      "pages": [
+        {
+          "path": "yinsishezhi/yinsishezhi"
+        },
+        {
+          "path": "yonghufankui/yonghufankui"
+        },
+        {
+          "path": "banbengengxin/banbengengxin"
+        },
+        {
+          "path": "yinsicelve/yinsicelve"
+        },
+        {
+          "path": "yonghuxieyi/yonghuxieyi"
+        },
+        {
+          "path": "tongzhishezhi/tongzhishezhi"
+        },
+        {
+          "path": "shezhimima/shezhimima"
+        },
+        {
+          "path": "wodezhanghu/wodezhanghu"
+        }
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/main/shouyeyemian/shouyeyemian": {
+      "network": "all",
+      "packages": ["pages/most", "pages/detail"]
+    },
+    "pages/main/wodeyemian/wodeyemian": {
+      "network": "all",
+      "packages": ["pages/most", "pages/record", "pages/mine"]
+    },
+    "pages/main/xiaoxiyemian/xiaoxiyemian": {
+      "network": "all",
+      "packages": ["pages/most", "pages/record", "pages/mine"]
+    },
+    "pages/account/denglu_zhuce/zhucezhanghao": {
+      "network": "all",
+      "packages": ["pages/most", "pages/init"]
+    },
+    "pages/mine/shezhiyemian/shezhiyemian": {
+      "network": "all",
+      "packages": ["pages/most", "pages/setting"]
+    },
+    "pages/mine/bianjijianli/bianjijianli": {
+      "network": "all",
+      "packages": ["pages/most", "pages/info"]
+    }
+  },
   "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationStyle": "custom",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "东江人才招聘"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/main/shouyeyemian/shouyeyemian",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-alt.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/main/Page_24Hmianshiyemian/Page_24Hmianshiyemian",
+        "iconPath": "static/leaderboard.png",
+        "selectedIconPath": "static/leaderboard-star.png",
+        "text": "推广"
+      },
+      {
+        "pagePath": "pages/main/xiaoxiyemian/xiaoxiyemian",
+        "iconPath": "static/mail.png",
+        "selectedIconPath": "static/mail-opened.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/main/wodeyemian/wodeyemian",
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user-circle-alt.png",
+        "text": "我的"
+      }
+    ]
   }
 }

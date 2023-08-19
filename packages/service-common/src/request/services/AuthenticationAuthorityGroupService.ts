@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { AuthorityGroup } from "../models/AuthorityGroup";
 
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -19,21 +19,7 @@ export class AuthenticationAuthorityGroupService {
     requestBody,
   }: {
     requestBody?: AuthorityGroup;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: AuthorityGroup;
-  }> {
+  }): CancelablePromise<AuthorityGroup> {
     return this.httpRequest.request({
       method: "POST",
       url: "/authentication/authorityGroups",
@@ -68,33 +54,16 @@ export class AuthenticationAuthorityGroupService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof AuthorityGroup},${"asc" | "desc"}`>;
+    sort?: Sort<AuthorityGroup>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 权限组总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页权限组
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 权限组总数
-       */
-      total: number;
-      /**
-       * 当页权限组
-       */
-      items: Array<AuthorityGroup>;
-    };
+    items: Array<AuthorityGroup>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -120,24 +89,7 @@ export class AuthenticationAuthorityGroupService {
      * 权限组ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 权限组ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/authentication/authorityGroups/{id}",
@@ -161,21 +113,7 @@ export class AuthenticationAuthorityGroupService {
      */
     id: string;
     requestBody?: AuthorityGroup;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: AuthorityGroup;
-  }> {
+  }): CancelablePromise<AuthorityGroup> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/authentication/authorityGroups/{id}",
@@ -199,21 +137,7 @@ export class AuthenticationAuthorityGroupService {
      * 权限组ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: AuthorityGroup;
-  }> {
+  }): CancelablePromise<AuthorityGroup> {
     return this.httpRequest.request({
       method: "GET",
       url: "/authentication/authorityGroups/{id}",

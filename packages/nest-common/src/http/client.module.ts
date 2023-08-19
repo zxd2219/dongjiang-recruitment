@@ -22,14 +22,12 @@ export class ServiceClient extends ApiClient {
     );
   }
   async loginAsAdmin() {
-    const { token } = (
-      await this.authentication.loginAccount({
-        requestBody: {
-          userName: this.serviceConfig.username,
-          password: this.serviceConfig.password,
-        },
-      })
-    ).body;
+    const { token } = await this.authentication.loginAccount({
+      requestBody: {
+        userName: this.serviceConfig.username,
+        password: this.serviceConfig.password,
+      },
+    });
     this.request.config.TOKEN = token;
   }
 }

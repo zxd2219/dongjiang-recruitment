@@ -81,7 +81,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "广告商ID，eg：BC810A11-0D52-81A0-bFEA-782148fb1e2F",
+            "description": "广告商ID",
             "required": true,
             "example": "BC810A11-0D52-81A0-bFEA-782148fb1e2F",
             "schema": {
@@ -94,7 +94,8 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Advertiser",
-                "x-apifox-overrides": {}
+                "title": "广告商",
+                "description": "广告商"
               },
               "example": {
                 "id": "fe4eBd5e-7ced-cdf1-dF0C-990Eed7C6e17",
@@ -121,7 +122,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -146,7 +148,8 @@
                     },
                     "body": {
                       "$ref": "#/components/schemas/Advertiser",
-                      "x-apifox-overrides": {}
+                      "title": "广告商",
+                      "description": "广告商"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -194,7 +197,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "广告商ID，eg：BC810A11-0D52-81A0-bFEA-782148fb1e2F",
+            "description": "广告商ID",
             "required": true,
             "example": "BC810A11-0D52-81A0-bFEA-782148fb1e2F",
             "schema": {
@@ -215,7 +218,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -240,7 +244,8 @@
                     },
                     "body": {
                       "$ref": "#/components/schemas/Advertiser",
-                      "x-apifox-overrides": {}
+                      "title": "广告商",
+                      "description": "广告商"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -288,7 +293,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "广告商ID，eg：BC810A11-0D52-81A0-bFEA-782148fb1e2F",
+            "description": "广告商ID",
             "required": true,
             "example": "BC810A11-0D52-81A0-bFEA-782148fb1e2F",
             "schema": {
@@ -309,7 +314,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -442,7 +448,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -486,7 +493,8 @@
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/Advertiser",
-                            "x-apifox-overrides": {}
+                            "title": "广告商",
+                            "description": "广告商"
                           },
                           "title": "当页广告商",
                           "description": "当页广告商"
@@ -573,7 +581,8 @@
                 "x-apifox-refs": {
                   "01GTY8GW0W2F62NQZQSEQE34C1": {
                     "$ref": "#/components/schemas/Advertiser",
-                    "x-apifox-overrides": {}
+                    "title": "广告商",
+                    "description": "广告商"
                   }
                 },
                 "x-apifox-orders": ["01GTY8GW0W2F62NQZQSEQE34C1"],
@@ -618,7 +627,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -643,7 +653,8 @@
                     },
                     "body": {
                       "$ref": "#/components/schemas/Advertiser",
-                      "x-apifox-overrides": {}
+                      "title": "广告商",
+                      "description": "广告商"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -698,13 +709,9 @@
                 "type": "object",
                 "x-apifox-refs": {
                   "01GTYAMYXF16WT6JHFX0467SG3": {
+                    "title": "求职者",
                     "$ref": "#/components/schemas/Applicant",
-                    "x-apifox-overrides": {
-                      "id": null,
-                      "createdAt": null,
-                      "updatedAt": null,
-                      "deletedAt": null
-                    }
+                    "description": "求职者"
                   }
                 },
                 "x-apifox-orders": ["01GTYAMYXF16WT6JHFX0467SG3"],
@@ -753,7 +760,7 @@
                   "workingYears": {
                     "type": "integer",
                     "title": "工作年限",
-                    "description": "{1:没有工作经验,2:在校/应届,3:3年一下,4:3-5年,5:5-10年,6:10年以上}",
+                    "description": "工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}",
                     "enum": [1, 2, 3, 4, 5, 6],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -777,7 +784,7 @@
                   "education": {
                     "type": "integer",
                     "title": "学历状态",
-                    "description": "{0:未知,1:大专,2:本科,3:硕士,4:博士}",
+                    "description": "学历状态，eg；{0:Unknown,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
                     "enum": [0, 1, 2, 3, 4],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -809,7 +816,7 @@
                   "jobStatus": {
                     "type": "integer",
                     "title": "求职状态",
-                    "description": "{1:随时入职,2:2周内入职,3:1月内入职}",
+                    "description": "求职状态，eg；{0:Unknown,1:AnyTime,2:TwoWeeks,3:OneMoth}",
                     "enum": [0, 1, 2, 3],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -837,7 +844,7 @@
                   "privacySettings": {
                     "type": "integer",
                     "title": "隐私设置",
-                    "description": "{1:实名,2:匿名}",
+                    "description": "隐私设置，eg；{1:RealName,2:Anonymous}",
                     "enum": [1, 2],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -921,7 +928,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -945,13 +953,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "求职者",
                       "$ref": "#/components/schemas/Applicant",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "求职者"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -1081,7 +1085,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -1124,13 +1129,9 @@
                         "items": {
                           "type": "array",
                           "items": {
+                            "title": "求职者",
                             "$ref": "#/components/schemas/Applicant",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "求职者"
                           },
                           "title": "当页求职者",
                           "description": "当页求职者"
@@ -1321,13 +1322,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "title": "求职者",
                 "$ref": "#/components/schemas/Applicant",
-                "x-apifox-overrides": {
-                  "id": null,
-                  "createdAt": null,
-                  "updatedAt": null,
-                  "deletedAt": null
-                }
+                "description": "求职者"
               },
               "example": {
                 "firstName": "苏",
@@ -1371,7 +1368,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -1395,13 +1393,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "求职者",
                       "$ref": "#/components/schemas/Applicant",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "求职者"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -1483,7 +1477,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -1571,7 +1566,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -1595,13 +1591,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "求职者",
                       "$ref": "#/components/schemas/Applicant",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "求职者"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -1667,13 +1659,9 @@
                 "type": "object",
                 "x-apifox-refs": {
                   "01GV539SQS4PH853DPHRYAVRJG": {
+                    "title": "公司",
                     "$ref": "#/components/schemas/Company",
-                    "x-apifox-overrides": {
-                      "id": null,
-                      "createdAt": null,
-                      "updatedAt": null,
-                      "deletedAt": null
-                    }
+                    "description": "公司"
                   }
                 },
                 "x-apifox-orders": ["01GV539SQS4PH853DPHRYAVRJG"],
@@ -1701,7 +1689,7 @@
                   "financingStage": {
                     "type": "integer",
                     "title": "融资阶段",
-                    "description": "{1:未融资,2:天使轮,3:A轮,4:B轮,5:C轮,6:D轮及以上,7:上市公司,8:不需要融资}",
+                    "description": "融资阶段，eg；{1:NoFinanced,2:AngelWheel,3:ARound,4:BRound,5:CRound,6:DAndMoreRound,7:ListedCompany,8:NoRequired}",
                     "enum": [1, 2, 3, 4, 5, 6, 7, 8],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -1729,7 +1717,7 @@
                   "scale": {
                     "type": "integer",
                     "title": "公司规模",
-                    "description": "{1:少于15人,2:15-50人,3:50-150人,4:150-500人,5:500-2000人,6:2000以上}",
+                    "description": "公司规模，eg；{1:LessThan15People,2:With15To50People,3:With50To150People,4:With150To500People,5:With500To2000People,6:MoreThen2000People}",
                     "enum": [1, 2, 3, 4, 5, 6],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -1894,7 +1882,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -1918,13 +1907,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "公司",
                       "$ref": "#/components/schemas/Company",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "公司"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -2052,7 +2037,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -2095,13 +2081,9 @@
                         "items": {
                           "type": "array",
                           "items": {
+                            "title": "公司",
                             "$ref": "#/components/schemas/Company",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "公司"
                           },
                           "title": "当页公司",
                           "description": "当页公司"
@@ -2256,13 +2238,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "title": "公司",
                 "$ref": "#/components/schemas/Company",
-                "x-apifox-overrides": {
-                  "id": null,
-                  "createdAt": null,
-                  "updatedAt": null,
-                  "deletedAt": null
-                }
+                "description": "公司"
               },
               "example": {
                 "companyName": "流派速群青目门",
@@ -2305,7 +2283,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -2329,13 +2308,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "公司",
                       "$ref": "#/components/schemas/Company",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "公司"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -2420,7 +2395,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -2444,13 +2420,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "公司",
                       "$ref": "#/components/schemas/Company",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "公司"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -2507,6 +2479,94 @@
           }
         },
         "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-66759572-run"
+      },
+      "delete": {
+        "summary": "删除公司",
+        "x-apifox-folder": "Company",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "operationId": "RemoveCompany",
+        "tags": ["Company"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "公司ID",
+            "required": true,
+            "example": "40F7dC4F-d6EA-8113-7ec7-F888B2D1926b",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01GV53C8VAVWCQSZBYQVHARS62": {
+                      "$ref": "#/components/schemas/BaseResponse",
+                      "x-apifox-overrides": {
+                        "body": {
+                          "$ref": "#/components/schemas/Advertiser",
+                          "title": "广告商",
+                          "description": "广告商"
+                        }
+                      },
+                      "required": ["body"]
+                    }
+                  },
+                  "x-apifox-orders": ["01GV53C8VAVWCQSZBYQVHARS62"],
+                  "properties": {
+                    "timestamp": {
+                      "type": "string",
+                      "title": "响应时间",
+                      "description": "响应时间"
+                    },
+                    "message": {
+                      "type": "string",
+                      "title": "响应",
+                      "description": "响应"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "title": "响应编码",
+                      "description": "响应编码"
+                    },
+                    "body": {
+                      "type": "string",
+                      "title": "公司ID",
+                      "description": "公司ID"
+                    }
+                  },
+                  "required": ["timestamp", "message", "status", "body"],
+                  "x-apifox-ignore-properties": [
+                    "timestamp",
+                    "message",
+                    "status",
+                    "body"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "1982-02-20 02:48:23",
+                      "message": "Kdfodakvc Wjsuppeim Minsswpuz Mgh Xcriybcms",
+                      "status": 439,
+                      "body": "E01F8386-ed5a-B546-8b93-eC8a8D7Ba3CC"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-73397849-run"
       }
     },
     "/companies/positions": {
@@ -2586,7 +2646,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -2629,7 +2690,9 @@
                         "items": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/Position"
+                            "title": "职位",
+                            "$ref": "#/components/schemas/Position",
+                            "description": "职位"
                           },
                           "title": "当页职位",
                           "description": "当页职位"
@@ -2992,21 +3055,17 @@
                 "type": "object",
                 "x-apifox-refs": {
                   "01GV520T5QEY2RZJQ3PVZ2CWHQ": {
+                    "title": "人事",
                     "$ref": "#/components/schemas/Personnel",
-                    "x-apifox-overrides": {
-                      "id": null,
-                      "createdAt": null,
-                      "updatedAt": null,
-                      "deletedAt": null
-                    }
+                    "description": "人事"
                   }
                 },
                 "x-apifox-orders": ["01GV520T5QEY2RZJQ3PVZ2CWHQ"],
                 "properties": {
-                  "companyId": {
-                    "type": "string",
-                    "title": "公司ID",
-                    "description": "公司ID"
+                  "company": {
+                    "title": "公司",
+                    "$ref": "#/components/schemas/Company",
+                    "description": "公司"
                   },
                   "avatarUrl": {
                     "type": "string",
@@ -3030,14 +3089,14 @@
                   }
                 },
                 "required": [
-                  "companyId",
+                  "company",
                   "avatarUrl",
                   "hrName",
                   "postName",
                   "acceptEmail"
                 ],
                 "x-apifox-ignore-properties": [
-                  "companyId",
+                  "company",
                   "avatarUrl",
                   "hrName",
                   "postName",
@@ -3067,7 +3126,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -3091,13 +3151,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "人事",
                       "$ref": "#/components/schemas/Personnel",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "人事"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -3211,7 +3267,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -3254,13 +3311,9 @@
                         "items": {
                           "type": "array",
                           "items": {
+                            "title": "人事",
                             "$ref": "#/components/schemas/Personnel",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "人事"
                           },
                           "title": "当页人事",
                           "description": "当页人事"
@@ -3348,7 +3401,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -3426,13 +3480,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "title": "人事",
                 "$ref": "#/components/schemas/Personnel",
-                "x-apifox-overrides": {
-                  "id": null,
-                  "createdAt": null,
-                  "updatedAt": null,
-                  "deletedAt": null
-                }
+                "description": "人事"
               },
               "example": {
                 "hrName": "冯军",
@@ -3472,13 +3522,9 @@
                       "description": "状态描述"
                     },
                     "body": {
+                      "title": "人事",
                       "$ref": "#/components/schemas/Personnel",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "人事"
                     }
                   },
                   "required": ["timestamp", "status", "message", "body"],
@@ -3545,7 +3591,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -3569,13 +3616,9 @@
                       "description": "响应编码"
                     },
                     "body": {
+                      "title": "人事",
                       "$ref": "#/components/schemas/Personnel",
-                      "x-apifox-overrides": {
-                        "id": null,
-                        "createdAt": null,
-                        "updatedAt": null,
-                        "deletedAt": null
-                      }
+                      "description": "人事"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -3614,7 +3657,7 @@
         "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-66759581-run"
       }
     },
-    "/advertisers/{advertiserid}/advertise": {
+    "/advertisers/{advertiserId}/advertise": {
       "post": {
         "summary": "添加广告",
         "x-apifox-folder": "Advertiser/Advertise",
@@ -3625,11 +3668,11 @@
         "tags": ["Advertiser/Advertise"],
         "parameters": [
           {
-            "name": "advertiserid",
+            "name": "advertiserId",
             "in": "path",
             "description": "广告商ID",
             "required": true,
-            "example": "BC810A11-0D52-81A0-bFEA-782148fb1e2F",
+            "example": "aB843F97-dCfb-1bB7-48FB-98C7d6CBeF1e",
             "schema": {
               "type": "string"
             }
@@ -3671,15 +3714,16 @@
                   },
                   "position": {
                     "type": "integer",
-                    "enum": [1],
+                    "enum": [1, 2],
                     "x-apifox": {
                       "enumDescriptions": {
-                        "1": "Master"
+                        "1": "Master",
+                        "2": "Popularize"
                       }
                     },
                     "title": "投放位置",
-                    "description": "{1:Master}",
-                    "x-enum-varnames": ["Master"]
+                    "description": "投放位置，eg；{1:Master,2:Popularize}",
+                    "x-enum-varnames": ["Master", "Popularize"]
                   },
                   "status": {
                     "type": "integer",
@@ -3691,7 +3735,7 @@
                       }
                     },
                     "title": "投放状态",
-                    "description": "{1:Active,2:Expired}",
+                    "description": "投放状态，eg；{1:Active,2:Inactive}",
                     "x-enum-varnames": ["Active", "Inactive"]
                   },
                   "payed": {
@@ -3716,6 +3760,11 @@
                     "type": "string",
                     "title": "结束时间",
                     "description": "结束时间"
+                  },
+                  "advertiser": {
+                    "$ref": "#/components/schemas/Advertiser",
+                    "title": "广告商",
+                    "description": "广告商"
                   }
                 },
                 "required": [
@@ -3726,7 +3775,8 @@
                   "status",
                   "payed",
                   "startTime",
-                  "endTime"
+                  "endTime",
+                  "advertiser"
                 ],
                 "x-apifox-ignore-properties": [
                   "name",
@@ -3736,7 +3786,8 @@
                   "status",
                   "payed",
                   "startTime",
-                  "endTime"
+                  "endTime",
+                  "advertiser"
                 ]
               },
               "example": {
@@ -3765,7 +3816,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -3822,7 +3874,7 @@
         "tags": ["Advertiser/Advertise"],
         "parameters": [
           {
-            "name": "advertiserid",
+            "name": "advertiserId",
             "in": "path",
             "description": "广告商ID",
             "required": true,
@@ -3899,7 +3951,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -4033,7 +4086,7 @@
         "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-66759585-run"
       }
     },
-    "/advertisers/{advertiserid}/advertise/{id}": {
+    "/advertisers/{advertiserId}/advertise/{id}": {
       "delete": {
         "summary": "移除广告",
         "x-apifox-folder": "Advertiser/Advertise",
@@ -4044,7 +4097,7 @@
         "tags": ["Advertiser/Advertise"],
         "parameters": [
           {
-            "name": "advertiserid",
+            "name": "advertiserId",
             "in": "path",
             "description": "广告商ID",
             "required": true,
@@ -4077,7 +4130,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -4141,7 +4195,7 @@
         "tags": ["Advertiser/Advertise"],
         "parameters": [
           {
-            "name": "advertiserid",
+            "name": "advertiserId",
             "in": "path",
             "description": "广告商ID",
             "required": true,
@@ -4203,7 +4257,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -4260,7 +4315,7 @@
         "tags": ["Advertiser/Advertise"],
         "parameters": [
           {
-            "name": "advertiserid",
+            "name": "advertiserId",
             "in": "path",
             "description": "广告商ID",
             "required": true,
@@ -4293,7 +4348,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -4384,7 +4440,7 @@
                   "positionType": {
                     "type": "integer",
                     "title": "职位类型",
-                    "description": "{1:全职,2:兼职,3:实习}",
+                    "description": "职位类型，eg；{1:FullTime,2:PartTime,3:Practice}",
                     "enum": [1, 2, 3],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -4466,7 +4522,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -4600,7 +4657,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -4754,7 +4812,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -4852,7 +4911,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -4992,7 +5052,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -5109,7 +5170,7 @@
                   "education": {
                     "type": "integer",
                     "title": "学历层次",
-                    "description": "{1:大专,2:本科,3:硕士,4:博士}",
+                    "description": "学历层次，eg；{1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
                     "enum": [1, 2, 3, 4],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -5319,7 +5380,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -5510,7 +5572,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -5633,7 +5696,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -5744,7 +5808,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -5877,7 +5942,7 @@
                   "positionType": {
                     "type": "integer",
                     "title": "职位类型",
-                    "description": "{1:全职,2:兼职,3:实习}",
+                    "description": "职位类型，eg；{1:FullTime,2:PartTime,3:Practice}",
                     "enum": [1, 2, 3],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -5951,7 +6016,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -6108,7 +6174,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -6286,7 +6353,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -6411,7 +6479,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -6525,7 +6594,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -6710,7 +6780,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -6864,7 +6935,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -7039,7 +7111,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -7151,7 +7224,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -7340,15 +7414,15 @@
                 },
                 "x-apifox-orders": ["01GV4SB36T35WNBRG27WYYAX11"],
                 "properties": {
-                  "applicantId": {
-                    "type": "string",
-                    "title": "求职者ID",
-                    "description": "求职者ID"
+                  "applicant": {
+                    "title": "求职者",
+                    "$ref": "#/components/schemas/Applicant",
+                    "description": "求职者"
                   },
                   "status": {
                     "type": "integer",
                     "title": "投递状态",
-                    "description": "{1:待查看,2:已查看,3:通过筛选,4:约面试,5:不合适}",
+                    "description": "投递状态，eg；{1:UnViewed,2:Viewed,3:PassFilter,4:Interview,5:Inappropriate}",
                     "enum": [1, 2, 3, 4, 5],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -7373,30 +7447,30 @@
                     "pattern": "^((((19|20)\\d{2})-(0?[13-9]|1[012])-(0?[1-9]|[12]\\d|30))|(((19|20)\\d{2})-(0?[13578]|1[02])-31)|(((19|20)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2-29))$",
                     "description": "面试时间"
                   },
-                  "companyId": {
-                    "type": "string",
-                    "title": "公司ID",
-                    "description": "公司ID"
+                  "company": {
+                    "title": "公司",
+                    "$ref": "#/components/schemas/Company",
+                    "description": "公司"
                   },
-                  "positionId": {
-                    "type": "string",
-                    "title": "职位ID",
-                    "description": "职位ID"
+                  "position": {
+                    "title": "职位",
+                    "$ref": "#/components/schemas/Position",
+                    "description": "职位"
                   }
                 },
                 "required": [
-                  "applicantId",
+                  "applicant",
                   "status",
                   "interviewTime",
-                  "companyId",
-                  "positionId"
+                  "company",
+                  "position"
                 ],
                 "x-apifox-ignore-properties": [
-                  "applicantId",
+                  "applicant",
                   "status",
                   "interviewTime",
-                  "companyId",
-                  "positionId"
+                  "company",
+                  "position"
                 ]
               },
               "example": {
@@ -7422,7 +7496,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -7576,7 +7651,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -7745,7 +7821,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -7842,7 +7919,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -7909,6 +7987,144 @@
           }
         },
         "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-66759610-run"
+      },
+      "put": {
+        "summary": "修改投递记录",
+        "x-apifox-folder": "Applicant/DeliveryRecord",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "operationId": "UpdateDeliveryRecord",
+        "tags": ["Applicant/DeliveryRecord"],
+        "parameters": [
+          {
+            "name": "applicantId",
+            "in": "path",
+            "description": "求职者ID",
+            "required": true,
+            "example": "cAADFA4A-de3b-ECBC-fc4d-FFA6dF8e2f2C",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "投递记录ID",
+            "required": true,
+            "example": "c9B331EB-4EBF-FC3F-CCf7-C1Cc54Ed662F",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryRecord",
+                "x-apifox-overrides": {
+                  "id": null,
+                  "createdAt": null,
+                  "updatedAt": null,
+                  "deletedAt": null
+                }
+              },
+              "example": {
+                "status": 4,
+                "interviewTime": "2010-02-18",
+                "positionId": "c9B331EB-4EBF-FC3F-CCf7-C1Cc54Ed662F",
+                "applicantId": "AE62acB8-Eb93-35DB-Cadf-2569dCc3E449",
+                "id": "97A5Cc9b-55dA-EEAC-Bd47-02B3DEda48A5",
+                "createdAt": "2014-12-18 19:47:43",
+                "updatedAt": "1989-12-14 16:57:26",
+                "companyId": "11601ef2-B9a8-D1cc-1693-5D6F6DfDF1EE",
+                "deletedAt": "1989-10-05 08:30:25"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01GV4RR4B8Q845T5Y6Y0MNRBWT": {
+                      "$ref": "#/components/schemas/BaseResponse",
+                      "x-apifox-overrides": {
+                        "body": {
+                          "$ref": "#/components/schemas/Advertiser",
+                          "title": "广告商",
+                          "description": "广告商"
+                        }
+                      },
+                      "required": ["body"]
+                    }
+                  },
+                  "x-apifox-orders": ["01GV4RR4B8Q845T5Y6Y0MNRBWT"],
+                  "properties": {
+                    "timestamp": {
+                      "type": "string",
+                      "title": "响应时间",
+                      "description": "响应时间"
+                    },
+                    "message": {
+                      "type": "string",
+                      "title": "响应",
+                      "description": "响应"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "title": "响应编码",
+                      "description": "响应编码"
+                    },
+                    "body": {
+                      "$ref": "#/components/schemas/DeliveryRecord",
+                      "x-apifox-overrides": {
+                        "id": null,
+                        "createdAt": null,
+                        "updatedAt": null,
+                        "deletedAt": null
+                      }
+                    }
+                  },
+                  "required": ["timestamp", "message", "status", "body"],
+                  "x-apifox-ignore-properties": [
+                    "timestamp",
+                    "message",
+                    "status",
+                    "body"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "2009-07-25 01:27:05",
+                      "message": "Hioq Hljtpxil Wuzliu Wtynl Pglwneiy",
+                      "status": 243,
+                      "body": {
+                        "status": 5,
+                        "interviewTime": "1972-02-04",
+                        "positionId": "8dA5c136-B5F5-FaE0-deFC-94e2b48697A8",
+                        "applicantId": "8A10E61E-8978-Dc19-1aab-e2CA1318E05E",
+                        "id": "5Fc9a53E-2E03-CD43-0cb6-D9FED223CD24",
+                        "createdAt": "2020-11-14 22:10:13",
+                        "updatedAt": "2006-01-13 23:58:34",
+                        "companyId": "1db3fA4A-8Fe5-6bfb-Be1C-2ebeBD6DC891",
+                        "deletedAt": "2004-05-04 06:52:37"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-71503591-run"
       }
     },
     "/applicant/{applicantId}/attentionRecords": {
@@ -7950,19 +8166,19 @@
                 },
                 "x-apifox-orders": ["01GV4RWHCZZ7YGE77RVZ9WH922"],
                 "properties": {
-                  "applicantId": {
-                    "type": "string",
-                    "title": "求职者ID",
-                    "description": "求职者ID"
+                  "applicant": {
+                    "title": "求职者",
+                    "$ref": "#/components/schemas/Applicant",
+                    "description": "求职者"
                   },
-                  "companyId": {
-                    "type": "string",
-                    "title": "公司ID",
-                    "description": "公司ID"
+                  "company": {
+                    "title": "公司",
+                    "$ref": "#/components/schemas/Company",
+                    "description": "公司"
                   }
                 },
-                "required": ["applicantId", "companyId"],
-                "x-apifox-ignore-properties": ["applicantId", "companyId"]
+                "required": ["applicant", "company"],
+                "x-apifox-ignore-properties": ["applicant", "company"]
               },
               "example": {
                 "applicantId": "D1bc9D3C-bb0F-8344-424e-7ECDBD8Da3e1",
@@ -7984,7 +8200,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -8135,7 +8352,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -8303,7 +8521,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -8400,7 +8619,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -8510,7 +8730,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -8607,7 +8828,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -8755,7 +8977,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -8899,27 +9122,27 @@
                 },
                 "x-apifox-orders": ["01GV4XPQHG3WPX05YKCM79245M"],
                 "properties": {
-                  "applicantId": {
-                    "type": "string",
-                    "title": "求职者ID",
-                    "description": "求职者ID"
+                  "applicant": {
+                    "title": "求职者",
+                    "$ref": "#/components/schemas/Applicant",
+                    "description": "求职者"
                   },
-                  "companyId": {
-                    "type": "string",
-                    "title": "公司ID",
-                    "description": "公司ID"
+                  "company": {
+                    "title": "公司",
+                    "$ref": "#/components/schemas/Company",
+                    "description": "公司"
                   },
-                  "positionId": {
-                    "type": "string",
-                    "title": "职位ID",
-                    "description": "职位ID"
+                  "position": {
+                    "title": "职位",
+                    "$ref": "#/components/schemas/Position",
+                    "description": "职位"
                   }
                 },
-                "required": ["applicantId", "companyId", "positionId"],
+                "required": ["applicant", "company", "position"],
                 "x-apifox-ignore-properties": [
-                  "applicantId",
-                  "companyId",
-                  "positionId"
+                  "applicant",
+                  "company",
+                  "position"
                 ]
               },
               "example": {
@@ -8943,7 +9166,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -9043,27 +9267,27 @@
                 },
                 "x-apifox-orders": ["01GV4SZY2E5Q0R3Y2XS5FM8W2E"],
                 "properties": {
-                  "applicantId": {
-                    "type": "string",
-                    "title": "求职者ID",
-                    "description": "求职者ID"
+                  "applicant": {
+                    "title": "求职者",
+                    "$ref": "#/components/schemas/Applicant",
+                    "description": "求职者"
                   },
-                  "companyId": {
-                    "type": "string",
-                    "title": "公司ID",
-                    "description": "公司ID"
+                  "company": {
+                    "title": "公司",
+                    "$ref": "#/components/schemas/Company",
+                    "description": "公司"
                   },
-                  "positionId": {
-                    "type": "string",
-                    "title": "职位ID",
-                    "description": "职位ID"
+                  "position": {
+                    "title": "职位",
+                    "$ref": "#/components/schemas/Position",
+                    "description": "职位"
                   }
                 },
-                "required": ["applicantId", "companyId", "positionId"],
+                "required": ["applicant", "company", "position"],
                 "x-apifox-ignore-properties": [
-                  "applicantId",
-                  "companyId",
-                  "positionId"
+                  "applicant",
+                  "company",
+                  "position"
                 ]
               },
               "example": {
@@ -9087,7 +9311,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -9239,7 +9464,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -9393,7 +9619,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -9490,7 +9717,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -9585,7 +9813,9 @@
                 "type": "object",
                 "x-apifox-refs": {
                   "01GV54WMNVGAYMKBY87W183VH3": {
-                    "$ref": "#/components/schemas/Position"
+                    "title": "职位",
+                    "$ref": "#/components/schemas/Position",
+                    "description": "职位"
                   }
                 },
                 "x-apifox-orders": ["01GV54WMNVGAYMKBY87W183VH3"],
@@ -9603,7 +9833,7 @@
                   "workingYears": {
                     "type": "integer",
                     "title": "工作年限",
-                    "description": "{1:经验不限,2:在校/应届,3:3年及以下,4:3-5年,5:5-10年,6:10年以上}",
+                    "description": "工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}",
                     "enum": [1, 2, 3, 4, 5, 6],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -9627,7 +9857,7 @@
                   "education": {
                     "type": "integer",
                     "title": "学历要求",
-                    "description": "{1:不要求,2:大专,3:本科,4:硕士,5:博士}",
+                    "description": "学历要求，eg；{0:Unlimited,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
                     "enum": [0, 1, 2, 3, 4],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -9679,20 +9909,20 @@
                     "title": "工作地区",
                     "description": "工作地区"
                   },
-                  "companyId": {
-                    "type": "string",
-                    "title": "公司ID",
-                    "description": "公司ID"
+                  "company": {
+                    "title": "公司",
+                    "$ref": "#/components/schemas/Company",
+                    "description": "公司"
                   },
-                  "personnelId": {
-                    "type": "string",
-                    "title": "人事ID",
-                    "description": "人事ID"
+                  "personnel": {
+                    "title": "人事",
+                    "$ref": "#/components/schemas/Personnel",
+                    "description": "人事"
                   },
                   "workType": {
                     "type": "integer",
                     "title": "职位类型",
-                    "description": "{1:全职,2:兼职,3:实习}",
+                    "description": "职位类型，eg；{1:FullTime,2:PartTime,3:Practice}",
                     "enum": [1, 2, 3],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -9724,7 +9954,7 @@
                   "weekendReleaseTime": {
                     "type": "integer",
                     "title": "周末休息时间",
-                    "description": "{1:周末双休:,2:周末单休,3:大小周}",
+                    "description": "周末休息时间，eg；{1:Weekends,2:SingleOff,3:SizeWeek}",
                     "enum": [1, 2, 3],
                     "x-apifox": {
                       "enumDescriptions": {
@@ -9751,7 +9981,7 @@
                       "situation": {
                         "type": "integer",
                         "title": "面试形式",
-                        "description": "{1:现场面试,2:视频面试,3:电话面试}",
+                        "description": "面试形式，eg；{1:OffLine,2:OnLine,3:OnCall}",
                         "enum": [1, 2, 3],
                         "x-apifox": {
                           "enumDescriptions": {
@@ -9765,7 +9995,7 @@
                       "wheel": {
                         "type": "integer",
                         "title": "面试轮数",
-                        "description": "{1:1-2轮次,2:3-4轮次,3:5-6轮次,4:暂不确定}",
+                        "description": "面试轮数，eg；{1:With1To2Round,2:With3To4Round,3:With5To6Round,4:Uncertain}",
                         "enum": [1, 2, 3, 4],
                         "x-apifox": {
                           "enumDescriptions": {
@@ -9785,7 +10015,7 @@
                       "time": {
                         "type": "integer",
                         "title": "面试时长",
-                        "description": "{1:一天内完成,2:分多次完成}",
+                        "description": "面试时长，eg；{1:OneTime,2:ManyTime}",
                         "enum": [1, 2],
                         "x-apifox": {
                           "enumDescriptions": {
@@ -9798,7 +10028,7 @@
                       "illustrate": {
                         "type": "integer",
                         "title": "面试说明",
-                        "description": "{1:可周末面试,2:包含笔试,3:可下班面试,4:包含面试作业}",
+                        "description": "面试说明，eg；{1:Weekend,2:Examination,3:GetOffWork,4:Assignment}",
                         "enum": [1, 2, 3, 4],
                         "x-apifox": {
                           "enumDescriptions": {
@@ -9859,8 +10089,8 @@
                   "workProvinceName",
                   "workCityName",
                   "workAreaName",
-                  "companyId",
-                  "personnelId",
+                  "company",
+                  "personnel",
                   "workType",
                   "departmentName",
                   "highlights",
@@ -9882,8 +10112,8 @@
                   "workProvinceName",
                   "workCityName",
                   "workAreaName",
-                  "companyId",
-                  "personnelId",
+                  "company",
+                  "personnel",
                   "workType",
                   "departmentName",
                   "highlights",
@@ -9942,7 +10172,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -9966,7 +10197,9 @@
                       "description": "响应编码"
                     },
                     "body": {
-                      "$ref": "#/components/schemas/Position"
+                      "title": "职位",
+                      "$ref": "#/components/schemas/Position",
+                      "description": "职位"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -10120,7 +10353,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -10163,7 +10397,9 @@
                         "items": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/Position"
+                            "title": "职位",
+                            "$ref": "#/components/schemas/Position",
+                            "description": "职位"
                           },
                           "title": "当页职位",
                           "description": "当页职位"
@@ -10402,7 +10638,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -10490,7 +10727,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Position"
+                "title": "职位",
+                "$ref": "#/components/schemas/Position",
+                "description": "职位"
               },
               "example": {
                 "workingYears": 1,
@@ -10549,7 +10788,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -10573,7 +10813,9 @@
                       "description": "响应编码"
                     },
                     "body": {
-                      "$ref": "#/components/schemas/Position"
+                      "title": "职位",
+                      "$ref": "#/components/schemas/Position",
+                      "description": "职位"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -10684,7 +10926,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -10708,7 +10951,9 @@
                       "description": "响应编码"
                     },
                     "body": {
-                      "$ref": "#/components/schemas/Position"
+                      "title": "职位",
+                      "$ref": "#/components/schemas/Position",
+                      "description": "职位"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -10815,7 +11060,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -10912,7 +11158,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11059,7 +11306,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -11216,19 +11464,19 @@
                 },
                 "x-apifox-orders": ["01GV525CR9XNEFCMZMDZ9RANND"],
                 "properties": {
-                  "personnelId": {
-                    "type": "string",
-                    "title": "人事ID",
-                    "description": "人事ID"
+                  "personnel": {
+                    "title": "人事",
+                    "$ref": "#/components/schemas/Personnel",
+                    "description": "人事"
                   },
-                  "applicantId": {
-                    "type": "string",
-                    "title": "求职者ID",
-                    "description": "求职者ID"
+                  "applicant": {
+                    "title": "求职者",
+                    "$ref": "#/components/schemas/Applicant",
+                    "description": "求职者"
                   }
                 },
-                "required": ["personnelId", "applicantId"],
-                "x-apifox-ignore-properties": ["personnelId", "applicantId"]
+                "required": ["personnel", "applicant"],
+                "x-apifox-ignore-properties": ["personnel", "applicant"]
               },
               "example": {
                 "personnelId": "Cf8AF562-E5A8-879f-cf47-45f8e67e1bdD",
@@ -11250,7 +11498,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11344,7 +11593,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11455,7 +11705,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11559,7 +11810,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11652,7 +11904,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11853,7 +12106,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -11946,7 +12200,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -12035,7 +12290,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -12131,7 +12387,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -12227,7 +12484,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -12359,7 +12617,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -12583,7 +12842,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -12782,7 +13042,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -12952,7 +13213,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -13069,7 +13331,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -13175,7 +13438,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -13325,7 +13589,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -13438,7 +13703,8 @@
                         "x-apifox-refs": {
                           "01GVMN63K45NC7ZHTBGQKEKSVF": {
                             "$ref": "#/components/schemas/Advertiser",
-                            "x-apifox-overrides": {}
+                            "title": "广告商",
+                            "description": "广告商"
                           }
                         },
                         "x-apifox-orders": ["01GVMN63K45NC7ZHTBGQKEKSVF"],
@@ -13470,13 +13736,9 @@
                         "type": "object",
                         "x-apifox-refs": {
                           "01GVMN68FKGQ6KAQ9R6W8FH93Q": {
+                            "title": "求职者",
                             "$ref": "#/components/schemas/Applicant",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "求职者"
                           }
                         },
                         "x-apifox-orders": ["01GVMN68FKGQ6KAQ9R6W8FH93Q"],
@@ -13525,7 +13787,7 @@
                           "workingYears": {
                             "type": "integer",
                             "title": "工作年限",
-                            "description": "{1:没有工作经验,2:在校/应届,3:3年一下,4:3-5年,5:5-10年,6:10年以上}",
+                            "description": "工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}",
                             "enum": [1, 2, 3, 4, 5, 6],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -13549,7 +13811,7 @@
                           "education": {
                             "type": "integer",
                             "title": "学历状态",
-                            "description": "{0:未知,1:大专,2:本科,3:硕士,4:博士}",
+                            "description": "学历状态，eg；{0:Unknown,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
                             "enum": [0, 1, 2, 3, 4],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -13581,7 +13843,7 @@
                           "jobStatus": {
                             "type": "integer",
                             "title": "求职状态",
-                            "description": "{1:随时入职,2:2周内入职,3:1月内入职}",
+                            "description": "求职状态，eg；{0:Unknown,1:AnyTime,2:TwoWeeks,3:OneMoth}",
                             "enum": [0, 1, 2, 3],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -13609,7 +13871,7 @@
                           "privacySettings": {
                             "type": "integer",
                             "title": "隐私设置",
-                            "description": "{1:实名,2:匿名}",
+                            "description": "隐私设置，eg；{1:RealName,2:Anonymous}",
                             "enum": [1, 2],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -13659,21 +13921,17 @@
                         "type": "object",
                         "x-apifox-refs": {
                           "01GVMN6G73YZFMC7CPPP4MMKJY": {
+                            "title": "人事",
                             "$ref": "#/components/schemas/Personnel",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "人事"
                           }
                         },
                         "x-apifox-orders": ["01GVMN6G73YZFMC7CPPP4MMKJY"],
                         "properties": {
-                          "companyId": {
-                            "type": "string",
-                            "title": "公司ID",
-                            "description": "公司ID"
+                          "company": {
+                            "title": "公司",
+                            "$ref": "#/components/schemas/Company",
+                            "description": "公司"
                           },
                           "avatarUrl": {
                             "type": "string",
@@ -13697,14 +13955,14 @@
                           }
                         },
                         "required": [
-                          "companyId",
+                          "company",
                           "avatarUrl",
                           "hrName",
                           "postName",
                           "acceptEmail"
                         ],
                         "x-apifox-ignore-properties": [
-                          "companyId",
+                          "company",
                           "avatarUrl",
                           "hrName",
                           "postName",
@@ -13770,7 +14028,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -13794,9 +14053,9 @@
                       "description": "响应编码"
                     },
                     "body": {
-                      "type": "string",
-                      "title": "注册状态",
-                      "description": "注册状态"
+                      "$ref": "#/components/schemas/Account",
+                      "title": "账号",
+                      "description": "账号"
                     }
                   },
                   "required": ["timestamp", "message", "status", "body"],
@@ -13811,10 +14070,70 @@
                   "1": {
                     "summary": "成功示例",
                     "value": {
-                      "timestamp": "1981-10-23 23:47:42",
-                      "message": "Xxvfkq Jwwqe Xtsjwy Vipspd",
-                      "status": 327,
-                      "body": "OK"
+                      "timestamp": "1980-05-06 17:52:50",
+                      "message": "Rjushazjz Kmu Hbqvobfrs Fnowqz Uzeivsmjni Zhcobkpp Jef",
+                      "status": 492,
+                      "body": {
+                        "id": "3EBC929F-dbB2-2C43-bd5b-8fCCC33e46Cd",
+                        "userName": "d.jpu@skie.pm",
+                        "createdAt": "1977-08-18 18:03:58",
+                        "updatedAt": "1986-04-18 23:01:17",
+                        "detailId": {
+                          "manager": "e6d5BbE1-36Fd-CBB9-fDE4-a742D63C86F7",
+                          "applicant": "A83DeCd9-86B6-F1dF-f787-Ef4bA3b7fBae",
+                          "personnel": "f5B9Ce1d-209D-5Cf7-56b6-bddcbeF1B7Af",
+                          "advertiser": "A5FC418d-3D55-Fcf8-AEfB-81e2c2aF32A5"
+                        },
+                        "deletedAt": "1978-02-05 10:28:44",
+                        "authorities": [
+                          {
+                            "id": "72d013a2-E3de-4d2f-Fbad-fe8fB82bAEC5",
+                            "createdAt": "1983-06-18 21:09:57",
+                            "updatedAt": "1988-12-07 12:20:30",
+                            "name": "过整分",
+                            "deletedAt": "1988-06-26 16:24:50"
+                          }
+                        ],
+                        "authorityGroups": [
+                          {
+                            "id": "EB1f84BD-ECCf-4Af9-7CAF-94CE8d1DBDEA",
+                            "createdAt": "2011-12-27 05:18:58",
+                            "updatedAt": "2003-06-24 00:28:43",
+                            "name": "查点两马毛",
+                            "deletedAt": "1990-08-07 14:20:50",
+                            "authorities": [
+                              {
+                                "id": "B5A6dfD8-7C2f-fAb8-34d7-A8E12ab5ED4C",
+                                "createdAt": "1988-11-28 05:58:38",
+                                "updatedAt": "2013-10-17 13:02:53",
+                                "name": "儿单维",
+                                "deletedAt": "1971-09-04 00:33:46"
+                              },
+                              {
+                                "id": "a1f6523f-b592-e95f-d53E-b8CDa0CEffdd",
+                                "createdAt": "1999-04-20 07:13:19",
+                                "updatedAt": "1982-09-10 18:45:30",
+                                "name": "可二也省制机",
+                                "deletedAt": "1995-11-24 13:18:04"
+                              },
+                              {
+                                "id": "87Fd5ACF-2cF1-d6bc-5Beb-E1c8Edf1AAD4",
+                                "createdAt": "2008-08-02 23:24:39",
+                                "updatedAt": "1970-09-23 12:58:29",
+                                "name": "查革原时更造",
+                                "deletedAt": "1970-07-05 23:01:47"
+                              },
+                              {
+                                "id": "9A8Adbe8-8124-41eE-5CFF-ca3BE5bf7e71",
+                                "createdAt": "2001-11-28 13:39:13",
+                                "updatedAt": "2000-05-11 18:36:31",
+                                "name": "边系收率说",
+                                "deletedAt": "1981-12-24 03:43:17"
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     }
                   }
                 }
@@ -13879,7 +14198,8 @@
                         "x-apifox-refs": {
                           "01GVMN7MR8B7Q06D92GRYSX0MT": {
                             "$ref": "#/components/schemas/Advertiser",
-                            "x-apifox-overrides": {}
+                            "title": "广告商",
+                            "description": "广告商"
                           }
                         },
                         "x-apifox-orders": ["01GVMN7MR8B7Q06D92GRYSX0MT"],
@@ -13911,13 +14231,9 @@
                         "type": "object",
                         "x-apifox-refs": {
                           "01GVMN7ST28G131V3SSYY43X7T": {
+                            "title": "求职者",
                             "$ref": "#/components/schemas/Applicant",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "求职者"
                           }
                         },
                         "x-apifox-orders": ["01GVMN7ST28G131V3SSYY43X7T"],
@@ -13966,7 +14282,7 @@
                           "workingYears": {
                             "type": "integer",
                             "title": "工作年限",
-                            "description": "{1:没有工作经验,2:在校/应届,3:3年一下,4:3-5年,5:5-10年,6:10年以上}",
+                            "description": "工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}",
                             "enum": [1, 2, 3, 4, 5, 6],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -13990,7 +14306,7 @@
                           "education": {
                             "type": "integer",
                             "title": "学历状态",
-                            "description": "{0:未知,1:大专,2:本科,3:硕士,4:博士}",
+                            "description": "学历状态，eg；{0:Unknown,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
                             "enum": [0, 1, 2, 3, 4],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -14022,7 +14338,7 @@
                           "jobStatus": {
                             "type": "integer",
                             "title": "求职状态",
-                            "description": "{1:随时入职,2:2周内入职,3:1月内入职}",
+                            "description": "求职状态，eg；{0:Unknown,1:AnyTime,2:TwoWeeks,3:OneMoth}",
                             "enum": [0, 1, 2, 3],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -14050,7 +14366,7 @@
                           "privacySettings": {
                             "type": "integer",
                             "title": "隐私设置",
-                            "description": "{1:实名,2:匿名}",
+                            "description": "隐私设置，eg；{1:RealName,2:Anonymous}",
                             "enum": [1, 2],
                             "x-apifox": {
                               "enumDescriptions": {
@@ -14100,21 +14416,17 @@
                         "type": "object",
                         "x-apifox-refs": {
                           "01GVMN7ZYB76AGCR8GV66N8M28": {
+                            "title": "人事",
                             "$ref": "#/components/schemas/Personnel",
-                            "x-apifox-overrides": {
-                              "id": null,
-                              "createdAt": null,
-                              "updatedAt": null,
-                              "deletedAt": null
-                            }
+                            "description": "人事"
                           }
                         },
                         "x-apifox-orders": ["01GVMN7ZYB76AGCR8GV66N8M28"],
                         "properties": {
-                          "companyId": {
-                            "type": "string",
-                            "title": "公司ID",
-                            "description": "公司ID"
+                          "company": {
+                            "title": "公司",
+                            "$ref": "#/components/schemas/Company",
+                            "description": "公司"
                           },
                           "avatarUrl": {
                             "type": "string",
@@ -14138,14 +14450,14 @@
                           }
                         },
                         "required": [
-                          "companyId",
+                          "company",
                           "avatarUrl",
                           "hrName",
                           "postName",
                           "acceptEmail"
                         ],
                         "x-apifox-ignore-properties": [
-                          "companyId",
+                          "company",
                           "avatarUrl",
                           "hrName",
                           "postName",
@@ -14155,6 +14467,22 @@
                     ],
                     "title": "详细信息",
                     "description": "详细信息"
+                  },
+                  "authorities": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Authority"
+                    },
+                    "title": "权限",
+                    "description": "权限"
+                  },
+                  "authorityGroups": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AuthorityGroup"
+                    },
+                    "title": "权限组",
+                    "description": "权限组"
                   }
                 },
                 "x-apifox-refs": {},
@@ -14162,9 +14490,17 @@
                   "accountType",
                   "userName",
                   "password",
-                  "detail"
+                  "detail",
+                  "authorities",
+                  "authorityGroups"
                 ],
-                "required": ["userName", "accountType", "password"],
+                "required": [
+                  "userName",
+                  "accountType",
+                  "password",
+                  "authorities",
+                  "authorityGroups"
+                ],
                 "x-apifox-ignore-properties": []
               },
               "example": {
@@ -14194,7 +14530,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -14343,7 +14680,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -14552,7 +14890,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -14655,7 +14994,7 @@
                     "description": "更新时间"
                   },
                   "deletedAt": {
-                    "type": "string",
+                    "type": ["string", "null"],
                     "title": "移除时间",
                     "description": "移除时间"
                   },
@@ -14668,22 +15007,22 @@
                     "type": "object",
                     "properties": {
                       "manager": {
-                        "type": "string",
+                        "type": ["string", "null"],
                         "title": "管理员",
                         "description": "管理员"
                       },
                       "applicant": {
-                        "type": "string",
+                        "type": ["string", "null"],
                         "title": "求职者",
                         "description": "求职者"
                       },
                       "personnel": {
-                        "type": "string",
+                        "type": ["string", "null"],
                         "title": "人事",
                         "description": "人事"
                       },
                       "advertiser": {
-                        "type": "string",
+                        "type": ["string", "null"],
                         "title": "广告商",
                         "description": "广告商"
                       }
@@ -14707,15 +15046,15 @@
                   "authorities": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "$ref": "#/components/schemas/Authority"
                     },
                     "title": "权限列表",
                     "description": "权限列表"
                   },
-                  "groups": {
+                  "authorityGroups": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "$ref": "#/components/schemas/AuthorityGroup"
                     },
                     "title": "权限组列表",
                     "description": "权限组列表"
@@ -14735,7 +15074,7 @@
                   "userName",
                   "detailId",
                   "authorities",
-                  "groups"
+                  "authorityGroups"
                 ],
                 "x-apifox-orders": ["01GVJ5WA0B6QFZNYDB4BAKH0CJ", "password"],
                 "x-apifox-ignore-properties": [
@@ -14746,7 +15085,7 @@
                   "userName",
                   "detailId",
                   "authorities",
-                  "groups"
+                  "authorityGroups"
                 ]
               },
               "example": {
@@ -14789,7 +15128,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -14893,7 +15233,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15010,7 +15351,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15150,7 +15492,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -15295,7 +15638,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15399,7 +15743,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15495,7 +15840,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15566,14 +15912,29 @@
         "x-apifox-status": "developing",
         "deprecated": false,
         "description": "",
-        "operationId": "AddAuthoritiy",
+        "operationId": "AddAuthority",
         "tags": ["Authentication/Authority"],
         "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Authority"
+                "type": "object",
+                "x-apifox-refs": {
+                  "01GX43M50ENZYNS51KX4575QT5": {
+                    "$ref": "#/components/schemas/Authority"
+                  }
+                },
+                "x-apifox-orders": ["01GX43M50ENZYNS51KX4575QT5"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "名称",
+                    "description": "名称"
+                  }
+                },
+                "required": ["name"],
+                "x-apifox-ignore-properties": ["name"]
               },
               "example": {
                 "id": "19dfc5d6-53B0-5Ac5-BeFE-fF5c4dDD2623",
@@ -15598,7 +15959,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15732,7 +16094,8 @@
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/Advertiser",
-                                "x-apifox-overrides": {}
+                                "title": "广告商",
+                                "description": "广告商"
                               },
                               "title": "当页广告商",
                               "description": "当页广告商"
@@ -15887,7 +16250,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -15967,45 +16331,20 @@
               "schema": {
                 "type": "object",
                 "x-apifox-refs": {
-                  "01GV58CYM566TWV9QVER0DV6X3": {
-                    "$ref": "#/components/schemas/BaseResponse",
-                    "x-apifox-overrides": {
-                      "body": {
-                        "$ref": "#/components/schemas/Advertiser",
-                        "x-apifox-overrides": {}
-                      }
-                    },
-                    "required": ["body"]
-                  }
-                },
-                "x-apifox-orders": ["01GV58CYM566TWV9QVER0DV6X3"],
-                "properties": {
-                  "timestamp": {
-                    "type": "string",
-                    "title": "响应时间",
-                    "description": "响应时间"
-                  },
-                  "message": {
-                    "type": "string",
-                    "title": "响应",
-                    "description": "响应"
-                  },
-                  "status": {
-                    "type": "integer",
-                    "title": "响应编码",
-                    "description": "响应编码"
-                  },
-                  "body": {
+                  "01GX5PN4F9DQEZV4WSB4NV1W7S": {
                     "$ref": "#/components/schemas/Authority"
                   }
                 },
-                "required": ["timestamp", "message", "status", "body"],
-                "x-apifox-ignore-properties": [
-                  "timestamp",
-                  "message",
-                  "status",
-                  "body"
-                ]
+                "x-apifox-orders": ["01GX5PN4F9DQEZV4WSB4NV1W7S"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "名称",
+                    "description": "名称"
+                  }
+                },
+                "required": ["name"],
+                "x-apifox-ignore-properties": ["name"]
               },
               "example": {
                 "authorityId": "DCb6cA9D-38f6-F8b3-5BBd-F249CCBbeFeD",
@@ -16029,7 +16368,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -16120,7 +16460,8 @@
                       "x-apifox-overrides": {
                         "body": {
                           "$ref": "#/components/schemas/Advertiser",
-                          "x-apifox-overrides": {}
+                          "title": "广告商",
+                          "description": "广告商"
                         }
                       },
                       "required": ["body"]
@@ -16178,6 +16519,591 @@
         },
         "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-67501997-run"
       }
+    },
+    "/advertisers/advertise": {
+      "get": {
+        "summary": "查询所有广告",
+        "x-apifox-folder": "Advertiser",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "operationId": "QueryAllAdvertise",
+        "tags": ["Advertiser"],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "查询条件",
+            "required": false,
+            "example": "{createdAt: \"$eq(1678200961000)\"}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "当前页数",
+            "required": false,
+            "example": "0",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "页面大小",
+            "required": false,
+            "example": "5",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "排序方式",
+            "required": false,
+            "example": ["createdAt,desc"],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "x-apifox-overrides": {},
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01GTY9B10275V人事B68CH6WAM4Z": {
+                      "$ref": "#/components/schemas/PageResponse",
+                      "x-apifox-overrides": {
+                        "body": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer",
+                              "title": "广告商总数",
+                              "description": "广告商总数"
+                            },
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/Advertiser",
+                                "title": "广告商",
+                                "description": "广告商"
+                              },
+                              "title": "当页广告商",
+                              "description": "当页广告商"
+                            }
+                          },
+                          "title": "分页结果",
+                          "x-apifox-orders": ["total", "items"],
+                          "required": ["total", "items"],
+                          "description": "分页结果"
+                        }
+                      },
+                      "required": ["body"]
+                    }
+                  },
+                  "x-apifox-orders": ["01GTY9B10275V人事B68CH6WAM4Z"],
+                  "properties": {
+                    "timestamp": {
+                      "type": "string",
+                      "title": "响应时间",
+                      "description": "响应时间"
+                    },
+                    "message": {
+                      "type": "string",
+                      "title": "响应",
+                      "description": "响应"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "title": "响应编码",
+                      "description": "响应编码"
+                    },
+                    "body": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer",
+                          "title": "广告总数",
+                          "description": "广告总数"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Advertise",
+                            "x-apifox-overrides": {
+                              "id": null,
+                              "createdAt": null,
+                              "updatedAt": null,
+                              "deletedAt": null
+                            }
+                          },
+                          "title": "当页广告",
+                          "description": "当页广告"
+                        }
+                      },
+                      "title": "分页结果",
+                      "x-apifox-orders": ["total", "items"],
+                      "required": ["total", "items"],
+                      "x-apifox-ignore-properties": [],
+                      "description": "分页结果"
+                    }
+                  },
+                  "required": ["timestamp", "message", "status", "body"],
+                  "x-apifox-ignore-properties": [
+                    "timestamp",
+                    "message",
+                    "status",
+                    "body"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "1989-11-07 23:57:05",
+                      "message": "Ydbsbwscj Mipl Rzuvixxs Hnpdqwaj Wmmlj Esknlqqbk",
+                      "status": 405,
+                      "body": {
+                        "total": 74,
+                        "items": [
+                          {
+                            "id": "44f4F610-2e8d-301d-7d1A-5030E528097c",
+                            "name": "直实已",
+                            "pageUrl": "http://top.pw/setd",
+                            "banner": "http://dummyimage.com/160x600",
+                            "position": 1,
+                            "status": 2,
+                            "payed": 1674163214892708.8,
+                            "startTime": "2002-11-30 00:06:08",
+                            "endTime": "1980-08-02 23:44:08",
+                            "createdAt": "2002-12-07 09:29:44",
+                            "updatedAt": "2009-11-16 19:18:43",
+                            "deletedAt": "2010-09-14 02:29:33",
+                            "advertiser": {
+                              "id": "7b6db14C-Cad1-F6Ad-2bf7-6E369f67f4Df",
+                              "name": "该调斯样理",
+                              "pageUrl": "http://gbzudsvwty.asia/qjrpuk",
+                              "logoUrl": "http://dummyimage.com/160x600",
+                              "createdAt": "2022-04-14 20:17:39",
+                              "updatedAt": "2001-03-25 17:51:45",
+                              "deletedAt": "1987-07-17 05:44:34"
+                            }
+                          },
+                          {
+                            "id": "CDD5D98c-cDb1-AeeD-e3d7-5aC37dACFcc1",
+                            "name": "及般及八装",
+                            "pageUrl": "http://hoh.tk/cuttngee",
+                            "banner": "http://dummyimage.com/120x600",
+                            "position": 1,
+                            "status": 2,
+                            "payed": 3248953440717804.5,
+                            "startTime": "1982-09-19 12:31:03",
+                            "endTime": "1972-03-26 14:06:51",
+                            "createdAt": "2002-08-21 13:54:46",
+                            "updatedAt": "1975-06-06 09:58:26",
+                            "deletedAt": "1979-10-09 09:48:16",
+                            "advertiser": {
+                              "id": "57f0c4dc-ebbc-676e-343E-c6c6784f6426",
+                              "name": "电设识委更",
+                              "pageUrl": "http://yrgkyxw.bb/kmipyd",
+                              "logoUrl": "http://dummyimage.com/160x600",
+                              "createdAt": "2008-05-19 20:35:13",
+                              "updatedAt": "1994-12-14 10:42:33",
+                              "deletedAt": "1985-04-09 22:39:53"
+                            }
+                          },
+                          {
+                            "id": "EE68Fe1e-D737-c9A3-B46c-bB86Df20Cefb",
+                            "name": "火员京近立共",
+                            "pageUrl": "http://xtppd.al/rcbezjl",
+                            "banner": "http://dummyimage.com/234x60",
+                            "position": 1,
+                            "status": 2,
+                            "payed": 1095892103027662.5,
+                            "startTime": "1976-08-07 07:02:33",
+                            "endTime": "1995-08-02 09:58:25",
+                            "createdAt": "1990-05-27 14:59:58",
+                            "updatedAt": "1994-01-12 14:47:53",
+                            "deletedAt": "1984-11-27 02:47:42",
+                            "advertiser": {
+                              "id": "32CCB488-FbCe-AD1a-Df1E-52DeAe5B4eA4",
+                              "name": "人这千往众等",
+                              "pageUrl": "http://qbyfvgoch.nf/nbdrcrqlo",
+                              "logoUrl": "http://dummyimage.com/120x90",
+                              "createdAt": "1978-06-26 04:24:47",
+                              "updatedAt": "1977-10-23 12:10:34",
+                              "deletedAt": "2022-08-11 04:44:07"
+                            }
+                          },
+                          {
+                            "id": "fa3dc61A-b25e-f18a-5391-dAe54EBdaeEb",
+                            "name": "已亲因太物",
+                            "pageUrl": "http://hcnzpw.bb/nqqya",
+                            "banner": "http://dummyimage.com/125x125",
+                            "position": 1,
+                            "status": 2,
+                            "payed": 1356777208717776.5,
+                            "startTime": "1987-11-23 05:38:28",
+                            "endTime": "1996-10-23 02:14:58",
+                            "createdAt": "1977-05-17 05:23:39",
+                            "updatedAt": "1998-12-13 23:19:04",
+                            "deletedAt": "2018-01-30 00:46:47",
+                            "advertiser": {
+                              "id": "439DB6db-172b-0e83-eBcA-e6fe6D1DdA81",
+                              "name": "北八种济",
+                              "pageUrl": "http://uylodepq.cc/jvnu",
+                              "logoUrl": "http://dummyimage.com/300x250",
+                              "createdAt": "2009-01-18 07:18:42",
+                              "updatedAt": "1994-04-10 16:13:49",
+                              "deletedAt": "2015-03-24 06:23:31"
+                            }
+                          },
+                          {
+                            "id": "78c72b0D-DD13-6a4D-35fE-1b43AEa2d93C",
+                            "name": "样立时往连",
+                            "pageUrl": "http://bqwhkuo.uy/tukkh",
+                            "banner": "http://dummyimage.com/120x600",
+                            "position": 1,
+                            "status": 1,
+                            "payed": 7033119674880552,
+                            "startTime": "2006-11-14 17:07:15",
+                            "endTime": "1970-08-20 12:06:46",
+                            "createdAt": "1970-08-05 17:17:23",
+                            "updatedAt": "1987-11-23 03:10:16",
+                            "deletedAt": "2007-10-17 14:35:13",
+                            "advertiser": {
+                              "id": "E13E4DA0-e485-451C-2935-CC3CD047bBaC",
+                              "name": "红几么复老马",
+                              "pageUrl": "http://dolmdvbdm.ua/dgg",
+                              "logoUrl": "http://dummyimage.com/250x250",
+                              "createdAt": "1998-01-22 03:18:13",
+                              "updatedAt": "2015-06-13 20:45:14",
+                              "deletedAt": "1976-07-22 22:31:06"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-73407080-run"
+      }
+    },
+    "/common/payment": {
+      "get": {
+        "summary": "查询订单状态",
+        "x-apifox-folder": "Common",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "operationId": "GetPaymentStatus",
+        "tags": ["Common"],
+        "parameters": [
+          {
+            "name": "outTradeNo",
+            "in": "query",
+            "description": "订单账号",
+            "required": true,
+            "example": "4a6acd15-06eb-4b3b-925e-8e0c859b98b3",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "string",
+                      "title": "响应时间",
+                      "description": "响应时间"
+                    },
+                    "message": {
+                      "type": "string",
+                      "title": "响应",
+                      "description": "响应"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "title": "响应编码",
+                      "description": "响应编码"
+                    },
+                    "body": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "msg": {
+                          "type": "string"
+                        },
+                        "buyerLogonId": {
+                          "type": "string"
+                        },
+                        "buyerPayAmount": {
+                          "type": "string"
+                        },
+                        "buyerUserId": {
+                          "type": "string"
+                        },
+                        "buyerUserType": {
+                          "type": "string"
+                        },
+                        "invoiceAmount": {
+                          "type": "string"
+                        },
+                        "outTradeNo": {
+                          "type": "string"
+                        },
+                        "pointAmount": {
+                          "type": "string"
+                        },
+                        "receiptAmount": {
+                          "type": "string"
+                        },
+                        "totalAmount": {
+                          "type": "string"
+                        },
+                        "tradeNo": {
+                          "type": "string"
+                        },
+                        "tradeStatus": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "msg",
+                        "buyerLogonId",
+                        "buyerPayAmount",
+                        "buyerUserId",
+                        "buyerUserType",
+                        "invoiceAmount",
+                        "outTradeNo",
+                        "pointAmount",
+                        "receiptAmount",
+                        "totalAmount",
+                        "tradeNo",
+                        "tradeStatus"
+                      ],
+                      "x-apifox-orders": [
+                        "code",
+                        "msg",
+                        "buyerLogonId",
+                        "buyerPayAmount",
+                        "buyerUserId",
+                        "buyerUserType",
+                        "invoiceAmount",
+                        "outTradeNo",
+                        "pointAmount",
+                        "receiptAmount",
+                        "totalAmount",
+                        "tradeNo",
+                        "tradeStatus"
+                      ],
+                      "title": "响应体",
+                      "x-apifox-ignore-properties": [],
+                      "description": "响应体"
+                    }
+                  },
+                  "x-apifox-orders": ["01GXFHZJM06TM1B8WT8CSFKNVW"],
+                  "x-apifox-refs": {
+                    "01GXFHZJM06TM1B8WT8CSFKNVW": {
+                      "$ref": "#/components/schemas/BaseResponse",
+                      "x-apifox-overrides": {
+                        "body": {
+                          "$ref": "#/components/schemas/Advertiser",
+                          "title": "广告商",
+                          "description": "广告商"
+                        }
+                      },
+                      "required": ["body"]
+                    }
+                  },
+                  "required": ["timestamp", "message", "status", "body"],
+                  "x-apifox-ignore-properties": [
+                    "timestamp",
+                    "message",
+                    "status",
+                    "body"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "2023-04-08T02:38:26.309Z",
+                      "status": 200,
+                      "message": "OK",
+                      "body": {
+                        "code": "10000",
+                        "msg": "Success",
+                        "buyerLogonId": "pda***@sandbox.com",
+                        "buyerPayAmount": "0.00",
+                        "buyerUserId": "2088722011250424",
+                        "buyerUserType": "PRIVATE",
+                        "invoiceAmount": "0.00",
+                        "outTradeNo": "4a6acd15-06eb-4b3b-925e-8e0c859b98b3",
+                        "pointAmount": "0.00",
+                        "receiptAmount": "0.00",
+                        "totalAmount": "200.00",
+                        "tradeNo": "2023040822001450421000602011",
+                        "tradeStatus": "WAIT_BUYER_PAY"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-73741492-run"
+      },
+      "post": {
+        "summary": "创建订单",
+        "x-apifox-folder": "Common",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "operationId": "AddPayment",
+        "tags": ["Common"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "付款内容",
+                    "description": "付款内容"
+                  },
+                  "total": {
+                    "type": "integer",
+                    "title": "付款金额",
+                    "description": "付款金额"
+                  }
+                },
+                "required": ["name", "total"],
+                "x-apifox-orders": ["name", "total"],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "name": "测试",
+                "total": 200
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01GXFJDZDJPW71CX1DJZ8WB37J": {
+                      "$ref": "#/components/schemas/BaseResponse",
+                      "x-apifox-overrides": {
+                        "body": {
+                          "$ref": "#/components/schemas/Advertiser",
+                          "title": "广告商",
+                          "description": "广告商"
+                        }
+                      },
+                      "required": ["body"]
+                    }
+                  },
+                  "x-apifox-orders": ["01GXFJDZDJPW71CX1DJZ8WB37J"],
+                  "properties": {
+                    "timestamp": {
+                      "type": "string",
+                      "title": "响应时间",
+                      "description": "响应时间"
+                    },
+                    "message": {
+                      "type": "string",
+                      "title": "响应",
+                      "description": "响应"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "title": "响应编码",
+                      "description": "响应编码"
+                    },
+                    "body": {
+                      "type": "object",
+                      "properties": {
+                        "outTradeNo": {
+                          "type": "string",
+                          "title": "订单号",
+                          "description": "订单号"
+                        },
+                        "payUrl": {
+                          "type": "string",
+                          "title": "支付地址",
+                          "description": "支付地址"
+                        }
+                      },
+                      "required": ["outTradeNo", "payUrl"],
+                      "x-apifox-orders": ["outTradeNo", "payUrl"],
+                      "title": "响应体",
+                      "x-apifox-ignore-properties": [],
+                      "description": "响应体"
+                    }
+                  },
+                  "required": ["timestamp", "message", "status", "body"],
+                  "x-apifox-ignore-properties": [
+                    "timestamp",
+                    "message",
+                    "status",
+                    "body"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "2023-04-08T02:37:50.613Z",
+                      "status": 201,
+                      "message": "CREATED",
+                      "body": {
+                        "outTradeNo": "4a6acd15-06eb-4b3b-925e-8e0c859b98b3",
+                        "payForm": "https://openapi.alipaydev.com/gateway.do?method=alipay.trade.page.pay&app_id=2021000122674330&charset=utf-8&version=1.0&sign_type=RSA2&timestamp=2023-04-08%2010%3A37%3A50&sign=O0tb95pkcUA7SEYaNSfqSNvaa%2B1EGtGq3mInJHOFcUEbzvL0UDbstNumv5xPqpwEFo7c5bG%2Bcaoer4cVAJfyUsekiXv%2F9OuXDJ0VSuNRp2Y8xlGf66v0YPDdq9b8Gom8VMz2r%2B%2BuUEJtTfWPvKLrvlcHGpQYyaQiFZLIGY8bPxLgMBJBQf71Q%2B8DPAicr6%2FemuPG5NSWsQG%2BBwDkziz%2Btmul3ghnBfJx0tLhkJi0nDeODiI3K78ePD%2BpC0n0MyRDvuwww8sDVuagBVUDW6SERUVVNo7Y8HKs%2Fiz8Anesk1MvGeY6O8fKwhFXDyubvlNczPG9an7c49B6J6GWD4j9aA%3D%3D&alipay_sdk=alipay-sdk-nodejs-3.3.0&biz_content=%7B%22out_trade_no%22%3A%224a6acd15-06eb-4b3b-925e-8e0c859b98b3%22%2C%22product_code%22%3A%22FAST_INSTANT_TRADE_PAY%22%2C%22total_amount%22%3A200%2C%22subject%22%3A%22%E6%B5%8B%E8%AF%95%22%7D"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2404362/apis/api-73741739-run"
+      }
     }
   },
   "components": {
@@ -16201,24 +17127,24 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
-          "personnelId": {
-            "type": "string",
-            "title": "人事ID",
-            "description": "人事ID"
+          "personnel": {
+            "title": "人事",
+            "$ref": "#/components/schemas/Personnel",
+            "description": "人事"
           },
-          "applicantId": {
-            "type": "string",
-            "title": "求职者ID",
-            "description": "求职者ID"
+          "applicant": {
+            "title": "求职者",
+            "$ref": "#/components/schemas/Applicant",
+            "description": "求职者"
           }
         },
         "required": [
-          "applicantId",
-          "personnelId",
+          "applicant",
+          "personnel",
           "id",
           "createdAt",
           "updatedAt",
@@ -16229,8 +17155,8 @@
           "createdAt",
           "updatedAt",
           "deletedAt",
-          "personnelId",
-          "applicantId"
+          "personnel",
+          "applicant"
         ],
         "title": "人事查看记录",
         "x-apifox-ignore-properties": [],
@@ -16256,14 +17182,14 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
-          "companyId": {
-            "type": "string",
-            "title": "公司ID",
-            "description": "公司ID"
+          "company": {
+            "title": "公司",
+            "$ref": "#/components/schemas/Company",
+            "description": "公司"
           },
           "avatarUrl": {
             "type": "string",
@@ -16294,7 +17220,7 @@
           "id",
           "createdAt",
           "updatedAt",
-          "companyId",
+          "company",
           "deletedAt"
         ],
         "x-apifox-orders": [
@@ -16302,7 +17228,7 @@
           "createdAt",
           "updatedAt",
           "deletedAt",
-          "companyId",
+          "company",
           "avatarUrl",
           "hrName",
           "postName",
@@ -16332,7 +17258,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -16359,7 +17285,7 @@
           "financingStage": {
             "type": "integer",
             "title": "融资阶段",
-            "description": "{1:未融资,2:天使轮,3:A轮,4:B轮,5:C轮,6:D轮及以上,7:上市公司,8:不需要融资}",
+            "description": "融资阶段，eg；{1:NoFinanced,2:AngelWheel,3:ARound,4:BRound,5:CRound,6:DAndMoreRound,7:ListedCompany,8:NoRequired}",
             "enum": [1, 2, 3, 4, 5, 6, 7, 8],
             "x-apifox": {
               "enumDescriptions": {
@@ -16387,7 +17313,7 @@
           "scale": {
             "type": "integer",
             "title": "公司规模",
-            "description": "{1:少于15人,2:15-50人,3:50-150人,4:150-500人,5:500-2000人,6:2000以上}",
+            "description": "公司规模，eg；{1:LessThan15People,2:With15To50People,3:With50To150People,4:With150To500People,5:With500To2000People,6:MoreThen2000People}",
             "enum": [1, 2, 3, 4, 5, 6],
             "x-apifox": {
               "enumDescriptions": {
@@ -16546,7 +17472,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -16563,7 +17489,7 @@
           "workingYears": {
             "type": "integer",
             "title": "工作年限",
-            "description": "{1:经验不限,2:在校/应届,3:3年及以下,4:3-5年,5:5-10年,6:10年以上}",
+            "description": "工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}",
             "enum": [1, 2, 3, 4, 5, 6],
             "x-apifox": {
               "enumDescriptions": {
@@ -16587,7 +17513,7 @@
           "education": {
             "type": "integer",
             "title": "学历要求",
-            "description": "{1:不要求,2:大专,3:本科,4:硕士,5:博士}",
+            "description": "学历要求，eg；{0:Unlimited,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
             "enum": [0, 1, 2, 3, 4],
             "x-apifox": {
               "enumDescriptions": {
@@ -16639,20 +17565,20 @@
             "title": "工作地区",
             "description": "工作地区"
           },
-          "companyId": {
-            "type": "string",
-            "title": "公司ID",
-            "description": "公司ID"
+          "company": {
+            "title": "公司",
+            "$ref": "#/components/schemas/Company",
+            "description": "公司"
           },
-          "personnelId": {
-            "type": "string",
-            "title": "人事ID",
-            "description": "人事ID"
+          "personnel": {
+            "title": "人事",
+            "$ref": "#/components/schemas/Personnel",
+            "description": "人事"
           },
           "workType": {
             "type": "integer",
             "title": "职位类型",
-            "description": "{1:全职,2:兼职,3:实习}",
+            "description": "职位类型，eg；{1:FullTime,2:PartTime,3:Practice}",
             "enum": [1, 2, 3],
             "x-apifox": {
               "enumDescriptions": {
@@ -16684,7 +17610,7 @@
           "weekendReleaseTime": {
             "type": "integer",
             "title": "周末休息时间",
-            "description": "{1:周末双休:,2:周末单休,3:大小周}",
+            "description": "周末休息时间，eg；{1:Weekends,2:SingleOff,3:SizeWeek}",
             "enum": [1, 2, 3],
             "x-apifox": {
               "enumDescriptions": {
@@ -16711,7 +17637,7 @@
               "situation": {
                 "type": "integer",
                 "title": "面试形式",
-                "description": "{1:现场面试,2:视频面试,3:电话面试}",
+                "description": "面试形式，eg；{1:OffLine,2:OnLine,3:OnCall}",
                 "enum": [1, 2, 3],
                 "x-apifox": {
                   "enumDescriptions": {
@@ -16725,7 +17651,7 @@
               "wheel": {
                 "type": "integer",
                 "title": "面试轮数",
-                "description": "{1:1-2轮次,2:3-4轮次,3:5-6轮次,4:暂不确定}",
+                "description": "面试轮数，eg；{1:With1To2Round,2:With3To4Round,3:With5To6Round,4:Uncertain}",
                 "enum": [1, 2, 3, 4],
                 "x-apifox": {
                   "enumDescriptions": {
@@ -16745,7 +17671,7 @@
               "time": {
                 "type": "integer",
                 "title": "面试时长",
-                "description": "{1:一天内完成,2:分多次完成}",
+                "description": "面试时长，eg；{1:OneTime,2:ManyTime}",
                 "enum": [1, 2],
                 "x-apifox": {
                   "enumDescriptions": {
@@ -16758,7 +17684,7 @@
               "illustrate": {
                 "type": "integer",
                 "title": "面试说明",
-                "description": "{1:可周末面试,2:包含笔试,3:可下班面试,4:包含面试作业}",
+                "description": "面试说明，eg；{1:Weekend,2:Examination,3:GetOffWork,4:Assignment}",
                 "enum": [1, 2, 3, 4],
                 "x-apifox": {
                   "enumDescriptions": {
@@ -16810,8 +17736,8 @@
           "startingSalary",
           "ceilingSalary",
           "workAreaName",
-          "companyId",
-          "personnelId",
+          "company",
+          "personnel",
           "workType",
           "departmentName",
           "highlights",
@@ -16845,8 +17771,8 @@
           "workProvinceName",
           "workCityName",
           "workAreaName",
-          "companyId",
-          "personnelId",
+          "company",
+          "personnel",
           "workType",
           "departmentName",
           "highlights",
@@ -16903,7 +17829,7 @@
           "messageType": {
             "type": "integer",
             "title": "消息类型",
-            "description": "{1:文字,2:图片,3:语音,4:文件}",
+            "description": "消息类型，eg；{1:Text,2:Picture,3:Voice,4:File}",
             "enum": [1, 2, 3, 4],
             "x-apifox": {
               "enumDescriptions": {
@@ -17186,7 +18112,7 @@
             "description": "修改时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -17198,7 +18124,7 @@
           "authorities": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Authority"
             },
             "title": "权限列表",
             "description": "权限列表"
@@ -17244,7 +18170,7 @@
             "description": "修改时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -17286,7 +18212,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -17299,22 +18225,22 @@
             "type": "object",
             "properties": {
               "manager": {
-                "type": "string",
+                "type": ["string", "null"],
                 "title": "管理员",
                 "description": "管理员"
               },
               "applicant": {
-                "type": "string",
+                "type": ["string", "null"],
                 "title": "求职者",
                 "description": "求职者"
               },
               "personnel": {
-                "type": "string",
+                "type": ["string", "null"],
                 "title": "人事",
                 "description": "人事"
               },
               "advertiser": {
-                "type": "string",
+                "type": ["string", "null"],
                 "title": "广告商",
                 "description": "广告商"
               }
@@ -17333,15 +18259,15 @@
           "authorities": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Authority"
             },
             "title": "权限列表",
             "description": "权限列表"
           },
-          "groups": {
+          "authorityGroups": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/AuthorityGroup"
             },
             "title": "权限组列表",
             "description": "权限组列表"
@@ -17355,7 +18281,7 @@
           "detailId",
           "deletedAt",
           "authorities",
-          "groups"
+          "authorityGroups"
         ],
         "x-apifox-orders": [
           "id",
@@ -17365,7 +18291,7 @@
           "userName",
           "detailId",
           "authorities",
-          "groups"
+          "authorityGroups"
         ],
         "title": "账号",
         "x-apifox-ignore-properties": [],
@@ -17391,34 +18317,34 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
-          "applicantId": {
-            "type": "string",
-            "title": "求职者ID",
-            "description": "求职者ID"
+          "applicant": {
+            "title": "求职者",
+            "$ref": "#/components/schemas/Applicant",
+            "description": "求职者"
           },
-          "companyId": {
-            "type": "string",
-            "title": "公司ID",
-            "description": "公司ID"
+          "company": {
+            "title": "公司",
+            "$ref": "#/components/schemas/Company",
+            "description": "公司"
           },
-          "positionId": {
-            "type": "string",
-            "title": "职位ID",
-            "description": "职位ID"
+          "position": {
+            "title": "职位",
+            "$ref": "#/components/schemas/Position",
+            "description": "职位"
           }
         },
         "required": [
-          "applicantId",
-          "positionId",
+          "applicant",
           "id",
           "createdAt",
           "updatedAt",
-          "companyId",
-          "deletedAt"
+          "company",
+          "deletedAt",
+          "position"
         ],
         "title": "收藏记录",
         "x-apifox-orders": [
@@ -17426,9 +18352,9 @@
           "createdAt",
           "updatedAt",
           "deletedAt",
-          "applicantId",
-          "companyId",
-          "positionId"
+          "applicant",
+          "company",
+          "position"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": "Applicant",
@@ -17453,33 +18379,33 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
-          "applicantId": {
-            "type": "string",
-            "title": "求职者ID",
-            "description": "求职者ID"
+          "applicant": {
+            "title": "求职者",
+            "$ref": "#/components/schemas/Applicant",
+            "description": "求职者"
           },
-          "companyId": {
-            "type": "string",
-            "title": "公司ID",
-            "description": "公司ID"
+          "company": {
+            "title": "公司",
+            "$ref": "#/components/schemas/Company",
+            "description": "公司"
           },
-          "positionId": {
-            "type": "string",
-            "title": "职位ID",
-            "description": "职位ID"
+          "position": {
+            "title": "职位",
+            "$ref": "#/components/schemas/Position",
+            "description": "职位"
           }
         },
         "required": [
           "id",
           "createdAt",
           "updatedAt",
-          "applicantId",
-          "companyId",
-          "positionId",
+          "applicant",
+          "company",
+          "position",
           "deletedAt"
         ],
         "x-apifox-orders": [
@@ -17487,9 +18413,9 @@
           "createdAt",
           "updatedAt",
           "deletedAt",
-          "applicantId",
-          "companyId",
-          "positionId"
+          "applicant",
+          "company",
+          "position"
         ],
         "title": "求职者查看记录",
         "x-apifox-ignore-properties": [],
@@ -17515,19 +18441,19 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
-          "applicantId": {
-            "type": "string",
-            "title": "求职者ID",
-            "description": "求职者ID"
+          "applicant": {
+            "title": "求职者",
+            "$ref": "#/components/schemas/Applicant",
+            "description": "求职者"
           },
           "status": {
             "type": "integer",
             "title": "投递状态",
-            "description": "{1:待查看,2:已查看,3:通过筛选,4:约面试,5:不合适}",
+            "description": "投递状态，eg；{1:UnViewed,2:Viewed,3:PassFilter,4:Interview,5:Inappropriate}",
             "enum": [1, 2, 3, 4, 5],
             "x-apifox": {
               "enumDescriptions": {
@@ -17552,26 +18478,26 @@
             "pattern": "^((((19|20)\\d{2})-(0?[13-9]|1[012])-(0?[1-9]|[12]\\d|30))|(((19|20)\\d{2})-(0?[13578]|1[02])-31)|(((19|20)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2-29))$",
             "description": "面试时间"
           },
-          "companyId": {
-            "type": "string",
-            "title": "公司ID",
-            "description": "公司ID"
+          "company": {
+            "title": "公司",
+            "$ref": "#/components/schemas/Company",
+            "description": "公司"
           },
-          "positionId": {
-            "type": "string",
-            "title": "职位ID",
-            "description": "职位ID"
+          "position": {
+            "title": "职位",
+            "$ref": "#/components/schemas/Position",
+            "description": "职位"
           }
         },
         "required": [
           "status",
           "interviewTime",
-          "positionId",
-          "applicantId",
+          "position",
+          "applicant",
           "id",
           "createdAt",
           "updatedAt",
-          "companyId",
+          "company",
           "deletedAt"
         ],
         "x-apifox-orders": [
@@ -17579,11 +18505,11 @@
           "createdAt",
           "updatedAt",
           "deletedAt",
-          "applicantId",
+          "applicant",
           "status",
           "interviewTime",
-          "companyId",
-          "positionId"
+          "company",
+          "position"
         ],
         "title": "投递记录",
         "x-apifox-ignore-properties": [],
@@ -17609,24 +18535,24 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
-          "applicantId": {
-            "type": "string",
-            "title": "求职者ID",
-            "description": "求职者ID"
+          "applicant": {
+            "title": "求职者",
+            "$ref": "#/components/schemas/Applicant",
+            "description": "求职者"
           },
-          "companyId": {
-            "type": "string",
-            "title": "公司ID",
-            "description": "公司ID"
+          "company": {
+            "title": "公司",
+            "$ref": "#/components/schemas/Company",
+            "description": "公司"
           }
         },
         "required": [
-          "companyId",
-          "applicantId",
+          "company",
+          "applicant",
           "id",
           "createdAt",
           "updatedAt",
@@ -17638,8 +18564,8 @@
           "createdAt",
           "updatedAt",
           "deletedAt",
-          "applicantId",
-          "companyId"
+          "applicant",
+          "company"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": "Applicant",
@@ -17664,7 +18590,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -17749,7 +18675,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -17761,7 +18687,7 @@
           "education": {
             "type": "integer",
             "title": "学历层次",
-            "description": "{1:大专,2:本科,3:硕士,4:博士}",
+            "description": "学历层次，eg；{1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
             "enum": [1, 2, 3, 4],
             "x-apifox": {
               "enumDescriptions": {
@@ -17842,7 +18768,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -17871,7 +18797,7 @@
           "positionType": {
             "type": "integer",
             "title": "职位类型",
-            "description": "{1:全职,2:兼职,3:实习}",
+            "description": "职位类型，eg；{1:FullTime,2:PartTime,3:Practice}",
             "enum": [1, 2, 3],
             "x-apifox": {
               "enumDescriptions": {
@@ -17950,14 +18876,14 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
           "positionType": {
             "type": "integer",
             "title": "职位类型",
-            "description": "{1:全职,2:兼职,3:实习}",
+            "description": "职位类型，eg；{1:FullTime,2:PartTime,3:Practice}",
             "enum": [1, 2, 3],
             "x-apifox": {
               "enumDescriptions": {
@@ -18045,7 +18971,7 @@
             "description": "更新时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -18093,7 +19019,7 @@
           "workingYears": {
             "type": "integer",
             "title": "工作年限",
-            "description": "{1:没有工作经验,2:在校/应届,3:3年一下,4:3-5年,5:5-10年,6:10年以上}",
+            "description": "工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}",
             "enum": [1, 2, 3, 4, 5, 6],
             "x-apifox": {
               "enumDescriptions": {
@@ -18117,7 +19043,7 @@
           "education": {
             "type": "integer",
             "title": "学历状态",
-            "description": "{0:未知,1:大专,2:本科,3:硕士,4:博士}",
+            "description": "学历状态，eg；{0:Unknown,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}",
             "enum": [0, 1, 2, 3, 4],
             "x-apifox": {
               "enumDescriptions": {
@@ -18149,7 +19075,7 @@
           "jobStatus": {
             "type": "integer",
             "title": "求职状态",
-            "description": "{1:随时入职,2:2周内入职,3:1月内入职}",
+            "description": "求职状态，eg；{0:Unknown,1:AnyTime,2:TwoWeeks,3:OneMoth}",
             "enum": [0, 1, 2, 3],
             "x-apifox": {
               "enumDescriptions": {
@@ -18172,7 +19098,7 @@
           "privacySettings": {
             "type": "integer",
             "title": "隐私设置",
-            "description": "{1:实名,2:匿名}",
+            "description": "隐私设置，eg；{1:RealName,2:Anonymous}",
             "enum": [1, 2],
             "x-apifox": {
               "enumDescriptions": {
@@ -18249,7 +19175,7 @@
             "description": "修改时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -18311,7 +19237,7 @@
             "description": "修改时间"
           },
           "deletedAt": {
-            "type": "string",
+            "type": ["string", "null"],
             "title": "移除时间",
             "description": "移除时间"
           },
@@ -18332,15 +19258,16 @@
           },
           "position": {
             "type": "integer",
-            "enum": [1],
+            "enum": [1, 2],
             "x-apifox": {
               "enumDescriptions": {
-                "1": "Master"
+                "1": "Master",
+                "2": "Popularize"
               }
             },
             "title": "投放位置",
-            "description": "{1:Master}",
-            "x-enum-varnames": ["Master"]
+            "description": "投放位置，eg；{1:Master,2:Popularize}",
+            "x-enum-varnames": ["Master", "Popularize"]
           },
           "status": {
             "type": "integer",
@@ -18352,7 +19279,7 @@
               }
             },
             "title": "投放状态",
-            "description": "{1:Active,2:Expired}",
+            "description": "投放状态，eg；{1:Active,2:Inactive}",
             "x-enum-varnames": ["Active", "Inactive"]
           },
           "payed": {
@@ -18377,6 +19304,11 @@
             "type": "string",
             "title": "结束时间",
             "description": "结束时间"
+          },
+          "advertiser": {
+            "$ref": "#/components/schemas/Advertiser",
+            "title": "广告商",
+            "description": "广告商"
           }
         },
         "title": "广告",
@@ -18392,7 +19324,8 @@
           "status",
           "payed",
           "startTime",
-          "endTime"
+          "endTime",
+          "advertiser"
         ],
         "required": [
           "id",
@@ -18406,7 +19339,8 @@
           "endTime",
           "createdAt",
           "updatedAt",
-          "deletedAt"
+          "deletedAt",
+          "advertiser"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": "Advertiser",

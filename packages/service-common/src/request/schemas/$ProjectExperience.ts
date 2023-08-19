@@ -23,6 +23,7 @@ export const $ProjectExperience = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     projectName: {
       type: "string",

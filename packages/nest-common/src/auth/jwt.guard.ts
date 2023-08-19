@@ -39,7 +39,7 @@ export class JwtAuthGuard extends AuthGuard("jwt") {
       .getRequest<Request & { user: User }>();
 
     const permissionCanActive = needPermissions.some(([reqScope, reqAction]) =>
-      request.user.permissions?.some(([hasScope, hasAction]) => {
+      request.user.authorities?.some(([hasScope, hasAction]) => {
         return reqScope === hasScope && reqAction === hasAction;
       })
     );

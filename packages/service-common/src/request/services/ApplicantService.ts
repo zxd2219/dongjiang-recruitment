@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Query } from "../../interfaces";
+import type { Query, Sort } from "../../interfaces";
 import type { Applicant } from "../models/Applicant";
 import type { ApplicantInspectionRecord } from "../models/ApplicantInspectionRecord";
 import type { DeliveryRecord } from "../models/DeliveryRecord";
@@ -54,11 +54,11 @@ export class ApplicantService {
        */
       email: string;
       /**
-       * {1:没有工作经验,2:在校/应届,3:3年一下,4:3-5年,5:5-10年,6:10年以上}
+       * 工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}
        */
       workingYears: 1 | 2 | 3 | 4 | 5 | 6;
       /**
-       * {0:未知,1:大专,2:本科,3:硕士,4:博士}
+       * 学历状态，eg；{0:Unknown,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
        */
       education: 0 | 1 | 2 | 3 | 4;
       /**
@@ -70,7 +70,7 @@ export class ApplicantService {
        */
       socialHomepage: string;
       /**
-       * {1:随时入职,2:2周内入职,3:1月内入职}
+       * 求职状态，eg；{0:Unknown,1:AnyTime,2:TwoWeeks,3:OneMoth}
        */
       jobStatus: 0 | 1 | 2 | 3;
       /**
@@ -78,25 +78,11 @@ export class ApplicantService {
        */
       pictureWorks: Array<string>;
       /**
-       * {1:实名,2:匿名}
+       * 隐私设置，eg；{1:RealName,2:Anonymous}
        */
       privacySettings: 1 | 2;
     };
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Applicant;
-  }> {
+  }): CancelablePromise<Applicant> {
     return this.httpRequest.request({
       method: "POST",
       url: "/applicant",
@@ -131,33 +117,16 @@ export class ApplicantService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof Applicant},${"asc" | "desc"}`>;
+    sort?: Sort<Applicant>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 求职者总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页求职者
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 求职者总数
-       */
-      total: number;
-      /**
-       * 当页求职者
-       */
-      items: Array<Applicant>;
-    };
+    items: Array<Applicant>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -185,21 +154,7 @@ export class ApplicantService {
      */
     id: string;
     requestBody?: Applicant;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Applicant;
-  }> {
+  }): CancelablePromise<Applicant> {
     return this.httpRequest.request({
       method: "PUT",
       url: "/applicant/{id}",
@@ -223,24 +178,7 @@ export class ApplicantService {
      * 求职者ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 求职者ID
-     */
-    body: string;
-  }> {
+  }): CancelablePromise<string> {
     return this.httpRequest.request({
       method: "DELETE",
       url: "/applicant/{id}",
@@ -262,21 +200,7 @@ export class ApplicantService {
      * 求职者ID
      */
     id: string;
-  }): CancelablePromise<{
-    /**
-     * 响应时间
-     */
-    timestamp: string;
-    /**
-     * 响应
-     */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    body: Applicant;
-  }> {
+  }): CancelablePromise<Applicant> {
     return this.httpRequest.request({
       method: "GET",
       url: "/applicant/{id}",
@@ -312,33 +236,16 @@ export class ApplicantService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof DeliveryRecord},${"asc" | "desc"}`>;
+    sort?: Sort<DeliveryRecord>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 投递记录总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页投递记录
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 投递记录总数
-       */
-      total: number;
-      /**
-       * 当页投递记录
-       */
-      items: Array<DeliveryRecord>;
-    };
+    items: Array<DeliveryRecord>;
   }> {
     return this.httpRequest.request({
       method: "GET",
@@ -378,33 +285,16 @@ export class ApplicantService {
     /**
      * 排序方式
      */
-    sort?: Array<`${keyof ApplicantInspectionRecord},${"asc" | "desc"}`>;
+    sort?: Sort<ApplicantInspectionRecord>;
   }): CancelablePromise<{
     /**
-     * 响应时间
+     * 查看记录总数
      */
-    timestamp: string;
+    total: number;
     /**
-     * 响应
+     * 当页查看记录
      */
-    message: string;
-    /**
-     * 响应编码
-     */
-    status: number;
-    /**
-     * 分页结果
-     */
-    body: {
-      /**
-       * 查看记录总数
-       */
-      total: number;
-      /**
-       * 当页查看记录
-       */
-      items: Array<ApplicantInspectionRecord>;
-    };
+    items: Array<ApplicantInspectionRecord>;
   }> {
     return this.httpRequest.request({
       method: "GET",

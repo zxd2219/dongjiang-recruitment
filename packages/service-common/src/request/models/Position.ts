@@ -2,6 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Company } from "./Company";
+import type { Personnel } from "./Personnel";
+
 /**
  * 职位
  */
@@ -21,7 +24,7 @@ export type Position = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 职位名称
    */
@@ -31,11 +34,11 @@ export type Position = {
    */
   positionType: string;
   /**
-   * {1:经验不限,2:在校/应届,3:3年及以下,4:3-5年,5:5-10年,6:10年以上}
+   * 工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}
    */
   workingYears: Position.workingYears;
   /**
-   * {1:不要求,2:大专,3:本科,4:硕士,5:博士}
+   * 学历要求，eg；{0:Unlimited,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
    */
   education: Position.education;
   /**
@@ -63,15 +66,15 @@ export type Position = {
    */
   workAreaName: string;
   /**
-   * 公司ID
+   * 公司
    */
-  companyId: string;
+  company: Company;
   /**
-   * 人事ID
+   * 人事
    */
-  personnelId: string;
+  personnel: Personnel;
   /**
-   * {1:全职,2:兼职,3:实习}
+   * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
    */
   workType: Position.workType;
   /**
@@ -87,7 +90,7 @@ export type Position = {
    */
   description: string;
   /**
-   * {1:周末双休:,2:周末单休,3:大小周}
+   * 周末休息时间，eg；{1:Weekends,2:SingleOff,3:SizeWeek}
    */
   weekendReleaseTime: Position.weekendReleaseTime;
   /**
@@ -103,19 +106,19 @@ export type Position = {
    */
   interviewInfo: {
     /**
-     * {1:现场面试,2:视频面试,3:电话面试}
+     * 面试形式，eg；{1:OffLine,2:OnLine,3:OnCall}
      */
     situation: Position.situation;
     /**
-     * {1:1-2轮次,2:3-4轮次,3:5-6轮次,4:暂不确定}
+     * 面试轮数，eg；{1:With1To2Round,2:With3To4Round,3:With5To6Round,4:Uncertain}
      */
     wheel: Position.wheel;
     /**
-     * {1:一天内完成,2:分多次完成}
+     * 面试时长，eg；{1:OneTime,2:ManyTime}
      */
     time: Position.time;
     /**
-     * {1:可周末面试,2:包含笔试,3:可下班面试,4:包含面试作业}
+     * 面试说明，eg；{1:Weekend,2:Examination,3:GetOffWork,4:Assignment}
      */
     illustrate: Position.illustrate;
   };
@@ -136,7 +139,7 @@ export type Position = {
 
 export namespace Position {
   /**
-   * {1:经验不限,2:在校/应届,3:3年及以下,4:3-5年,5:5-10年,6:10年以上}
+   * 工作年限，eg；{1:NoExperience,2:InSchoolOrFreshGraduate,3:Under3Year,4:With3To5Year,5:With5To10Year,6:MoreThen10Year}
    */
   export enum workingYears {
     NoExperience = 1,
@@ -148,7 +151,7 @@ export namespace Position {
   }
 
   /**
-   * {1:不要求,2:大专,3:本科,4:硕士,5:博士}
+   * 学历要求，eg；{0:Unlimited,1:JuniorCollege,2:Undergraduate,3:Postgraduate,4:Doctor}
    */
   export enum education {
     Unlimited = 0,
@@ -159,7 +162,7 @@ export namespace Position {
   }
 
   /**
-   * {1:全职,2:兼职,3:实习}
+   * 职位类型，eg；{1:FullTime,2:PartTime,3:Practice}
    */
   export enum workType {
     FullTime = 1,
@@ -168,7 +171,7 @@ export namespace Position {
   }
 
   /**
-   * {1:周末双休:,2:周末单休,3:大小周}
+   * 周末休息时间，eg；{1:Weekends,2:SingleOff,3:SizeWeek}
    */
   export enum weekendReleaseTime {
     Weekends = 1,
@@ -177,7 +180,7 @@ export namespace Position {
   }
 
   /**
-   * {1:现场面试,2:视频面试,3:电话面试}
+   * 面试形式，eg；{1:OffLine,2:OnLine,3:OnCall}
    */
   export enum situation {
     OffLine = 1,
@@ -186,7 +189,7 @@ export namespace Position {
   }
 
   /**
-   * {1:1-2轮次,2:3-4轮次,3:5-6轮次,4:暂不确定}
+   * 面试轮数，eg；{1:With1To2Round,2:With3To4Round,3:With5To6Round,4:Uncertain}
    */
   export enum wheel {
     With1To2Round = 1,
@@ -196,7 +199,7 @@ export namespace Position {
   }
 
   /**
-   * {1:一天内完成,2:分多次完成}
+   * 面试时长，eg；{1:OneTime,2:ManyTime}
    */
   export enum time {
     OneTime = 1,
@@ -204,7 +207,7 @@ export namespace Position {
   }
 
   /**
-   * {1:可周末面试,2:包含笔试,3:可下班面试,4:包含面试作业}
+   * 面试说明，eg；{1:Weekend,2:Examination,3:GetOffWork,4:Assignment}
    */
   export enum illustrate {
     Weekend = 1,

@@ -15,16 +15,17 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
+import { AuthorityGroup } from "src/authority-group/entities/authority-group.entity";
 import { BcryptService } from "src/bcrypt.module";
 import { AccountType, CreateAccountDto } from "./dto/create-account.dto";
 import { UpdateAccountDto } from "./dto/update-account.dto";
 import { Account } from "./entities/account.entity";
 
 const STATIC_FULL_ID = {
-  manager: null,
+  advertiser: null,
   applicant: null,
+  manager: null,
   personnel: null,
-  account: null,
 };
 
 @Injectable()
@@ -42,7 +43,7 @@ export class AccountService {
     // 获取账号类型对应的字段名
     const accountTypeStr = AccountType[
       accountType
-    ].toLowerCase() as keyof typeof STATIC_FULL_ID;
+    ]?.toLowerCase() as keyof typeof STATIC_FULL_ID;
 
     // 检查账号是否已存在
     const { items: accounts } = await this.findAll(
@@ -62,6 +63,16 @@ export class AccountService {
     }
 
     let detailId: string;
+    const authorityGroup: AuthorityGroup = (
+      await this.serviceClient.authenticationAuthorityGroup.queryAuthorityGroup(
+        {
+          query: {
+            name: ["$eq", accountTypeStr],
+          },
+        }
+      )
+    ).items[0] as unknown as AuthorityGroup;
+
     // 创建账号详细信息
     switch (accountType) {
       case AccountType.Manager:
@@ -70,23 +81,38 @@ export class AccountService {
       case AccountType.Applicant:
         detailId = (
           await this.serviceClient.applicant.addApplicant({
-            requestBody: detail as Applicant,
+            requestBody: {
+              ...detail,
+              avatarUrl:
+                (detail as Applicant)?.avatarUrl ||
+                "/common-avatars/applicant.png",
+            } as Applicant,
           })
-        ).body.id;
+        ).id;
         break;
       case AccountType.Personnel:
         detailId = (
           await this.serviceClient.personnel.addPersonnel({
-            requestBody: detail as Personnel,
+            requestBody: {
+              ...detail,
+              avatarUrl:
+                (detail as Personnel)?.avatarUrl ||
+                "/common-avatars/personnel.png",
+            } as Personnel,
           })
-        ).body.id;
+        ).id;
         break;
       case AccountType.Advertiser:
         detailId = (
           await this.serviceClient.advertiser.addAdvertiser({
-            requestBody: detail as Advertiser,
+            requestBody: {
+              ...detail,
+              logoUrl:
+                (detail as Advertiser)?.logoUrl ||
+                "/common-avatars/advertiser.png",
+            } as Advertiser,
           })
-        ).body.id;
+        ).id;
         break;
     }
 
@@ -95,8 +121,15 @@ export class AccountService {
       ...accounts[0],
       userName,
       password: await this.bcryptService.hash(password),
-      authorities: [...(accounts[0]?.authorities || [])],
-      groups: [...(accounts[0]?.groups || []), accountTypeStr],
+      authorities: [
+        ...(accounts[0]?.authorities || []),
+        ...(createAccountDto.authorities || []),
+      ].filter(Boolean),
+      authorityGroups: [
+        ...(accounts[0]?.authorityGroups || []),
+        ...(createAccountDto.authorityGroups || []),
+        authorityGroup,
+      ].filter(Boolean),
       detailId: {
         ...STATIC_FULL_ID,
         ...accounts[0]?.detailId,
@@ -133,12 +166,14 @@ export class AccountService {
   async update(id: string, updateAccountDto: UpdateAccountDto) {
     const account: UpdateAccountDto = {
       ...updateAccountDto,
-      password: await this.bcryptService.hash(updateAccountDto.password),
+      password: updateAccountDto.password
+        ? await this.bcryptService.hash(updateAccountDto.password)
+        : undefined,
       id,
     };
-    const { affected } = await this.accountRepository.update(id, account);
-    if (!affected) throw new NotFoundException();
-    return account;
+    const newAccount = await this.accountRepository.save(account);
+    if (!newAccount) throw new NotFoundException();
+    return newAccount;
   }
 
   async remove(id: string) {

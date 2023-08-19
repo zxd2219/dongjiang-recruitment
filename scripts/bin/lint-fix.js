@@ -11,12 +11,12 @@ const node_fs_1 = require("node:fs");
 const node_path_1 = require("node:path");
 const node_process_1 = require("node:process");
 const linterConfigs = [
-  {
-    lintName: "eslint",
-    lintCommand: "eslint **/*.{js,jsx,ts,tsx,vue} --fix",
-    configFiles: [".eslintrc"],
-    prefixColor: "bgYellow",
-  },
+  // {
+  //   lintName: "eslint",
+  //   lintCommand: "eslint **/*.{js,jsx,ts,tsx,vue} --fix",
+  //   configFiles: [".eslintrc"],
+  //   prefixColor: "bgYellow",
+  // },
   {
     lintName: "stylelint",
     lintCommand: "stylelint **/*.{css,scss,sass,less,styl,vue} --fix",

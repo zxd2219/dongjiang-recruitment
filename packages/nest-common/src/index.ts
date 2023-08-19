@@ -3,6 +3,7 @@ import AuthModule, { AuthOption } from "./auth";
 import ConfigModule from "./config";
 import HttpModule from "./http";
 import MailerModule from "./mailer";
+import MinioModule from "./minio";
 import RedisModule from "./redis";
 import TransformModule from "./transform";
 import TypeOrmModule from "./typeorm";
@@ -12,6 +13,7 @@ const commonModule = [
   ConfigModule,
   HttpModule,
   MailerModule,
+  MinioModule,
   RedisModule,
   TransformModule,
   TypeOrmModule,

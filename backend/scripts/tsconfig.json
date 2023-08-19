@@ -1,0 +1,9 @@
+{
+  "extends": "@dongjiang-recruitment/typescript-config/base.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "preserveValueImports": false,
+    "module": "CommonJS",
+    "rootDir": "src"
+  }
+}

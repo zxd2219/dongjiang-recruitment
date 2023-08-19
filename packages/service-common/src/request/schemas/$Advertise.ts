@@ -23,6 +23,7 @@ export const $Advertise = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     name: {
       type: "string",
@@ -59,6 +60,11 @@ export const $Advertise = {
     endTime: {
       type: "string",
       description: `结束时间`,
+      isRequired: true,
+    },
+    advertiser: {
+      type: "Advertiser",
+      description: `广告商`,
       isRequired: true,
     },
   },

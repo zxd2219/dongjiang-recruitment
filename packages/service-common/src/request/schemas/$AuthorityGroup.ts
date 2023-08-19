@@ -23,6 +23,7 @@ export const $AuthorityGroup = {
       type: "string",
       description: `移除时间`,
       isRequired: true,
+      isNullable: true,
     },
     name: {
       type: "string",
@@ -32,7 +33,7 @@ export const $AuthorityGroup = {
     authorities: {
       type: "array",
       contains: {
-        type: "string",
+        type: "Authority",
       },
       isRequired: true,
     },

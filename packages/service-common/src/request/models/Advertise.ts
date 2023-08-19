@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Advertiser } from "./Advertiser";
+
 /**
  * 广告
  */
@@ -21,7 +23,7 @@ export type Advertise = {
   /**
    * 移除时间
    */
-  deletedAt: string;
+  deletedAt: string | null;
   /**
    * 名称
    */
@@ -35,11 +37,11 @@ export type Advertise = {
    */
   banner: string;
   /**
-   * {1:Master}
+   * 投放位置，eg；{1:Master,2:Popularize}
    */
   position: Advertise.position;
   /**
-   * {1:Active,2:Expired}
+   * 投放状态，eg；{1:Active,2:Inactive}
    */
   status: Advertise.status;
   /**
@@ -54,18 +56,23 @@ export type Advertise = {
    * 结束时间
    */
   endTime: string;
+  /**
+   * 广告商
+   */
+  advertiser: Advertiser;
 };
 
 export namespace Advertise {
   /**
-   * {1:Master}
+   * 投放位置，eg；{1:Master,2:Popularize}
    */
   export enum position {
     Master = 1,
+    Popularize = 2,
   }
 
   /**
-   * {1:Active,2:Expired}
+   * 投放状态，eg；{1:Active,2:Inactive}
    */
   export enum status {
     Active = 1,

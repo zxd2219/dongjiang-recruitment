@@ -1,0 +1,49 @@
+{
+  "name": "@dongjiang-recruitment/advertiser-interface",
+  "version": "1.0.0",
+  "description": "advertiser interface",
+  "private": true,
+  "scripts": {
+    "dev": "s-prebuild && vite --host",
+    "build": "s-prebuild && vite build",
+    "preview": "s-prebuild && vite preview"
+  },
+  "dependencies": {
+    "@dongjiang-recruitment/service-common": "workspace:^",
+    "@vicons/ionicons5": "^0.12.0",
+    "@vueuse/core": "^9.12.0",
+    "dayjs": "^1.11.7",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "naive-ui": "^2.34.3",
+    "normalize.css": "^8.0.1",
+    "pinia": "^2.0.30",
+    "pinia-plugin-persist": "^1.0.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@dongjiang-recruitment/eslint-config": "workspace:^1.0.0",
+    "@dongjiang-recruitment/stylelint-config": "workspace:^1.0.0",
+    "@dongjiang-recruitment/typescript-config": "workspace:^1.0.0",
+    "@dongjiang-recruitment/vite-config": "workspace:^1.0.0",
+    "@types/lodash": "^4.14.192",
+    "@types/node": "^18.13.0",
+    "vite": "^4.1.1"
+  },
+  "browserslist": {
+    "production": [
+      "defaults",
+      "not IE 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 edge version",
+      "last 1 ie version"
+    ]
+  },
+  "author": "ucstu",
+  "license": "MIT"
+}

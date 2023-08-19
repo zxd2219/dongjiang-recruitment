@@ -5,6 +5,7 @@ import {
   Repository,
 } from "@dongjiang-recruitment/nest-common/dist/typeorm";
 import { Injectable, NotFoundException } from "@nestjs/common";
+import { InspectionRecord } from "../inspectionRecord/entities/inspectionRecord.entity";
 import { CreatePersonnelDto } from "./dto/create-personnel.dto";
 import { UpdatePersonnelDto } from "./dto/update-personnel.dto";
 import { Personnel } from "./entities/personnel.entity";
@@ -13,7 +14,9 @@ import { Personnel } from "./entities/personnel.entity";
 export class PersonnelService {
   constructor(
     @InjectRepository(Personnel)
-    private readonly personnelRepository: Repository<Personnel>
+    private readonly personnelRepository: Repository<Personnel>,
+    @InjectRepository(InspectionRecord)
+    private readonly inspectionRecordRepository: Repository<InspectionRecord>
   ) {}
 
   async create(createPersonnelDto: CreatePersonnelDto) {
@@ -33,6 +36,23 @@ export class PersonnelService {
         skip: page * size,
         take: size,
         order: sort,
+      }),
+    };
+  }
+
+  async findAllInspectionRecords(
+    query: FindOptionsWhere<InspectionRecord>[],
+    page: Pagination<InspectionRecord>
+  ) {
+    return {
+      total: await this.inspectionRecordRepository.count({
+        where: query,
+      }),
+      items: await this.inspectionRecordRepository.find({
+        where: query,
+        skip: page.page * page.size,
+        take: page.size,
+        order: page.sort,
       }),
     };
   }

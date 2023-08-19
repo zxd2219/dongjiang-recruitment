@@ -18,46 +18,46 @@ import { CreateAdvertiseDto } from "./dto/create-advertise.dto";
 import { UpdateAdvertiseDto } from "./dto/update-advertise.dto";
 import { Advertise } from "./entities/advertise.entity";
 
-@Controller("advertisers/{advertiserid}/advertise")
+@Controller("advertisers/:advertiserId/advertise")
 export class AdvertiseController {
   constructor(private readonly advertiseService: AdvertiseService) {}
 
   @Post()
   create(
-    @Param("advertiserid") advertiserid: string,
+    @Param("advertiserId") advertiserId: string,
     @Body() createAdvertiseDto: CreateAdvertiseDto
   ) {
-    return this.advertiseService.create(advertiserid, createAdvertiseDto);
+    return this.advertiseService.create(advertiserId, createAdvertiseDto);
   }
 
   @Get()
   findAll(
-    @Param("advertiserid") advertiserid: string,
+    @Param("advertiserId") advertiserId: string,
     @QueryParam() query: Array<FindOptionsWhere<Advertise>>,
     @Page() page: Pagination<Advertise>
   ) {
-    return this.advertiseService.findAll(advertiserid, query, page);
+    return this.advertiseService.findAll(advertiserId, query, page);
   }
 
   @Get(":id")
   findOne(
-    @Param("advertiserid") advertiserid: string,
+    @Param("advertiserId") advertiserId: string,
     @Param("id") id: string
   ) {
-    return this.advertiseService.findOne(advertiserid, id);
+    return this.advertiseService.findOne(advertiserId, id);
   }
 
   @Put(":id")
   update(
-    @Param("advertiserid") advertiserid: string,
+    @Param("advertiserId") advertiserId: string,
     @Param("id") id: string,
     @Body() updateAdvertiseDto: UpdateAdvertiseDto
   ) {
-    return this.advertiseService.update(advertiserid, id, updateAdvertiseDto);
+    return this.advertiseService.update(advertiserId, id, updateAdvertiseDto);
   }
 
   @Delete(":id")
-  remove(@Param("advertiserid") advertiserid: string, @Param("id") id: string) {
-    return this.advertiseService.remove(advertiserid, id);
+  remove(@Param("advertiserId") advertiserId: string, @Param("id") id: string) {
+    return this.advertiseService.remove(advertiserId, id);
   }
 }
