@@ -20,9 +20,10 @@
 
 ## 📃 相关地址
 
-东江人才招聘-用户端：[演示地址](https://djyh.ucstu.com) [项目目录](../../tree/master/frontend/admin-web)\
-东江人才招聘-HR 端：[演示地址](https://djhr.ucstu.com) [项目目录](../../tree/master/frontend/hrduan-web)\
-东江人才招聘-管理端：[演示地址](https://djadmin.ucstu.com) [项目目录](../../tree/master/frontend/yonghu-uni)
+东江人才招聘-用户端：[演示地址](https://djyh.ucstu.com) [项目目录](../../tree/master/frontend/applicant-interface)\
+东江人才招聘-HR端：[演示地址](https://djhr.ucstu.com) [项目目录](../../tree/master/frontend/personnel-interface)\
+东江人才招聘-管理端：[演示地址](https://djadmin.ucstu.com) [项目目录](../../tree/master/frontend/manager-interface)\
+东江人才招聘-广告商端：[演示地址](https://djadmin.ucstu.com) [项目目录](../../tree/master/frontend/advertiser-interface)
 
 ## 🗜️ 相关资料
 
